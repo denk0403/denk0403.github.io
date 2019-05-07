@@ -1,2 +1,3 @@
-# denk0403.github.io
-Personal Website
+# Personal Website
+Dennis's Personal Website (WIP)
+Check back in a few weeks!
