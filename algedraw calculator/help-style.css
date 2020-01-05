@@ -1,0 +1,64 @@
+@charset "UTF-8";
+/* CSS Document */
+
+body {
+	background: rgba(0,165,230,1.00)
+}
+
+.page-title {
+	background-color: rgba(255,255,255,0.67);
+	border-style: outset;
+	border-width: 7px;
+}
+
+.page-title h1 {
+	font-weight: 600;
+	align-self: center;
+	font-size-adjust: auto;
+}
+
+.page-title img {
+	text-align: center;
+	align-self: center;
+	max-height: 15%;
+	max-width: 15%;
+}
+
+.animation-cards {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	border-style: groove;
+	border-width: 5px;
+	border-color: black;
+}
+
+footer {
+	margin: 10px;
+	padding-top: 15px;
+	border-style: solid;
+	border-color: gray;
+	background-color: rgba(255,255,255,0.67);
+	border-radius: 10px;
+}
+
+a.email:link
+{
+   color: red;
+   text-decoration: none;
+}
+a.email:visited
+{
+   color: purple;
+   text-decoration: none;
+}
+a.email:hover
+{
+   color: red;
+   text-decoration: underline;
+}
+a.email:active
+{
+   color: purples;
+   text-decoration: none;
+}
