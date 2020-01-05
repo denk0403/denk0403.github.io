@@ -14,8 +14,8 @@ body {
 .page-title h1 {
 	font-weight: 600;
 	align-self: center;
-	font-size-adjust: auto;
-    text-align: center;
+	text-align: center;
+	font-size: 6vw;
 }
 
 .page-title img {
