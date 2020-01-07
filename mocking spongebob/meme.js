@@ -10,6 +10,12 @@ input.oninput = (event) => {
     mirror.src = dataURL;
 }
 
+input.onkeydown = (event) => {
+    if(event.keyCode == 13) {
+        event.preventDefault();
+    }
+}
+
 function splitUp(str) {
     const maxLength = 20;
     let result = "";
