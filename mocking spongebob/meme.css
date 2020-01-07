@@ -1,0 +1,18 @@
+.output {
+    border: 1px solid black;
+}
+
+#output, #meme {
+    display: none;
+    visibility: hidden;
+}
+
+label {
+    font-size: x-large;
+}
+
+input {
+    border: 2px solid black;
+    padding: 10px;
+    border-radius: 5px;
+}
