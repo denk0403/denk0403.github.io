@@ -11,18 +11,31 @@
 
 <body>
     <h1>Mocking Spongebob Meme Generator</h1>
+    
+    <input name="mode" type="radio" value="captionLabel" checked="checked" onclick="updateMode()">Caption</input>
+    <input name="mode" type="radio" value="imageinLabel" onclick="updateMode()">Image</input>
+    <br/>
+    <br/>
     <form>
-        <label for="caption">
-            Caption: 
+        <label id="captionLabel" for="caption">
+            Caption:
             <input id="caption"></input>
         </label>
+        <label id="imageinLabel" for="imagein" style="display: none;">
+            Image:
+            <input id="imagein" type="file" accept="image/*" />
+        </label>
     </form>
-    <br/>
+    <br />
+
     <canvas id="output" width="500" height="350">
     </canvas>
+
     <img id="meme" src="./background.JPG" alt="spongebob meme" />
     <img id="mirror" src="./background.JPG" alt="spongebob meme" />
-    <p>Made by Dennis Kats <br/> For Julieth Sanchez</p>
+    <img id="upload" src="" />
+
+    <p>Made by Dennis Kats <br /> For Julieth Sanchez and Jack Rosen</p>
     <script type="text/javascript" src="./meme.js"></script>
 </body>
 

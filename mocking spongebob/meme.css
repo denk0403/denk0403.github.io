@@ -1,18 +1,21 @@
-.output {
-    border: 1px solid black;
+body {
+    text-align: center;
 }
 
-#output, #meme {
+#output, #meme, #upload {
     display: none;
     visibility: hidden;
+    align-self: center;
 }
 
 label {
     font-size: x-large;
 }
 
-input {
+#caption, #imagein {
     border: 2px solid black;
     padding: 10px;
     border-radius: 5px;
+    width: 20vw;
+    font-size: large;
 }
