@@ -129,7 +129,7 @@ function updateMode() {
       
     for(i = 0; i < modes.length; i++) { 
         if (modes[i].checked) {
-            document.getElementById(modes[i].value).style.display = "inline";
+            document.getElementById(modes[i].value).style.display = "initial";
         } else {
             document.getElementById(modes[i].value).style.display = "none";
         }
