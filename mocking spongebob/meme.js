@@ -7,9 +7,36 @@ let imagein = document.getElementById("imagein");
 let upload = document.getElementById("upload");
 let reader = new FileReader();
 
+document.getElementById("title").onclick = () => {
+    location.replace(`${location.origin}${location.pathname}`);
+}
+
+let processHash = (hash) => {
+    if (hash) {
+        if (hash.indexOf("data:image/") > -1 && hash.indexOf(";base64,") > -1) {
+            document.getElementById("imageinRadio").checked = true;
+            updateMode();
+            upload.src = hash.slice(1);
+        } else {
+            document.getElementById("captionRadio").checked = true;
+            updateMode();
+            input.value = hash.slice(1).split("%20").join(" ");
+            drawMemeText(input.value);
+            repaint();
+        }
+    }
+}
+
+window.onload = () => {
+    processHash(location.hash);
+}
+
+window.onhashchange = () => {
+    processHash(location.hash)
+}
+
 input.oninput = (event) => {
-    drawMemeText(event.currentTarget.value.trim());
-    repaint();
+    location.replace(`${location.origin}${location.pathname}#${event.currentTarget.value.trim()}`);
 }
 
 input.onkeydown = (event) => {
@@ -91,7 +118,7 @@ function altText(str) {
 
 reader.onload = function () {
     var dataURL = reader.result;
-    upload.src = dataURL;
+    location.replace(`${location.origin}${location.pathname}#${dataURL}`);
 };
 
 upload.onload = (event) => {
@@ -105,7 +132,7 @@ function drawMemeImage() {
     let newHeight = 105;
     let scale = newHeight / upload.height;
     let newWidth = upload.width * scale;
-    ctx.drawImage(upload, 250 - (newWidth/2), canvas.height - 5 - newHeight, newWidth, newHeight);
+    ctx.drawImage(upload, 250 - (newWidth / 2), canvas.height - 5 - newHeight, newWidth, newHeight);
 }
 
 function repaint() {
@@ -124,17 +151,16 @@ imagein.onchange = (event) => {
     }
 }
 
-function updateMode() { 
-    var modes = document.getElementsByName('mode'); 
-      
-    for(i = 0; i < modes.length; i++) { 
+function updateMode() {
+    var modes = document.getElementsByName('mode');
+
+    for (i = 0; i < modes.length; i++) {
         if (modes[i].checked) {
             document.getElementById(modes[i].value).style.display = "initial";
         } else {
             document.getElementById(modes[i].value).style.display = "none";
         }
-        
-    } 
-} 
+    }
+}
 
 

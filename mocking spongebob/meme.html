@@ -10,12 +10,13 @@
 </head>
 
 <body>
-    <h1>Mocking Spongebob Meme Generator</h1>
-    
-    <input name="mode" type="radio" value="captionLabel" checked="checked" onclick="updateMode()">Caption</input>
-    <input name="mode" type="radio" value="imageinLabel" onclick="updateMode()">Image</input>
-    <br/>
-    <br/>
+    <h1 id="title">Mocking Spongebob Meme Generator</h1>
+
+    <input id="captionRadio" name="mode" type="radio" value="captionLabel" checked="checked"
+        onclick="updateMode()">Caption</input>
+    <input id="imageinRadio" name="mode" type="radio" value="imageinLabel" onclick="updateMode()">Image</input>
+    <br />
+    <br />
     <form>
         <label id="captionLabel" for="caption">
             Caption:
