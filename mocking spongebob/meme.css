@@ -46,7 +46,10 @@ label {
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
-.btn:hover,
-.btn:active {
+.btn:hover {
   background-color: rgb(33, 194, 1);
+}
+
+.btn:active {
+  background-color: rgb(40, 225, 3);
 }
