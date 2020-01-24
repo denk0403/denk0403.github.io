@@ -209,7 +209,16 @@ function updateMode() {
 }
 
 function copy() {
-  navigator.clipboard.writeText(`${location.origin}${location.pathname}${location.search}${location.hash}`);
+  if (document.execCommand) {
+    let temp = document.createElement("textarea");
+    temp.value = location.href;
+    document.body.appendChild(temp);
+    temp.select();
+    document.execCommand("copy");
+    document.body.removeChild(temp);
+  } else {
+    navigator.clipboard.writeText(`${location.href}`);
+  }
 }
 
 function save() {
