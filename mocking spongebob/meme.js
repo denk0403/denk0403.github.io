@@ -209,7 +209,7 @@ function updateMode() {
 }
 
 function copy() {
-  navigator.clipboard.writeText(location.href);
+  navigator.clipboard.writeText(`${location.origin}${location.pathname}${location.search}${location.hash}`);
 }
 
 function save() {
