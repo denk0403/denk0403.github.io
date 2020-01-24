@@ -1,5 +1,10 @@
+html {
+  height: 100%;
+}
 body {
+  height: 100%;
   text-align: center;
+  background: linear-gradient(#b7e9b4, #ebebad);
 }
 
 #output,
@@ -19,12 +24,13 @@ label {
   border: 2px solid black;
   padding: 10px;
   border-radius: 5px;
+  min-width: 200px;
   width: 20vw;
   font-size: large;
 }
 
 #note {
-  color: red;
+  color: rgb(255, 0, 0);
 }
 
 .btn {

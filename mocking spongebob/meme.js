@@ -13,12 +13,13 @@ document.getElementById("title").onclick = () => {
 
 let processHashV1 = hash => {
   if (hash) {
-    input.value = hash
+    const original = hash
       .slice(1)
       .split("%20")
       .join(" ");
-    drawMemeText(input.value);
-    repaint();
+    location.replace(
+      `${location.origin}${location.pathname}?v=2#${hashify(original)}`
+    );
   }
 };
 
@@ -30,6 +31,9 @@ let processHashV2 = hash => {
       .map(char => String.fromCodePoint(parseInt(char, 16)))
       .join("");
     drawMemeText(input.value);
+    repaint();
+  } else {
+    drawMemeText("");
     repaint();
   }
 };
