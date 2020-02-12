@@ -196,33 +196,39 @@
       repaint();
     }
   };
-})();
 
-function updateMode() {
-  var modes = document.getElementsByName("mode");
-
-  for (i = 0; i < modes.length; i++) {
-    if (modes[i].checked) {
-      document.getElementById(modes[i].value).style.display = "initial";
-    } else {
-      document.getElementById(modes[i].value).style.display = "none";
+  function updateMode() {
+    var modes = document.getElementsByName("mode");
+  
+    for (i = 0; i < modes.length; i++) {
+      if (modes[i].checked) {
+        document.getElementById(modes[i].value).style.display = "initial";
+      } else {
+        document.getElementById(modes[i].value).style.display = "none";
+      }
     }
   }
-}
 
-function copy() {
-  if (document.execCommand) {
-    let temp = document.createElement("textarea");
-    temp.value = location.href;
-    document.body.appendChild(temp);
-    temp.select();
-    document.execCommand("copy");
-    document.body.removeChild(temp);
-  } else {
-    navigator.clipboard.writeText(`${location.href}`);
+  function copy() {
+    if (document.execCommand) {
+      let temp = document.createElement("textarea");
+      temp.value = location.href;
+      document.body.appendChild(temp);
+      temp.select();
+      document.execCommand("copy");
+      document.body.removeChild(temp);
+    } else {
+      navigator.clipboard.writeText(`${location.href}`);
+    }
   }
-}
+  
+  function save() {
+    window.location.href = mirror.src.replace("image/png", "image/octet-stream");
+  }
 
-function save() {
-  window.location.href = mirror.src.replace("image/png", "image/octet-stream");
-}
+  document.getElementById("imageinRadio").onclick = updateMode
+  document.getElementById("captionRadio").onclick = updateMode
+  document.getElementById("cpy-btn").onclick = copy
+  document.getElementById("sv-btn").onclick = save
+
+})();

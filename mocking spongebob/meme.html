@@ -12,9 +12,8 @@
 <body>
     <h1 id="title">Mocking Spongebob Meme Generator</h1>
 
-    <input id="captionRadio" name="mode" type="radio" value="captionLabel" checked="checked"
-        onclick="updateMode()">Caption</input>
-    <input id="imageinRadio" name="mode" type="radio" value="imageinLabel" onclick="updateMode()">Image</input>
+    <input id="captionRadio" name="mode" type="radio" value="captionLabel" checked="checked">Caption</input>
+    <input id="imageinRadio" name="mode" type="radio" value="imageinLabel">Image</input>
     <br />
     <br />
     <form>
@@ -35,8 +34,8 @@
     <img id="mirror" src="./background.JPG" alt="spongebob meme" />
     <img id="upload" src="" />
     <div class="btn-group btn-primary">
-        <button class="btn" title="Copy the link for this meme to your clipboard" onclick="copy()">Copy Link</button>
-        <button class="btn" title="Save this image to your local files" onclick="save()">Save Image</button>
+        <button class="btn" id="cpy-btn" title="Copy the link for this meme to your clipboard">Copy Link</button>
+        <button class="btn" id="sv-btn" title="Save this image to your local files">Save Image</button>
     </div>
     <div id="note">Note: Link copying is supported for captions only. <br/> You can save the image also by right clicking (holding down on mobile) on the image.</div>
 
