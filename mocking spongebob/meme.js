@@ -1,4 +1,4 @@
-(function() {
+(function () {
   let canvas = document.getElementById("output");
   let ctx = canvas.getContext("2d");
   let img = document.getElementById("meme");
@@ -12,27 +12,22 @@
     location.replace(`${location.origin}${location.pathname}`);
   };
 
-  let processHashV1 = hash => {
+  let processHashV1 = (hash) => {
     if (hash) {
-      const original = hash
-        .slice(1)
-        .split("%20")
-        .join(" ");
+      const original = hash.slice(1).split("%20").join(" ");
       location.replace(
         `${location.origin}${location.pathname}?v=2#${hashify(original)}`
       );
     }
   };
 
-  let processHashV2 = hash => {
+  let processHashV2 = (hash) => {
     if (hash) {
-      input.value = altText(
-        hash
-          .slice(1)
-          .split(":")
-          .map(char => String.fromCodePoint(parseInt(char, 16)))
-          .join("")
-      );
+      input.value = hash
+        .slice(1)
+        .split(":")
+        .map((char) => String.fromCodePoint(parseInt(char, 16)))
+        .join("");
       drawMemeText(input.value);
       repaint();
     } else {
@@ -41,8 +36,8 @@
     }
   };
 
-  let hashify = str => {
-    return [...str].map(char => char.codePointAt(0).toString(16)).join(":");
+  let hashify = (str) => {
+    return [...str].map((char) => char.codePointAt(0).toString(16)).join(":");
   };
 
   window.onload = () => {
@@ -51,8 +46,8 @@
       ...location.search
         .slice(1)
         .split("&")
-        .map(param => param.split("="))
-        .map(arr => ({ [arr[0]]: arr[1] }))
+        .map((param) => param.split("="))
+        .map((arr) => ({ [arr[0]]: arr[1] }))
     );
     if (searchParams && searchParams.v && searchParams.v === "2") {
       console.log("Using version 2!");
@@ -70,7 +65,7 @@
     processHashV2(location.hash);
   };
 
-  input.oninput = event => {
+  input.oninput = (event) => {
     imagein.value = "";
     location.replace(
       `${location.origin}${location.pathname}?v=2#${hashify(
@@ -79,7 +74,7 @@
     );
   };
 
-  input.onkeydown = event => {
+  input.onkeydown = (event) => {
     if (event.keyCode == 13) {
       event.preventDefault();
     }
@@ -157,12 +152,12 @@
     return result;
   }
 
-  reader.onload = function() {
+  reader.onload = function () {
     var dataURL = reader.result;
     upload.src = dataURL;
   };
 
-  upload.onload = event => {
+  upload.onload = (event) => {
     drawMemeImage();
     repaint();
   };
@@ -189,7 +184,7 @@
     mirror.title = input.value;
   }
 
-  imagein.onchange = event => {
+  imagein.onchange = (event) => {
     input.value = "";
     location.replace(`${location.origin}${location.pathname}?v=2#`);
     if (imagein.files[0]) {
@@ -213,10 +208,23 @@
     }
   }
 
-  function copy() {
+  function copyLink() {
     if (document.execCommand) {
       let temp = document.createElement("textarea");
       temp.value = location.href;
+      document.body.appendChild(temp);
+      temp.select();
+      document.execCommand("copy");
+      document.body.removeChild(temp);
+    } else {
+      navigator.clipboard.writeText(`${location.href}`);
+    }
+  }
+
+  function copyMockText() {
+    if (document.execCommand) {
+      let temp = document.createElement("textarea");
+      temp.value = altText(input.value);
       document.body.appendChild(temp);
       temp.select();
       document.execCommand("copy");
@@ -235,6 +243,7 @@
 
   document.getElementById("imageinRadio").onclick = updateMode;
   document.getElementById("captionRadio").onclick = updateMode;
-  document.getElementById("cpy-btn").onclick = copy;
+  document.getElementById("cpy-text-btn").onclick = copyMockText;
+  document.getElementById("cpy-link-btn").onclick = copyLink;
   document.getElementById("sv-btn").onclick = save;
 })();
