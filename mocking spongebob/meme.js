@@ -182,6 +182,28 @@
     mirror.src = dataURL;
     mirror.alt = input.value;
     mirror.title = input.value;
+
+    var modes = document.getElementsByName("mode");
+    for (i = 0; i < modes.length; i++) {
+      if (modes[i].checked) {
+        if (modes[i].id == "captionRadio") {
+          document.getElementById("cpy-text-btn").disabled = false;
+          document.getElementById("cpy-link-btn").disabled = false;
+
+          // document.getElementById("cpy-text-btn").style.display = "initial";
+          // document.getElementById("cpy-link-btn").style.display = "initial";
+        } else {
+          document.getElementById("cpy-text-btn").disabled = true;
+          document.getElementById("cpy-link-btn").disabled = true;
+
+          // document.getElementById("cpy-text-btn").style.display = "none";
+          // document.getElementById("cpy-link-btn").style.display = "none";
+        }
+      }
+    }
+
+    document.getElementById("sv-link").href = mirror.src;
+    document.getElementById("sv-link").download = `${input.value ? altText(input.value) : "img"}.png`;
   }
 
   imagein.onchange = (event) => {
@@ -235,10 +257,7 @@
   }
 
   function save() {
-    window.location.href = mirror.src.replace(
-      "image/png",
-      "image/octet-stream"
-    );
+    document.getElementById("sv-link").click();
   }
 
   document.getElementById("imageinRadio").onclick = updateMode;

@@ -53,3 +53,11 @@ label {
 .btn:active {
   background-color: rgb(40, 225, 3);
 }
+
+.btn:disabled {
+  background-color: rgb(151, 173, 182);
+}
+
+#sv-link {
+  display: none;
+}
