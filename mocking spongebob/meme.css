@@ -19,6 +19,11 @@ body {
   align-self: center;
 }
 
+#mirror {
+  max-width: 100%;
+  height: auto;
+}
+
 label {
   font-size: x-large;
 }
