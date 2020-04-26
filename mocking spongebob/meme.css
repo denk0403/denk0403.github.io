@@ -1,10 +1,14 @@
 html {
-  height: 100%;
+  min-height: 100%;
 }
+
 body {
-  height: 100%;
+  min-height: 100%;
   text-align: center;
-  background: linear-gradient(#b7e9b4, #ebebad);
+  background: linear-gradient(#b7e9b4, #ebebad) fixed no-repeat;
+  background: -webkit-linear-gradient(#b7e9b4, #ebebad) fixed no-repeat;
+  background: -moz-linear-gradient(#b7e9b4, #ebebad) fixed no-repeat;
+  background: -o-linear-gradient(#b7e9b4, #ebebad) fixed no-repeat;
 }
 
 #output,
