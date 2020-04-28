@@ -70,7 +70,7 @@ label {
 .box {
   display: inline-block;
   width: 85vw;
-  background-color: rgba(248, 226, 203, 0.85);
+  background-color: rgba(255, 233, 210, 0.85);
   border-radius: 5%;
   padding: 10px;
   transition: background-color 0.4s linear;
@@ -83,18 +83,19 @@ label {
 body {
   --top-color: #b7e9b4;
   --bottom-color: #ebebad;
-  background: linear-gradient(var(--top-color), var(--bottom-color)) fixed
-    no-repeat;
+  background: linear-gradient(var(--top-color), var(--bottom-color)) fixed no-repeat;
+  background: -webkit-linear-gradient(var(--top-color), var(--bottom-color)) fixed no-repeat;
 }
 
 div.darkmode-background {
   --top-color: #ffffff;
   --bottom-color: rgb(225, 225, 225);
-  background: linear-gradient(var(--top-color), var(--bottom-color)) fixed
-    no-repeat;
+  background: linear-gradient(var(--top-color), var(--bottom-color)) fixed no-repeat;
+  background: -webkit-linear-gradient(var(--top-color), var(--bottom-color)) fixed no-repeat;
 
   opacity: 0;
   transition: opacity 0.3s linear;
+  min-height: 100%;
 }
 
 .darkmode--activated .darkmode-background {
