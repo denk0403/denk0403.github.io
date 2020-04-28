@@ -47,7 +47,8 @@ label {
   box-shadow: inset 0 -3px 8px 2px #414b72;
   color: white;
   font-weight: bold;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
 .btn:hover {
@@ -72,13 +73,32 @@ label {
   background-color: rgba(248, 226, 203, 0.85);
   border-radius: 5%;
   padding: 10px;
+  transition: background-color 0.4s linear;
+}
+
+.darkmode--activated .box {
+  background-color: rgba(255, 215, 170, 0.75);
+}
+
+body {
+  --top-color: #b7e9b4;
+  --bottom-color: #ebebad;
+  background: linear-gradient(var(--top-color), var(--bottom-color)) fixed
+    no-repeat;
 }
 
 div.darkmode-background {
-  background: linear-gradient(#b7e9b4, #ebebad) fixed no-repeat;
-  background: -webkit-linear-gradient(#b7e9b4, #ebebad) fixed no-repeat;
-  background: -moz-linear-gradient(#b7e9b4, #ebebad) fixed no-repeat;
-  background: -o-linear-gradient(#b7e9b4, #ebebad) fixed no-repeat;
+  --top-color: #ffffff;
+  --bottom-color: rgb(225, 225, 225);
+  background: linear-gradient(var(--top-color), var(--bottom-color)) fixed
+    no-repeat;
+
+  opacity: 0;
+  transition: opacity 0.3s linear;
+}
+
+.darkmode--activated .darkmode-background {
+  opacity: 1;
 }
 
 .darkmode-toggle {
@@ -88,8 +108,4 @@ div.darkmode-background {
 
 .darkmode-toggle:hover {
   filter: brightness(0.9);
-}
-
-.darkmode--activated div.darkmode-background {
-  background-color: black;
 }
