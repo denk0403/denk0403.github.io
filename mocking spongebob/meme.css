@@ -71,8 +71,8 @@ label {
   display: inline-block;
   width: 85vw;
   background-color: rgba(255, 233, 210, 0.85);
-  border-radius: 5%;
-  padding: 10px;
+  border-radius: 2%;
+  padding: 0 15px 10px 15px;
   transition: background-color 0.4s linear;
 }
 
