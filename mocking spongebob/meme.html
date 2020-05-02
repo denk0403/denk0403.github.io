@@ -7,6 +7,7 @@
     <title>Mocking Spongebob Generator</title>
     <link href="./meme.css" rel="stylesheet" type="text/css" />
     <link rel="icon" href="./icon.png" />
+    <link rel="manifest" href="./manifest.json">
 </head>
 
 <body>
@@ -47,17 +48,26 @@
         <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.5/lib/darkmode-js.min.js"></script>
         <script>
             new Darkmode({
-                bottom: '32px', // default: '32px'
-                right: '32px', // default: '32px'
-                left: 'unset', // default: 'unset'
                 time: '0.5s', // default: '0.3s'
-                mixColor: '#fff', // default: '#fff'
                 buttonColorDark: '#dddddd',  // default: '#100f2c'
                 buttonColorLight: '#dddddd',
-                saveInCookies: true, // default: true,
                 label: '🌓', // default: ''
-                autoMatchOsTheme: true // default: true
                 }).showWidget();
+        </script>
+        <script>
+            // Check compatibility for the browser we're running this in
+            if ("serviceWorker" in navigator) {
+                if (navigator.serviceWorker.controller) {
+                    console.log("[PWA] Service Worker already found, skipping register");
+                } else {
+                    // Register the service worker
+                    navigator.serviceWorker
+                        .register("./service-worker.js", {scope: "./"})
+                        .then(function (reg) {
+                            console.log("[PWA] Service worker has been registered");
+                        });
+                }
+            }
         </script>
     </div>
 </body>
