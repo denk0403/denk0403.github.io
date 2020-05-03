@@ -13,7 +13,7 @@
     <!-- Android icon -->
     <link rel="shortcut icon" href="./img/icon-144.png" sizes="144x144">
     <!-- iOS icons-->
-    <link rel="apple-touch-icon" href="./img/icon-144.png" sizes="144x144">
+    <link rel="apple-touch-icon" href="./img/apple_app_icon.png.png" sizes="144x144">
 </head>
 
 <body>
@@ -52,7 +52,7 @@
         <p>Made by Dennis Kats <br /> for his friends</p>
         <script type="text/javascript" src="./meme.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.5/lib/darkmode-js.min.js"></script>
-        <script>
+        <script> // Darkmode support
             new Darkmode({
                 time: '0.5s', // default: '0.3s'
                 buttonColorDark: '#dddddd',  // default: '#100f2c'
@@ -60,7 +60,7 @@
                 label: '🌓', // default: ''
                 }).showWidget();
         </script>
-        <script>
+        <script> // Offline PWA support
             // Check compatibility for the browser we're running this in
             if ("serviceWorker" in navigator) {
                 if (navigator.serviceWorker.controller) {
@@ -73,6 +73,8 @@
                             console.log("[PWA] Service worker has been registered");
                         });
                 }
+            } else {
+                console.log('[PWA] Service workers are not supported');
             }
         </script>
     </div>
