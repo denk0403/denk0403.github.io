@@ -1,0 +1,23 @@
+html,
+body {
+    height: 100%;
+    background-color: white;
+    margin: 0;
+}
+
+body {
+    display: grid;
+    grid-template-columns: 3;
+    grid-template-rows: 3;
+}
+
+@media (prefers-color-scheme: dark) {
+    html,
+    body {
+        background-color: black;
+    }
+
+    img {
+        filter: brightness(0.8) contrast(1.2);
+    }
+}
