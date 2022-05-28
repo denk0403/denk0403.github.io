@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Tile Game Playground</title>
+		<link rel="stylesheet" href="index.css" />
+		<script src="index.js" defer></script>
+	</head>
+	<body>
+		<h3><a href="./solver.html">Go to solver</a></h3>
+		<br />
+		<form>
+			<label for="board-width-input">Board Width</label>
+			<input type="number" min="3" id="board-width-input" value="5" />
+			<label for="board-height-input">Board Height</label>
+			<input type="number" min="3" id="board-height-input" value="5" />
+			<label for="board-type-select">Preset Board Type</label>
+			<select id="board-type-select">
+				<option value="checkerboard" selected>Checkerboard</option>
+				<option value="filled">Filled</option>
+				<option value="square">Square</option>
+				<option value="circle">Circle</option>
+				<option value="random">Random</option>
+			</select>
+			<br />
+			<button id="create-board-btn" type="submit">Create board</button>
+			<label>
+				<input type="checkbox" id="show-clicked-btn" checked />
+				Shows clicked cells
+			</label>
+		</form>
+		<dialog id="error-dialog">
+			<p id="error-dialog-text"></p>
+			<button id="close-error-dialog-btn">Close</button>
+		</dialog>
+		<br />
+		<div class="board-wrapper">
+			<p>Match:</p>
+			<div id="match-board-parent" class="board"></div>
+		</div>
+		<br />
+		<div id="user-area-wrapper">
+			<div class="board-wrapper">
+				<p>Interactive:</p>
+				<span id="interactive-board-parent" class="board show-clicked"></span>
+			</div>
+			<div class="board-wrapper">
+				<p>Difference:</p>
+				<span id="difference-board-parent" class="board"></span>
+			</div>
+		</div>
+		<br />
+		<br />
+	</body>
+</html>

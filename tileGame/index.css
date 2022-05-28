@@ -1,0 +1,91 @@
+form>label+:is(input, select) {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.board {
+    --cell-margin: 0.25rem;
+    display: block;
+    box-sizing: border-box;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.board-row {
+    display: block;
+    margin: var(--cell-margin) 0;
+    line-height: 0;
+    box-sizing: border-box;
+}
+
+.board-cell {
+    display: inline-block;
+    border: 0.5px solid black;
+    width: 2rem;
+    height: 2rem;
+    margin: 0 var(--cell-margin);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+.show-clicked .board-cell.clicked {
+    outline: 2px solid rgb(0, 145, 255);
+}
+
+.board-cell.active {
+    background-color: black;
+}
+
+.board-cell.inactive {
+    background-color: white;
+}
+
+.board-cell.good {
+    background-color: green;
+}
+
+.board-cell.bad {
+    background-color: red;
+}
+
+#user-area-wrapper {
+    display: flex;
+}
+
+.board-wrapper {
+    padding: 0 10px;
+    max-width: 100%;
+}
+
+#user-area-wrapper .board-wrapper {
+    padding: 0 10px;
+    max-width: 50%;
+}
+
+
+#user-area-wrapper>div+div.board-wrapper {
+    border-left: 1px solid black;
+}
+
+:is(#interactive-board-parent, #match-board-parent) .board-cell {
+    cursor: pointer;
+}
+
+#interactive-board-parent .board-cell:hover {
+    outline: 3px solid rgb(221, 199, 0);
+}
+
+#interactive-board-parent .board-cell:active {
+    outline: 3px solid rgb(187, 153, 0);
+}
+
+#match-board-parent .board-cell:hover {
+    outline: 3px solid rgb(255, 83, 15);
+}
+
+#match-board-parent .board-cell:active {
+    outline: 3px solid rgb(192, 47, 11);
+}

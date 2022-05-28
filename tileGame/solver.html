@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Tile Game Solver</title>
+		<link rel="stylesheet" href="solver.css" />
+		<script src="solver.js" defer></script>
+	</head>
+	<body>
+		<form>
+			<label for="board-width-input">Board Width</label>
+			<input type="number" min="3" id="board-width-input" value="5" />
+			<label for="board-height-input">Board Height</label>
+			<input type="number" min="3" id="board-height-input" value="5" />
+			<label for="board-type-select">Preset Board Type</label>
+			<select id="board-type-select">
+				<option value="checkerboard" selected>Checkerboard</option>
+				<option value="filled">Filled</option>
+				<option value="square">Square</option>
+				<option value="circle">Circle</option>
+				<option value="random">Random</option>
+			</select>
+			<br />
+			<button id="create-board-btn" type="submit">Create board</button>
+		</form>
+		<dialog id="error-dialog">
+			<p id="error-dialog-text"></p>
+			<button id="close-error-dialog-btn">Close</button>
+		</dialog>
+		<br />
+		<div class="board-wrapper">
+			<p>Match:</p>
+			<div id="match-board-parent" class="board"></div>
+		</div>
+		<br />
+		<div class="board-wrapper">
+			<p>User:</p>
+			<span id="user-board-parent" class="board"></span>
+		</div>
+		<br />
+		<br />
+		<form id="solve-form">
+			<label>
+				Number of moves:
+				<input type="number" id="num-moves-input" min="1" value="1" />
+			</label>
+			<button id="solve-btn">Solve</button>
+		</form>
+	</body>
+</html>
