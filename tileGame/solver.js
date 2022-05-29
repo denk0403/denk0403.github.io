@@ -11,19 +11,11 @@ const errorDialog = document.getElementById("error-dialog");
 /** @type {HTMLParagraphElement} */
 const errorDialogText = document.getElementById("error-dialog-text");
 /** @type {HTMLButtonElement} */
-const closeErrorDialogBtn = document.getElementById("close-error-dialog-btn");
-/** @type {HTMLDivElement} */
 const matchBoardParent = document.getElementById("match-board-parent");
 /** @type {HTMLDivElement} */
 const userBoardParent = document.getElementById("user-board-parent");
 /** @type {HTMLInputElement} */
 const numMovesInput = document.getElementById("num-moves-input");
-/** @type {HTMLButtonElement} */
-const solveBtn = document.getElementById("solve-btn");
-
-closeErrorDialogBtn.addEventListener("click", () => {
-	errorDialog.close();
-});
 
 /**
  * @typedef Board
@@ -386,13 +378,14 @@ function solveBoardHelper(matchBoard, startBoard, movesRemaining, moves, nextCel
 
 		// check if solves
 		if (areEqualBoards(matchBoard, startBoard)) {
+			// undo moves
+			applyMovesInPlace(startBoard, moves);
 			return moves;
+		} else {
+			// undo moves
+			applyMovesInPlace(startBoard, moves);
+			return null;
 		}
-
-		// undo moves
-		applyMovesInPlace(startBoard, moves);
-
-		return null;
 	} else {
 		for (
 			let cellToTry = nextCell;
@@ -430,31 +423,116 @@ function highlightCells(domCells, cellIndices) {
 	}
 }
 
-solveBtn.addEventListener("click", (evt) => {
-	evt.preventDefault();
+function init() {
+	/** @type {HTMLButtonElement} */
+	const incrWidthBtn = document.getElementById("incr-width-btn");
+	incrWidthBtn.addEventListener("click", () => {
+		const width = readWidth();
+		if (width) {
+			boardWidthInput.valueAsNumber += 1;
+		} else {
+			boardWidthInput.valueAsNumber = 1;
+		}
+	});
 
-	const solution = solveBoard(state.matchBoard, state.userBoard, readNumOfMoves());
+	/** @type {HTMLButtonElement} */
+	const decrWidthBtn = document.getElementById("decr-width-btn");
+	decrWidthBtn.addEventListener("click", () => {
+		const width = readWidth();
+		if (width && width > 1) {
+			boardWidthInput.valueAsNumber -= 1;
+		} else {
+			boardWidthInput.valueAsNumber = 1;
+		}
+	});
 
-	if (!solution) {
-		throwError("No solution for given board configuration");
-	} else {
-		const domCells = document.querySelectorAll("#user-board-parent .board-cell");
-		highlightCells(domCells, solution);
-	}
-});
+	/** @type {HTMLButtonElement} */
+	const incrHeightBtn = document.getElementById("incr-height-btn");
+	incrHeightBtn.addEventListener("click", () => {
+		const height = readHeight();
+		if (height) {
+			boardHeightInput.valueAsNumber += 1;
+		} else {
+			boardHeightInput.valueAsNumber = 1;
+		}
+	});
 
-createBoardBtn.addEventListener("click", (evt) => {
-	evt.preventDefault();
+	/** @type {HTMLButtonElement} */
+	const decrHeightBtn = document.getElementById("decr-height-btn");
+	decrHeightBtn.addEventListener("click", () => {
+		const height = readHeight();
+		if (height && height > 1) {
+			boardHeightInput.valueAsNumber -= 1;
+		} else {
+			boardHeightInput.valueAsNumber = 1;
+		}
+	});
 
-	const width = readWidth();
-	const height = readHeight();
-	const boardType = readBoardType();
+	/** @type {HTMLButtonElement} */
+	const incrMovesBtn = document.getElementById("incr-moves-btn");
+	incrMovesBtn.addEventListener("click", () => {
+		const moves = readNumOfMoves();
+		if (moves) {
+			numMovesInput.valueAsNumber += 1;
+		} else {
+			numMovesInput.valueAsNumber = 1;
+		}
+	});
 
-	const newBoard = BOARD_PATTERN_DISPATCHER[boardType](width, height);
+	/** @type {HTMLButtonElement} */
+	const decrMovesBtn = document.getElementById("decr-moves-btn");
+	decrMovesBtn.addEventListener("click", () => {
+		const moves = readNumOfMoves();
+		if (moves) {
+			numMovesInput.valueAsNumber -= 1;
+		} else {
+			numMovesInput.valueAsNumber = 1;
+		}
+	});
 
-	state.userBoard = newBoard;
-	state.matchBoard = newBoard;
+	/** @type {HTMLButtonElement} */
+	const copyToUserBtn = document.getElementById("copy-to-user-btn");
+	copyToUserBtn.addEventListener("click", () => {
+		state.userBoard = state.matchBoard;
+		renderBoardStates();
+	});
 
-	renderBoardStates();
-});
+	/** @type {HTMLButtonElement} */
+	const closeErrorDialogBtn = document.getElementById("close-error-dialog-btn");
+	closeErrorDialogBtn.addEventListener("click", () => {
+		errorDialog.close();
+	});
+
+	createBoardBtn.addEventListener("click", (evt) => {
+		evt.preventDefault();
+
+		const width = readWidth();
+		const height = readHeight();
+		const boardType = readBoardType();
+
+		const newBoard = BOARD_PATTERN_DISPATCHER[boardType](width, height);
+
+		state.userBoard = newBoard;
+		state.matchBoard = newBoard;
+
+		renderBoardStates();
+	});
+
+	/** @type {HTMLButtonElement} */
+	const solveBtn = document.getElementById("solve-btn");
+	solveBtn.addEventListener("click", (evt) => {
+		evt.preventDefault();
+
+		const solution = solveBoard(state.matchBoard, state.userBoard, readNumOfMoves());
+
+		if (!solution) {
+			throwError("No solution for given board configuration");
+		} else {
+			const domCells = document.querySelectorAll("#user-board-parent .board-cell");
+			highlightCells(domCells, solution);
+		}
+	});
+}
+
+init();
 createBoardBtn.click();

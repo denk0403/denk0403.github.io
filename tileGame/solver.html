@@ -11,23 +11,32 @@
 	<body>
 		<form>
 			<label for="board-width-input">Board Width</label>
-			<input type="number" min="3" id="board-width-input" value="5" />
+			<div>
+				<input type="number" min="1" id="board-width-input" value="4" />
+				<button id="incr-width-btn" class="btn" type="button">+</button>
+				<button id="decr-width-btn" class="btn" type="button">–</button>
+			</div>
 			<label for="board-height-input">Board Height</label>
-			<input type="number" min="3" id="board-height-input" value="5" />
+			<div>
+				<input type="number" min="1" id="board-height-input" value="4" />
+				<button id="incr-height-btn" class="btn" type="button">+</button>
+				<button id="decr-height-btn" class="btn" type="button">–</button>
+			</div>
 			<label for="board-type-select">Preset Board Type</label>
-			<select id="board-type-select">
-				<option value="checkerboard" selected>Checkerboard</option>
-				<option value="filled">Filled</option>
-				<option value="square">Square</option>
-				<option value="circle">Circle</option>
-				<option value="random">Random</option>
-			</select>
-			<br />
-			<button id="create-board-btn" type="submit">Create board</button>
+			<div>
+				<select id="board-type-select">
+					<option value="checkerboard" selected>Checkerboard</option>
+					<option value="filled">Filled</option>
+					<option value="square">Square</option>
+					<option value="circle">Circle</option>
+					<option value="random">Random</option>
+				</select>
+			</div>
+			<button id="create-board-btn" type="submit" class="btn">Create board</button>
 		</form>
 		<dialog id="error-dialog">
 			<p id="error-dialog-text"></p>
-			<button id="close-error-dialog-btn">Close</button>
+			<button id="close-error-dialog-btn" class="btn">Close</button>
 		</dialog>
 		<br />
 		<div class="board-wrapper">
@@ -35,18 +44,22 @@
 			<div id="match-board-parent" class="board"></div>
 		</div>
 		<br />
+		<button id="copy-to-user-btn" class="btn">▼ Copy to User Board ▼</button>
+		<br />
 		<div class="board-wrapper">
 			<p>User:</p>
 			<span id="user-board-parent" class="board"></span>
 		</div>
 		<br />
-		<br />
 		<form id="solve-form">
 			<label>
-				Number of moves:
+				# of moves:
 				<input type="number" id="num-moves-input" min="1" value="1" />
 			</label>
-			<button id="solve-btn">Solve</button>
+			<button id="incr-moves-btn" class="btn" type="button">+</button>
+			<button id="decr-moves-btn" class="btn" type="button">–</button>
+			<br />
+			<button id="solve-btn" type="submit" class="btn">Solve</button>
 		</form>
 	</body>
 </html>
