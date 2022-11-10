@@ -1,7 +1,5 @@
 test/
-/mmminesweeper
 node_modules/
 /config
 temp.*
 .cache/
-personal-website/

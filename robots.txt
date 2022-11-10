@@ -1,4 +1,0 @@
-# Block Googlebot and Adsbot
-User-agent: *
-User-agent: AdsBot-Google
-Disallow: /Mocking-Spongebob/img/

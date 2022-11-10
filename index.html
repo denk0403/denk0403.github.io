@@ -1,40 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Dennis Kats</title>
+		<link rel="stylesheet" href="style.css" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/fontawesome.min.css"
+			integrity="sha512-RvQxwf+3zJuNwl4e0sZjQeX7kUa3o82bDETpgVCH2RiwYSZVDdFJ7N/woNigN/ldyOOoKw8584jM4plQdt8bhA=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/brands.min.css"
+			integrity="sha512-+oRH6u1nDGSm3hH8poU85YFIVTdSnS2f+texdPGrURaJh8hzmhMiZrQth6l56P4ZQmxeZzd2DqVEMqQoJ8J89A=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/solid.css"
+			integrity="sha512-RayiVbmLmW7DvtIA/RblYy7YqTlog8MVBYEwLkPFYY1GTTaVuDdBxC3RaJE6kEyWyCeSwROiH+2rR3rREm6eWQ=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+	</head>
 
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Dennis Kats Home</title>
-	<!-- Bootstrap -->
-	<link href="css/bootstrap-4.3.1.css" rel="stylesheet">
+	<body>
+		<header class="header">
+			<div class="title-image">
+				<div class="contact-info">
+					<h1 style="margin-bottom: 0">Dennis Kats</h1>
+					<span
+						style="display: inline-block; margin: 5px 0 0; text-align: center; font-size: smaller"
+						>He/Him</span
+					>
 
-</head>
+					<nav class="desktop-only links">
+						<a class="link" href="mailto:denniskats43@gmail.com" target="_blank" title="Email"
+							><i class="fa-inverse fa-solid fa-envelope fa-2x"></i
+						></a>
+						<a class="link" href="https://github.com/denk0403" target="_blank" title="GitHub"
+							><i class="fa-inverse fa-brands fa-github fa-2x"></i
+						></a>
+						<a
+							class="link"
+							href="https://www.linkedin.com/in/dennis-kats/"
+							target="_blank"
+							title="LinkedIn"
+							><i class="fa-inverse fa-brands fa-linkedin fa-2x"></i
+						></a>
+						<a class="link" href="https://twitter.com/denk0403" target="_blank" title="Twitter"
+							><i class="fa-inverse fa-brands fa-twitter fa-2x"></i
+						></a>
+					</nav>
+					<span class="desktop-only quote">
+						<q>Life's a journey to find the people weird like you.</q>
+						—atticus
+					</span>
+				</div>
+				<div style="display: flex; flex-direction: column; justify-content: center">
+					<img class="portrait" src="resources/Dennis2021.jpg" alt="A picture of Dennis Kats" />
+				</div>
+			</div>
+			<nav class="mobile-only links">
+				<a class="link" href="mailto:denniskats43@gmail.com" target="_blank" title="Email"
+					><i class="fa-inverse fa-solid fa-envelope fa-2x"></i
+				></a>
+				<a class="link" href="https://github.com/denk0403" target="_blank" title="GitHub"
+					><i class="fa-inverse fa-brands fa-github fa-2x"></i
+				></a>
+				<a
+					class="link"
+					href="https://www.linkedin.com/in/dennis-kats/"
+					target="_blank"
+					title="LinkedIn"
+					><i class="fa-inverse fa-brands fa-linkedin fa-2x"></i
+				></a>
+				<a class="link" href="https://twitter.com/denk0403" target="_blank" title="Twitter"
+					><i class="fa-inverse fa-brands fa-twitter fa-2x"></i
+				></a>
+			</nav>
+		</header>
+		<main class="main-content">
+			<section class="section resume">
+				<details class="details" title="Click to toggle résumé view.">
+					<summary class="summary">Résumé</summary>
+					<iframe
+						class="pdf"
+						src="https://drive.google.com/file/d/1EeEUbbnUaHCzj27siybMlpPHmwX2a8n9/preview"
+						width="100%"
+						allow="autoplay"
+					></iframe>
+				</details>
+			</section>
+			<section class="section about-me">
+				<h1>About Me</h1>
+				<p class="p">
+					Hello 👋! My name is Dennis Kats. I am a software engineer with most of my experience in
+					full-stack web development. I love to learn new things, and work on projects which reduce
+					user/developer friction (e.g. improving UX/DX, accessibility, web performance, and
+					internal tooling).
+				</p>
+			</section>
+			<!-- <section class="section skills">
+				<h1>Skills</h1>
+				<p>Hello</p>
+			</section>
+			<section class="section work">
+				<h1>Work Experience</h1>
+				<p>Hello</p>
+			</section> -->
+			<section class="section projects">
+				<h1>Projects</h1>
+				<ul>
+					<li><a href="https://github.com/denk0403/DollarGame">Dollar Game</a> (Fall 2018)</li>
+					<li>
+						<a href="https://github.com/denk0403/Vortecs-Desktop">Vortecs Desktop</a> (Fall 2018 -
+						Spring 2019)
+					</li>
+					<li><a href="https://github.com/denk0403/Connect-4">Connect Four</a> (Feb 2019)</li>
+					<li>
+						<a href="https://github.com/denk0403/Image-To-ASCII-Converter"
+							>Image to ASCII Converter</a
+						>
+						(Summer 2019)
+					</li>
+					<li>
+						<a href="https://github.com/denk0403/Mario-Fitbit-Watchface"
+							>Mario Watchface for Fitbit</a
+						>
+						(Summer 2019)
+					</li>
+					<li>
+						<a href="https://github.com/denk0403/Fitbit-Find-Your-Bus">Find Your Bus for Fitbit</a>
+						(Summer 2019)
+					</li>
+					<li>
+						<a href="../../algedraw calculator/home.html">AlgeDraw Calculator</a> (Summer 2019 - Dec
+						2019)
+					</li>
+					<li>
+						<a href="https://denk0403.github.io/Mocking-Spongebob/"
+							>Mocking Spongebob Meme Generator</a
+						>
+						(Jan 2020 - Summer 2020)
+					</li>
+					<li>
+						<a href="https://github.com/denk0403/Mocking-Spongebob-Chrome-Extension"
+							>Mocking Spongebob Chrome Extension</a
+						>
+						(May 2020)
+					</li>
+					<li><a href="https://denk0403.github.io/BostonTeapot/">Boston Teapot</a> (Fall 2020)</li>
+					<li>
+						<a href="https://tintgenerator.vercel.app/">Tint Generator</a> (Fall 2020 - Summer 2021)
+					</li>
+					<li><a href="https://devpost.com/software/glampfire">Glampsite</a> (HackBeanpot 2021)</li>
 
-<body>
-	<!-- body code goes here -->
-	<header>
-		<nav class="navigation">
-			<a class="navbar-brand" href="/">Dennis Kats</a>
-			<ul class="navbar-menu">
-				<li><a href="Other pages/aboutme.html">About Me</a></li>
-				<li><a href="https://drive.google.com/file/d/1EeEUbbnUaHCzj27siybMlpPHmwX2a8n9/view">Résumé</a></li>
-				<li><a href="Other pages/Projects/projects.html">Projects</a></li>
-				<li><a href="Other pages/studyguides.html">Study Guides</a></li>
-			</ul>
-		</nav>
-	</header>
-	<h1>Hello!</h1>
-	<p>This is my personal website, and it is obviously <strong>very unfinished</strong>.</p>
-	<p>It is a work in progress, but I'm mostly focusing on other projects at the moment. However, there is some stuff
-		to look at for now...</p>
-
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="js/jquery-3.3.1.min.js"></script>
-
-	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src="js/popper.min.js"></script>
-	<script src="js/bootstrap-4.3.1.js"></script>
-</body>
-
+					<li><a href="https://videocrop.vercel.app/">VideoCrop</a> (January 2022)</li>
+				</ul>
+			</section>
+			<!-- <section class="section misc">
+				<h1>Miscellaneous</h1>
+				<p>Hello</p>
+			</section> -->
+		</main>
+	</body>
 </html>
