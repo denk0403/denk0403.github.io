@@ -1,0 +1,105 @@
+:link {
+    color: #0090ea;
+}
+
+:visited {
+    color: #a867e6;
+}
+
+#project-summary {
+    padding: .5em;
+    cursor: pointer
+}
+
+#project-summary:hover {
+    background-color: #303030;
+}
+
+#project-details:has(#project-summary:hover) {
+    background-color: #303030;
+}
+
+#project-details[open] #project-summary {
+    margin-bottom: .5em;
+}
+
+#project-name {
+    font-weight: bold;
+}
+
+#project-duration {
+    float: right;
+}
+
+#project-content {
+    position: relative;
+    margin-left: 25px;
+    margin-right: 25px;
+    padding-bottom: 5px;
+}
+
+#scroll-btn {
+    position: sticky;
+    float: right;
+    bottom: 10px;
+    display: block;
+    margin-top: -40px;
+
+    height: 40px;
+    width: 40px;
+
+    border: 2px solid #444;
+    border-radius: 50%;
+    background-color: #252525;
+    transition: background-color 1s ease;
+    color: var(--primary-text);
+    cursor: pointer;
+}
+
+#scroll-btn:hover {
+    background-color: #303030;
+}
+
+#scroll-btn i {
+    transition: scale 0.25s ease;
+}
+
+#scroll-btn:hover i {
+    scale: 1.1;
+}
+
+::slotted([slot='description']) {
+    text-indent: 2ch;
+    line-height: 1.25;
+    margin-bottom: 10px;
+}
+
+::slotted([slot='subtitle']) {
+    display: block;
+    margin-top: -15px;
+    margin-bottom: 15px;
+    color: var(--secondary-text)
+}
+
+::slotted([slot='links']) {
+    margin-top: 10px;
+}
+
+::slotted([slot='media']) {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    object-fit: contain;
+    max-width: 100%;
+    margin: auto;
+    margin-top: 10px;
+}
+
+/* Mobile-specific styles */
+@media (max-width: 750px) {
+    #project-duration {
+        float: none;
+        display: block;
+    }
+}

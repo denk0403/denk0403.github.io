@@ -1,8 +1,18 @@
-html {
+:root {
+    --primary-text: #EEE;
+    --secondary-text: #858585;
+
     background-color: rgb(20, 20, 20);
-    margin: 0;
     height: 100%;
     margin: 0 10px;
+}
+
+:root :link {
+    color: #0090ea;
+}
+
+:root :visited {
+    color: #a867e6;
 }
 
 body {
@@ -12,21 +22,48 @@ body {
     margin: auto;
     min-height: 100%;
     border: 1px solid rgb(40, 40, 40);
-    font-family: monospace, auto
-}
-
-:root {
-    --primary-text: #EEE;
+    font-family: monospace, auto;
+    color: var(--primary-text);
 }
 
 * {
     box-sizing: border-box;
 }
 
+h1 {
+    line-height: 1;
+}
+
 .header {
-    color: var(--primary-text);
     display: flex;
     place-content: center;
+}
+
+.header-name {
+    margin-bottom: 0;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.back-btn {
+    display: block;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.back-btn i {
+    transition: transform 0.25s ease;
+}
+
+.back-btn:hover i {
+    transform: translateX(-10px);
+}
+
+.header-name .back-btn {
+    position: absolute;
+    left: 0;
 }
 
 .title-image {
@@ -55,12 +92,36 @@ body {
 .links {
     display: flex;
     justify-content: space-evenly;
-    margin-top: 25px;
+    margin-top: 20px;
+}
+
+.links .link {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 50%;
+    background-color: #252525;
+    transition: background-color 1s ease;
+    height: 55px;
+    width: 55px;
+    color: var(--primary-text);
 }
 
 .links .link:hover {
-    scale: 1.075;
+    background-color: #303030;
+}
+
+.links .link i {
     transition: scale 0.25s ease;
+}
+
+.links .link:hover i {
+    scale: 1.08;
+}
+
+.links .link:focus-within {
+    outline: 2px #0090ea solid;
 }
 
 .portrait {
@@ -72,7 +133,6 @@ body {
 
 .main-content {
     margin-top: 20px;
-    color: white
 }
 
 .resume .details {
@@ -81,6 +141,11 @@ body {
     padding: .25em;
     background-color: #252525;
     cursor: pointer;
+    transition: background-color 0.25s ease;
+}
+
+.resume .details:has(.summary:hover) {
+    background-color: #303030;
 }
 
 .resume .summary {
@@ -100,6 +165,53 @@ body {
 .section .p {
     text-indent: 2ch;
     margin-left: 10px;
+}
+
+.skill i {
+    vertical-align: middle;
+}
+
+code {
+    background-color: #444;
+    padding: 3px;
+    border-radius: 3px;
+}
+
+.skill {
+    border: 1px solid #444;
+    background-color: #252525;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.projects a {
+    text-decoration: none;
+    display: inline-block;
+}
+
+.projects a:hover {
+    text-decoration: underline;
+}
+
+.projects a:hover i {
+    text-decoration: underline;
+}
+
+.project-list {
+    padding: 0;
+    list-style: none;
+}
+
+project-elt {
+    display: block;
+    height: 38px;
+    opacity: 0;
 }
 
 /* Mobile-specific styles */

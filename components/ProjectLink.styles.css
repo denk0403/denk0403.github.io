@@ -1,0 +1,25 @@
+#link {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+
+    border-radius: 50%;
+    background-color: #252525;
+    transition: background-color 1s ease;
+    text-decoration: none;
+}
+
+#link:hover {
+    background-color: #303030;
+}
+
+#link:hover #icon {
+    scale: 1.08;
+    transition: scale 0.25s ease;
+}
+
+#link:focus-within {
+    outline: 2px #0090ea solid;
+}
