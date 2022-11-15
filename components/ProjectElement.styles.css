@@ -32,7 +32,7 @@
     position: relative;
     margin-left: 25px;
     margin-right: 25px;
-    padding-bottom: 5px;
+    padding-bottom: 10px;
 }
 
 #scroll-btn {
@@ -65,17 +65,24 @@
     scale: 1.1;
 }
 
-::slotted([slot='description']) {
-    text-indent: 2ch;
-    line-height: 1.25;
-    margin-bottom: 10px;
-}
-
 ::slotted([slot='subtitle']) {
     display: block;
     margin-top: -15px;
     margin-bottom: 15px;
     color: var(--secondary-text)
+}
+
+::slotted([slot='hero']) {
+    display: block;
+    margin: auto;
+    object-fit: contain;
+    max-width: 100%;
+}
+
+::slotted([slot='description']) {
+    text-indent: 2ch;
+    line-height: 1.25;
+    margin-bottom: 10px;
 }
 
 ::slotted([slot='links']) {

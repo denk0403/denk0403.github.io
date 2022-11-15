@@ -221,6 +221,20 @@ project-elt {
     opacity: 0;
 }
 
+project-elt [slot='description']>* {
+    max-width: 100%;
+}
+
+project-elt [slot='media']>* {
+    max-width: 100%;
+}
+
+.featured-projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 10px;
+}
+
 /* Mobile-specific styles */
 @media (max-width: 750px) {
     .desktop-only {

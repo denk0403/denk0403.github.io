@@ -17,11 +17,43 @@ const toCollapseMsg = "Click to collapse details";
 class ProjectElement extends HTMLElement {
 	static TEMPLATE = createElement("template", { id: "project-template" });
 
+	/** @type {string | null} */
+	#name;
+	/** @type {string | null} */
+	#duration;
+	/** @type {string | null} */
+	#href;
+	/** @type {boolean} */
+	#noscroll;
+
+	get name() {
+		return this.#name;
+	}
+
+	get open() {
+		/** @type {HTMLDetailsElement} */
+		const details = id(this.root, "project-details");
+		return details.open;
+	}
+
+	set open(value) {
+		/** @type {HTMLDetailsElement} */
+		const details = id(this.root, "project-details");
+		if (details.open !== !!value) {
+			details.open === !!value;
+		}
+	}
+
 	constructor() {
 		super();
 
 		const template = ProjectElement.TEMPLATE;
 		this.root = this.attachShadow({ mode: "open" });
+
+		this.#name = prop(this, "name");
+		this.#duration = prop(this, "duration");
+		this.#href = prop(this, "href");
+		this.#noscroll = prop(this, "noscroll") !== null;
 
 		this.root.appendChild(template.content.cloneNode(true));
 		this.style.display = "unset";
@@ -30,35 +62,30 @@ class ProjectElement extends HTMLElement {
 	}
 
 	connectedCallback() {
-		const duration = prop(this, "duration"),
-			name = prop(this, "name"),
-			href = prop(this, "href"),
-			noscroll = prop(this, "noscroll") !== null;
-
-		if (name) {
+		if (this.#name) {
 			/** @type {HTMLSpanElement} */
 			const projectName = id(this.root, "project-name");
-			projectName.textContent = name;
+			projectName.textContent = this.#name;
 		}
 
-		if (duration) {
+		if (this.#duration) {
 			/** @type {HTMLSpanElement} */
 			const projectDuration = id(this.root, "project-duration");
-			projectDuration.textContent = duration;
+			projectDuration.textContent = this.#duration;
 		}
 
 		if (this.#hasSlottedLinks()) {
 			/** @type {HTMLLabelElement} */
 			const linkLabel = id(this.root, "links-label");
 			linkLabel.textContent = "Links:";
-		} else if (href) {
+		} else if (this.#href) {
 			/** @type {HTMLLabelElement} */
 			const linkLabel = id(this.root, "links-label");
 			linkLabel.textContent = "Link:";
 
 			/** @type {HTMLAnchorElement} */
 			const link = id(this.root, "project-link");
-			link.href = href;
+			link.href = this.#href;
 			link.style.display = "unset";
 		}
 
@@ -67,13 +94,23 @@ class ProjectElement extends HTMLElement {
 		const summary = id(this.root, "project-summary");
 		const scrollBtn = id(this.root, "scroll-btn");
 
-		if (this.#hasSlottedMedia() && !noscroll) {
-			details.addEventListener("toggle", () => {
-				if (details.open) {
+		details.addEventListener("toggle", (e) => {
+			console.log(
+				"toggle",
+				e,
+				details.open,
+				this.#noscroll,
+				this.#hasSlottedMedia(),
+				this.#hasSlottedHero()
+			);
+			if (details.open && !this.#noscroll) {
+				if (this.#hasSlottedMedia() || this.#hasSlottedHero()) {
 					summary.scrollIntoView({ behavior: "smooth", block: "start" });
+				} else {
+					summary.scrollIntoView({ behavior: "smooth", block: "center" });
 				}
-			});
-		}
+			}
+		});
 
 		details.addEventListener("toggle", () => {
 			summary.title = details.open ? toCollapseMsg : toExpandMsg;
@@ -90,10 +127,24 @@ class ProjectElement extends HTMLElement {
 		scrollBtn.addEventListener("click", () => {
 			summary.scrollIntoView({ behavior: "smooth", block: "start" });
 		});
+
+		const hash = decodeURIComponent(location.hash.slice(1));
+		if (hash && hash === this.#name) {
+			details.open = true;
+		}
+	}
+
+	/** Toggles the state of the dropdown */
+	toggle() {
+		this.open = !this.open;
 	}
 
 	#hasSlottedLinks() {
 		return !!query(this, "[slot=links]");
+	}
+
+	#hasSlottedHero() {
+		return !!query(this, "[slot=hero]");
 	}
 
 	#hasSlottedMedia() {
@@ -125,6 +176,7 @@ ProjectElement.TEMPLATE.innerHTML = /* html */ `
 
 			<div id="project-content">
 				<slot name="subtitle"></slot>
+				<slot name="hero"></slot>
 				<slot name="description"></slot>
 				<div style="display: inline-block;">
 					<label id="links-label"></label>

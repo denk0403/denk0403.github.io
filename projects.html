@@ -10,10 +10,10 @@
 			name="description"
 			content="Dennis Kats is a software engineer based in NYC. He specializes in full-stack web development, and he loves to learn about UX/DX, accessibility, and human-centered design."
 		/>
-		<title>Dennis Kats | Software Engineer - Projects</title>
+		<title>Dennis Kats - Software Engineer - Projects</title>
 
 		<!-- Open Graph protocol support-->
-		<meta property="og:title" content="Dennis Kats | Software Engineer - Projects" />
+		<meta property="og:title" content="Dennis Kats - Software Engineer - Projects" />
 		<meta property="og:url" content="http://denniskats.dev/projects.html" />
 		<meta property="og:type" content="website" />
 		<meta
@@ -26,8 +26,8 @@
 		<meta name="twitter:card" content="summary" />
 
 		<link rel="stylesheet" href="style.css" />
-		<link rel="stylesheet" href="/components/ProjectElement.styles.css" />
-		<link rel="stylesheet" href="/components/ProjectLink.styles.css" />
+		<link rel="preload" href="/components/ProjectElement.styles.css" as="style" />
+		<link rel="preload" href="/components/ProjectLink.styles.css" as="style" />
 		<link
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/fontawesome.min.css"
@@ -51,19 +51,9 @@
 		/>
 
 		<script type="module" src="components/components.js"></script>
-		<!-- <script defer>
-			setTimeout(() => {
-				const hash = decodeURIComponent(location.hash.slice(1));
-				if (hash) {
-					const projectElt = document.body.querySelector(`project-elt[name='${hash}']`);
-					console.log(hash, projectElt);
-					if (projectElt) {
-						projectElt.shadowRoot.querySelector("details").open = true;
-						projectElt.scrollIntoView({ behavior: "smooth", block: "start" });
-					}
-				}
-			}, 0);
-		</script> -->
+		<script>
+			history.scrollRestoration = "manual";
+		</script>
 	</head>
 
 	<body>
@@ -267,8 +257,12 @@
 					<li>
 						<project-elt name="Project Atlas" duration="Sept. 2020 - May 2021">
 							<span slot="subtitle">Visualize your code in a whole new way</span>
+							<img
+								slot="hero"
+								src="resources/imgs/atlas-logo.png"
+								style="display: block; margin: auto"
+							/>
 							<div slot="description">
-								<img src="resources/imgs/atlas-logo.png" style="display: block; margin: auto; max-width: 100%;" />
 								<p>
 									Project Atlas is a static analysis and visualization extension for Java projects.
 								</p>
