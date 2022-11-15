@@ -20,6 +20,7 @@ const ICON_TYPE_DATA_MAP = fr({
 	api: /** @type {const} */ ({ classes: ["fa-solid", "fa-cloud"], tooltip: "API Docs" }),
 	info: /** @type {const} */ ({ classes: ["fa-solid", "fa-circle-info"], tooltip: "Info" }),
 	store: /** @type {const} */ ({ classes: ["fa-solid", "fa-store"], tooltip: "Store Page" }),
+	download: /** @type {const} */ ({ classes: ["fa-solid", "fa-download"], tooltip: "Download" }),
 });
 
 /** @typedef {keyof ICON_TYPE_DATA_MAP} IconType*/
@@ -41,7 +42,8 @@ class ProjectLink extends HTMLElement {
 	connectedCallback() {
 		const href = prop(this, "href"),
 			title = prop(this, "title"),
-			type = prop(this, "type");
+			type = prop(this, "type"),
+			replace = prop(this, "replace") !== null;
 
 		if (type) {
 			/** @type {HTMLAnchorElement} */
@@ -67,6 +69,12 @@ class ProjectLink extends HTMLElement {
 			/** @type {HTMLAnchorElement} */
 			const link = id(this.root, "link");
 			link.href = href;
+		}
+
+		if (replace) {
+			/** @type {HTMLAnchorElement} */
+			const link = id(this.root, "link");
+			link.removeAttribute("target");
 		}
 	}
 }

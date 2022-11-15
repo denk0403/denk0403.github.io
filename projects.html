@@ -22,7 +22,12 @@
 		/>
 		<link rel="icon" href="favicon.png" />
 
+		<!-- Twitter Card support-->
+		<meta name="twitter:card" content="summary" />
+
 		<link rel="stylesheet" href="style.css" />
+		<link rel="stylesheet" href="/components/ProjectElement.styles.css" />
+		<link rel="stylesheet" href="/components/ProjectLink.styles.css" />
 		<link
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/fontawesome.min.css"
@@ -434,18 +439,23 @@
 					<li>
 						<project-elt name="Vortecs Desktop" duration="Fall 2018 - Spring 2019">
 							<p slot="description">
-								Vortecs <i>(an anagram of "Vectors")</i> is a free, offline, and simple education tool for
-								displaying 2D vectors and visualizing 2D linear transformations. It is designed to
-								be used primarily by students who are being introduced to Linear Algebra concepts
-								for the first time.
+								Vortecs <i>(an anagram of "Vectors")</i> is a free, offline, and simple education
+								tool for displaying 2D vectors and visualizing 2D linear transformations. It is
+								designed to be used primarily by students who are being introduced to Linear Algebra
+								concepts for the first time.
 							</p>
 							<span slot="links">
 								<project-link
 									type="github"
 									href="https://github.com/denk0403/Vortecs-Desktop"
 								></project-link>
+								<project-link
+									replace
+									type="download"
+									href="https://drive.google.com/uc?export=download&id=1XN24E-9drJ4RyT7Lsf1913K7O97MKvXl"
+								></project-link>
 							</span>
-                            <img width="600" slot="media" src="resources/imgs/vortecs.png" />
+							<img width="600" slot="media" src="resources/imgs/vortecs.png" />
 						</project-elt>
 					</li>
 					<li>

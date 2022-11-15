@@ -11,11 +11,8 @@
     cursor: pointer
 }
 
+#project-details:has(#project-summary:hover),
 #project-summary:hover {
-    background-color: #303030;
-}
-
-#project-details:has(#project-summary:hover) {
     background-color: #303030;
 }
 
@@ -48,7 +45,7 @@
     height: 40px;
     width: 40px;
 
-    border: 2px solid #444;
+    border: 2px solid #303030;
     border-radius: 50%;
     background-color: #252525;
     transition: background-color 1s ease;

@@ -33,7 +33,7 @@ class ProjectElement extends HTMLElement {
 		const duration = prop(this, "duration"),
 			name = prop(this, "name"),
 			href = prop(this, "href"),
-			noscroll = prop(this, "noscroll") === "";
+			noscroll = prop(this, "noscroll") !== null;
 
 		if (name) {
 			/** @type {HTMLSpanElement} */
