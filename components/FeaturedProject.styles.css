@@ -32,10 +32,6 @@
     display: inline-block;
 }
 
-#project-icon {
-    width: 50px;
-}
-
 #next-icon-wrapper {
     height: 100%;
     display: flex;

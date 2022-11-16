@@ -1,15 +1,8 @@
 // @ts-check
-import { createElement, id, prop } from "./utils.js";
-
-/**
- * @typedef PropKeys
- * @property {string} name
- *
- * @typedef {PropKeys & NamedNodeMap} Props
- */
+import { createElement, id, prop } from "./utils.mjs";
 
 class FeaturedProject extends HTMLElement {
-	static TEMPLATE = createElement("template", { id: "project-link-template" });
+	static TEMPLATE = createElement("template");
 
 	/** @type {?string} */
 	#name;
@@ -71,7 +64,7 @@ FeaturedProject.TEMPLATE.innerHTML = /* html */ `
 			<div id="box">
 				<div id="header">
 					<span id="project-name"></span>
-					<img id="project-icon"></img>
+					<img width='50' id="project-icon"></img>
 				</div>
 				<slot name="description"></slot>
 				<div id="next-icon-wrapper">

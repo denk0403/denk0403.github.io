@@ -1,14 +1,5 @@
 // @ts-check
-import { createElement, id, prop } from "./utils.js";
-
-/**
- * @typedef PropKeys
- * @property {string} name
- * @property {string} duration
- * @property {string} href
- *
- * @typedef {PropKeys & NamedNodeMap} Props
- */
+import { createElement, id, prop } from "./utils.mjs";
 
 const ICON_TYPE_DATA_MAP = /** @type {const} */ ({
 	github: /** @type {const} */ ({ classes: ["fa-brands", "fa-github"], tooltip: "Github" }),
@@ -27,7 +18,7 @@ const ICON_TYPE_DATA_MAP = /** @type {const} */ ({
 /** @typedef {keyof ICON_TYPE_DATA_MAP} IconType*/
 
 export class ProjectLink extends HTMLElement {
-	static TEMPLATE = createElement("template", { id: "project-link-template" });
+	static TEMPLATE = createElement("template");
 
 	static get observedAttributes() {
 		return ["href", "type", "tooltip"];

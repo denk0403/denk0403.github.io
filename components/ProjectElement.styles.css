@@ -86,8 +86,12 @@
     margin-bottom: 10px;
 }
 
+::slotted([slot='tech']) {
+    margin: 5px 0;
+}
+
 ::slotted([slot='links']) {
-    margin-top: 10px;
+    margin: 5px 0;
 }
 
 ::slotted([slot='media']) {

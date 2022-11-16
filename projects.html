@@ -28,9 +28,45 @@
 		<!-- Twitter Card support-->
 		<meta name="twitter:card" content="summary" />
 
-		<link rel="stylesheet" href="style.css" />
+		<!-- Preload FontAwesome fonts -->
+		<link
+			as="font"
+			rel="preload"
+			referrerpolicy="no-referrer"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/webfonts/fa-brands-400.woff2"
+		/>
+		<link
+			as="font"
+			rel="preload"
+			referrerpolicy="no-referrer"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/webfonts/fa-solid-900.woff2"
+		/>
+
+		<!-- Preload images -->
+		<link rel="preload" href="resources/imgs/Dennis2021.jpg" as="image" />
+		<link rel="preload" href="resources/imgs/speakaac.png" as="image" />
+		<link rel="preload" href="resources/imgs/tint-gen.jpg" as="image" />
+		<link rel="preload" href="resources/imgs/atlas-logo.png" as="image" />
+		<link rel="preload" href="resources/imgs/mocking-spongebob.png" as="image" />
+		<link rel="preload" href="algedraw calculator/gifs/phi.gif" as="image" />
+		<link rel="preload" href="algedraw calculator/gifs/degrees.gif" as="image" />
+		<link rel="preload" href="algedraw calculator/gifs/four.gif" as="image" />
+		<link rel="preload" href="resources/imgs/find-your-bus.gif" as="image" />
+		<link rel="preload" href="resources/imgs/mario1.png" as="image" />
+		<link rel="preload" href="resources/imgs/mario2.png" as="image" />
+		<link rel="preload" href="resources/imgs/mario3.png" as="image" />
+		<link rel="preload" href="resources/imgs/mario4.png" as="image" />
+		<link rel="preload" href="resources/imgs/connect4.png" as="image" />
+		<link rel="preload" href="resources/imgs/vortecs.png" as="image" />
+
+		<!-- Preload component dependencies -->
+		<link rel="modulepreload" href="/components/utils.mjs" as="script" />
 		<link rel="preload" href="/components/ProjectElement.styles.css" as="style" />
 		<link rel="preload" href="/components/ProjectLink.styles.css" as="style" />
+		<link rel="modulepreload" href="/components/ProjectLink.mjs" as="script" />
+		<link rel="modulepreload" href="/components/ProjectElement.mjs" as="script" />
+
+		<link rel="stylesheet" href="style.css" />
 		<link
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/fontawesome.min.css"
@@ -138,10 +174,15 @@
 								Dementia patients. At the moment, it is focused on supporting native Russian
 								speakers.
 							</p>
+							<span slot="tech">
+								<span class="skill">TypeScript</span>
+								<span class="skill">Vite</span>
+								<span class="skill">Web Speech API</span>
+							</span>
 							<span slot="links">
 								<project-link type="website" href="https://speakaac.vercel.app/"></project-link>
 							</span>
-							<img slot="media" src="resources/imgs/speakaac.png" height="400" />
+							<img loading="lazy" slot="media" src="resources/imgs/speakaac.png" width="500" />
 						</project-elt>
 					</li>
 					<li>
@@ -152,6 +193,11 @@
 								<code>ffmpeg.wasm</code>. The app never uploads or sends anything to a server,
 								therefore performing all video manipulation on the client.
 							</p>
+							<span slot="tech">
+								<span class="skill">Express.js</span>
+								<span class="skill">WebAssembly</span>
+								<span class="skill">Service Worker API</span>
+							</span>
 							<span slot="links">
 								<project-link type="website" href="https://videocrop.vercel.app/"></project-link>
 								<project-link
@@ -172,15 +218,11 @@
 									tents, tables, chairs, and more, into the augmented world, to explore these
 									hypothetical sites.
 								</p>
-								<p>
-									Users are able to move, rotate, and delete these items, and can customize the size
-									and style of them in a separate menu. Glampsite intelligently detects people in
-									the frame of the camera and automatically occludes them, allowing for a friend to
-									help set up without altering the AR experience. Once the user is happy with the
-									positioning and layout, they can then take pictures of the site as they walk
-									around it, for later reference.
-								</p>
 							</div>
+							<span slot="tech">
+								<span class="skill">Swift</span>
+								<span class="skill">RealityKit</span>
+							</span>
 							<span slot="links">
 								<project-link
 									type="devpost"
@@ -193,6 +235,7 @@
 							</span>
 							<div slot="media">
 								<iframe
+									loading="lazy"
 									width="200"
 									height="300"
 									src="https://www.youtube.com/embed/WI7oCWqJz2A"
@@ -200,8 +243,10 @@
 									frameborder="0"
 									allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 									allowfullscreen
+									referrerpolicy="no-referrer"
 								></iframe>
 								<iframe
+									loading="lazy"
 									width="200"
 									height="300"
 									src="https://www.youtube.com/embed/iP4-8CzEfeI"
@@ -209,6 +254,7 @@
 									frameborder="0"
 									allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 									allowfullscreen
+									referrerpolicy="no-referrer"
 								></iframe>
 							</div>
 						</project-elt>
@@ -222,6 +268,13 @@
 								all devices and saves your work automatically, without the need of installing
 								anything.
 							</p>
+							<span slot="tech">
+								<span class="skill">Next.js</span>
+								<span class="skill">TypeScript</span>
+								<span class="skill">Redux</span>
+								<span class="skill">MongoDB</span>
+								<span class="skill">Go</span>
+							</span>
 							<span slot="links">
 								<project-link
 									type="website"
@@ -229,6 +282,7 @@
 								></project-link>
 								<project-link type="api" href="https://tint-api2.vercel.app/"></project-link>
 							</span>
+							<img loading="lazy" slot="media" src="resources/imgs/tint-gen.jpg" width="700" />
 						</project-elt>
 					</li>
 					<li>
@@ -237,6 +291,11 @@
 							<p slot="description">
 								An animated scene of a textured teapot and a mug. Built using ThreeJS (WebGL).
 							</p>
+							<span slot="tech">
+								<span class="skill">JavaScript</span>
+								<span class="skill">WebGL</span>
+								<span class="skill">Three.js</span>
+							</span>
 							<span slot="links">
 								<project-link
 									type="website"
@@ -253,6 +312,7 @@
 						<project-elt name="Project Atlas" duration="Sept. 2020 - May 2021">
 							<span slot="subtitle">Visualize your code in a whole new way</span>
 							<img
+								loading="lazy"
 								slot="hero"
 								src="resources/imgs/atlas-logo.png"
 								style="display: block; margin: auto"
@@ -270,7 +330,12 @@
 								</p>
 								<p>This was built as part of Northeastern's Oasis Accelerator program.</p>
 							</div>
-
+							<span slot="tech">
+								<span class="skill">React</span>
+								<span class="skill">TypeScript</span>
+								<span class="skill">Java</span>
+								<span class="skill">VSCode Extension API</span>
+							</span>
 							<span slot="links">
 								<project-link
 									type="github"
@@ -302,6 +367,12 @@
 									</ul>
 								</div>
 							</div>
+							<span slot="tech">
+								<span class="skill">JavaScript</span>
+								<span class="skill">MathML</span>
+								<span class="skill">Canvas API</span>
+								<span class="skill">Media Streams API</span>
+							</span>
 							<span slot="links">
 								<project-link
 									type="website"
@@ -312,7 +383,12 @@
 									href="https://github.com/denk0403/Mocking-Spongebob"
 								></project-link>
 							</span>
-							<img slot="media" src="resources/imgs/mocking-spongebob.png" width="300" />
+							<img
+								loading="lazy"
+								slot="media"
+								src="resources/imgs/mocking-spongebob.png"
+								width="300"
+							/>
 						</project-elt>
 					</li>
 					<li>
@@ -322,6 +398,12 @@
 								AlgeDraw is the first 12-function calculator on Fitbit with the ability to parse
 								handwritten digits using a custom memory-optimized AI!
 							</p>
+							<span slot="tech">
+								<span class="skill">JavaScript</span>
+								<span class="skill">Fitbit SDK</span>
+								<span class="skill">SVG</span>
+								<span class="skill">Bluetooth</span>
+							</span>
 							<span slot="links">
 								<project-link type="website" href="/algedraw calculator/home.html"></project-link>
 								<project-link
@@ -334,9 +416,9 @@
 								></project-link>
 							</span>
 							<div slot="media">
-								<img width="200" src="algedraw calculator/gifs/phi.gif" />
-								<img width="200" src="algedraw calculator/gifs/degrees.gif" />
-								<img width="200" src="algedraw calculator/gifs/four.gif" />
+								<img loading="lazy" width="200" src="algedraw calculator/gifs/phi.gif" />
+								<img loading="lazy" width="200" src="algedraw calculator/gifs/degrees.gif" />
+								<img loading="lazy" width="200" src="algedraw calculator/gifs/four.gif" />
 							</div>
 						</project-elt>
 					</li>
@@ -346,13 +428,18 @@
 							<p slot="description">
 								A Fitbit app for tracking MTA buses and getting their ETA to a specified stop.
 							</p>
+							<span slot="tech">
+								<span class="skill">JavaScript</span>
+								<span class="skill">Fitbit SDK</span>
+								<span class="skill">MTA Bus Time API</span>
+							</span>
 							<span slot="links">
 								<project-link
 									type="github"
 									href="https://github.com/denk0403/Fitbit-Find-Your-Bus"
 								></project-link>
 							</span>
-							<img slot="media" src="resources/imgs/find-your-bus.gif" width="250" />
+							<img loading="lazy" slot="media" src="resources/imgs/find-your-bus.gif" width="250" />
 						</project-elt>
 					</li>
 					<li>
@@ -379,6 +466,12 @@
 									>
 								</p>
 							</div>
+							<span slot="tech">
+								<span class="skill">JavaScript</span>
+								<span class="skill">Fitbit SDK</span>
+								<span class="skill">SVG</span>
+								<span class="skill">Bluetooth</span>
+							</span>
 							<span slot="links">
 								<project-link
 									type="github"
@@ -386,10 +479,10 @@
 								></project-link>
 							</span>
 							<div slot="media">
-								<img width="125" src="resources/imgs/mario1.png" />
-								<img width="125" src="resources/imgs/mario2.png" />
-								<img width="125" src="resources/imgs/mario3.png" />
-								<img width="125" src="resources/imgs/mario4.png" />
+								<img loading="lazy" width="125" src="resources/imgs/mario1.png" />
+								<img loading="lazy" width="125" src="resources/imgs/mario2.png" />
+								<img loading="lazy" width="125" src="resources/imgs/mario3.png" />
+								<img loading="lazy" width="125" src="resources/imgs/mario4.png" />
 							</div>
 						</project-elt>
 					</li>
@@ -397,6 +490,10 @@
 						<project-elt name="Image to ASCII Converter" duration="Summer 2019">
 							<span slot="subtitle">Image to ASCII converter</span>
 							<p slot="description">A program that converts a given image into ASCII text</p>
+							<span slot="tech">
+								<span class="skill">Java</span>
+								<span class="skill">Swing</span>
+							</span>
 							<span slot="links">
 								<project-link
 									type="github"
@@ -416,13 +513,17 @@
 					<li>
 						<project-elt name="Connect Four" duration="Feb. 2019">
 							<span slot="subtitle">A game of Connect Four in Java</span>
+							<span slot="tech">
+								<span class="skill">Java</span>
+								<span class="skill">Swing</span>
+							</span>
 							<span slot="links">
 								<project-link
 									type="github"
 									href="https://github.com/denk0403/Connect-4"
 								></project-link>
 							</span>
-							<img slot="media" src="resources/imgs/connect4.png" width="300" />
+							<img loading="lazy" slot="media" src="resources/imgs/connect4.png" width="300" />
 						</project-elt>
 					</li>
 					<li>
@@ -433,6 +534,10 @@
 								designed to be used primarily by students who are being introduced to Linear Algebra
 								concepts for the first time.
 							</p>
+							<span slot="tech">
+								<span class="skill">Java</span>
+								<span class="skill">Swing</span>
+							</span>
 							<span slot="links">
 								<project-link
 									type="github"
@@ -444,7 +549,7 @@
 									href="https://drive.google.com/uc?export=download&id=1XN24E-9drJ4RyT7Lsf1913K7O97MKvXl"
 								></project-link>
 							</span>
-							<img width="600" slot="media" src="resources/imgs/vortecs.png" />
+							<img loading="lazy" width="600" slot="media" src="resources/imgs/vortecs.png" />
 						</project-elt>
 					</li>
 					<li>
@@ -453,6 +558,10 @@
 								An implementation of the Dollar Game in Processing. Based on
 								<a href="https://www.youtube.com/watch?v=U33dsEcKgeQ">this Numberphile video.</a>
 							</p>
+							<span slot="tech">
+								<span class="skill">Java</span>
+								<span class="skill">Processing</span>
+							</span>
 							<span slot="links">
 								<project-link
 									type="github"

@@ -34,15 +34,24 @@ export function id(elt, id) {
 }
 
 /**
- * Queries the children of the given element using the specified selector.
+ * Queries the given element for the first child matching the specified selector.
  * @template {HTMLElement} K
- * @param {HTMLElement | DocumentFragment | InnerHTML | DocumentOrShadowRoot} elt
+ * @param {HTMLElement | DocumentFragment} elt
  * @param {string} query
- * @returns {K}
+ * @returns {?K}
  */
 export function query(elt, query) {
-	// @ts-ignore
 	return elt.querySelector(query);
+}
+
+/**
+ * Queries the given element for all the children matching the specified selector.
+ * @param {HTMLElement | DocumentFragment} elt
+ * @param {string} query
+ * @returns {NodeListOf<Element>}
+ */
+export function queryAll(elt, query) {
+	return elt.querySelectorAll(query);
 }
 
 /**

@@ -31,9 +31,33 @@
 		<!-- Twitter Card support-->
 		<meta name="twitter:card" content="summary" />
 
-		<link rel="stylesheet" href="style.css" />
+		<!-- Preload FontAwesome fonts -->
+		<link
+			as="font"
+			rel="preload"
+			referrerpolicy="no-referrer"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/webfonts/fa-brands-400.woff2"
+		/>
+		<link
+			as="font"
+			rel="preload"
+			referrerpolicy="no-referrer"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/webfonts/fa-solid-900.woff2"
+		/>
+
+		<!-- Preload images -->
+		<link rel="preload" href="resources/imgs/Dennis2021.jpg" as="image" />
+		<link rel="preload" href="resources/imgs/tint_icon.png" as="image" />
+		<link rel="preload" href="resources/imgs/spongebob_icon.png" as="image" />
+		<link rel="preload" href="resources/imgs/algedraw_icon.png" as="image" />
+		<link rel="preload" href="resources/imgs/vortecs_icon.png" as="image" />
+
+		<!-- Preload component dependencies -->
+		<link rel="modulepreload" href="/components/utils.mjs" as="script" />
 		<link rel="preload" href="/components/FeaturedProject.styles.css" as="style" />
-		<link rel="preload" href="/components/ProjectLink.styles.css" as="style" />
+		<link rel="modulepreload" href="/components/FeaturedProject.mjs" as="script" />
+
+		<link rel="stylesheet" href="style.css" />
 		<link
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/fontawesome.min.css"
@@ -55,7 +79,7 @@
 			crossorigin="anonymous"
 			referrerpolicy="no-referrer"
 		/>
-		<script type="module" src="index.js"></script>
+		<script src="index.js"></script>
 	</head>
 
 	<body>
@@ -122,10 +146,12 @@
 				<details class="details" title="Click to toggle résumé view.">
 					<summary class="summary">Résumé</summary>
 					<iframe
+						loading="lazy"
 						class="pdf"
-						src="https://drive.google.com/file/d/1EeEUbbnUaHCzj27siybMlpPHmwX2a8n9/preview"
 						width="100%"
 						allow="autoplay"
+						referrerpolicy="no-referrer"
+						src="https://drive.google.com/file/d/1EeEUbbnUaHCzj27siybMlpPHmwX2a8n9/preview"
 					></iframe>
 				</details>
 			</section>

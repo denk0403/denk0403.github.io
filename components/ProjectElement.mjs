@@ -1,21 +1,11 @@
 // @ts-check
-import { createElement, id, memo, prop, query } from "./utils.js";
-
-/**
- * @typedef PropKeys
- * @property {string} name
- * @property {string} duration
- * @property {string} href
- * @property {string} noscroll
- *
- * @typedef {PropKeys & NamedNodeMap} Props
- */
+import { createElement, id, memo, prop, query, queryAll } from "./utils.mjs";
 
 const toExpandMsg = "Click to expand details";
 const toCollapseMsg = "Click to collapse details";
 
 export class ProjectElement extends HTMLElement {
-	static TEMPLATE = createElement("template", { id: "project-template" });
+	static TEMPLATE = createElement("template");
 
 	/** @type {?string} */
 	#name;
@@ -72,6 +62,12 @@ export class ProjectElement extends HTMLElement {
 			projectDuration.textContent = this.#duration;
 		}
 
+		if (this.#hasSlottedTech()) {
+			/** @type {HTMLLabelElement} */
+			const techLabel = id(this.root, "tech-label");
+			techLabel.textContent = "Technologies:";
+		}
+
 		if (this.#hasSlottedLinks()) {
 			/** @type {HTMLLabelElement} */
 			const linkLabel = id(this.root, "links-label");
@@ -99,7 +95,6 @@ export class ProjectElement extends HTMLElement {
 
 		// determine whether to show scroll to top button
 		details.addEventListener("toggle", () => {
-			console.log(details.clientHeight, window.innerHeight);
 			if (details.open && details.clientHeight > window.innerHeight) {
 				scrollBtn.style.visibility = "visible";
 			} else {
@@ -114,26 +109,80 @@ export class ProjectElement extends HTMLElement {
 		let shouldScrollToStartOnce = false;
 		if (this.#shouldOpenOnLoad()) {
 			shouldScrollToStartOnce = true;
-			details.open = true;
+			this.#onLoadAssets(() => {
+				details.open = true;
+			});
 		}
 
 		// update hash and determine how to scroll to opened element
 		details.addEventListener("toggle", () => {
-			location.hash = this.#name ?? "";
 			if (details.open && !this.#noscroll) {
+				location.hash = this.#name ?? "";
 				if (this.#hasSlottedMedia() || this.#hasSlottedHero() || shouldScrollToStartOnce) {
 					shouldScrollToStartOnce = false;
 					this.scrollIntoView({ behavior: "smooth", block: "start" });
 				} else {
 					this.scrollIntoView({ behavior: "smooth", block: "nearest" });
 				}
+			} else {
+				location.hash = "";
 			}
 		});
+	}
+
+	/**
+	 * @param {() => void} callback
+	 */
+	#onLoadAssets(callback) {
+		const images = /** @type {HTMLImageElement[]} */ ([...queryAll(this, "img")]);
+
+		const iframes = /** @type {HTMLIFrameElement[]} */ ([...queryAll(this, "iframe")]);
+
+		let count = images.length + iframes.length;
+
+		if (count === 0) {
+			return callback();
+		}
+
+		if (images.length > 0) {
+			images.map((image) => {
+				if (image.complete) {
+					count--;
+					if (count === 0) callback();
+				} else {
+					image.addEventListener(
+						"load",
+						() => {
+							count--;
+							if (count === 0) if (count === 0) callback();
+						},
+						{ once: true }
+					);
+				}
+			});
+		}
+
+		if (iframes.length > 0) {
+			iframes.map((iframe) => {
+				iframe.addEventListener(
+					"load",
+					() => {
+						count--;
+						if (count === 0) callback();
+					},
+					{ passive: true, once: true }
+				);
+			});
+		}
 	}
 
 	#shouldOpenOnLoad() {
 		const hash = decodeURIComponent(location.hash.slice(1));
 		return hash && hash === this.#name;
+	}
+
+	#hasSlottedTech() {
+		return !!query(this, "[slot=tech]");
 	}
 
 	#hasSlottedLinks = memo(() => {
@@ -175,7 +224,11 @@ ProjectElement.TEMPLATE.innerHTML = /* html */ `
 				<slot name="subtitle"></slot>
 				<slot name="hero"></slot>
 				<slot name="description"></slot>
-				<div style="display: inline-block;">
+				<div style="margin-block: 10px">
+					<label id="tech-label"></label>
+					<slot name="tech"></slot>
+				</div>
+				<div style="margin-block: 10px">
 					<label id="links-label"></label>
 					<slot name="links">
 						<a id="project-link" style="display: none">Click here to learn more</a>

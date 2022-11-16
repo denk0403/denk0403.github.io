@@ -148,6 +148,10 @@ h1 {
     background-color: #252525;
     cursor: pointer;
     transition: background-color 0.25s ease;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    z-index: 1;
 }
 
 .resume .details:has(.summary:hover) {
@@ -174,27 +178,28 @@ h1 {
     line-height: 1.25;
 }
 
-.skill i {
-    vertical-align: middle;
-}
-
 code {
     background-color: #444;
     padding: 3px;
     border-radius: 3px;
 }
 
+.skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
 .skill {
+    display: inline-block;
     border: 1px solid #333;
     background-color: #252525;
     border-radius: 5px;
     padding: 10px;
 }
 
-.skill-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+.skill i {
+    vertical-align: middle;
 }
 
 .projects a {
@@ -217,7 +222,7 @@ code {
 
 featured-project {
     display: block;
-    height: 150px;
+    height: 250px;
     opacity: 0;
 }
 
@@ -233,6 +238,12 @@ project-elt [slot='description']>* {
 
 project-elt [slot='media']>* {
     max-width: 100%;
+}
+
+project-elt [slot='tech'] {
+    display: inline-flex;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 .featured-projects-grid {
