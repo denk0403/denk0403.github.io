@@ -215,6 +215,12 @@ code {
     list-style: none;
 }
 
+featured-project {
+    display: block;
+    height: 150px;
+    opacity: 0;
+}
+
 project-elt {
     display: block;
     height: 38px;
@@ -232,6 +238,7 @@ project-elt [slot='media']>* {
 .featured-projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-auto-rows: 1fr;
     gap: 10px;
 }
 

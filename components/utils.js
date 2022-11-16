@@ -56,11 +56,21 @@ export function prop(elt, name) {
 }
 
 /**
- * Freezes the given object.
+ * Memoizes the result of the given parameter-less function.
  * @template K
- * @param {K} obj
-//  * @returns {Readonly<K>}
+ * @param {() => K} func
+ * @returns {() => K}
  */
-export function fr(obj) {
-	return Object.freeze(/** @type {const} */ obj);
+export function memo(func) {
+	let set = false;
+	let store;
+	return () => {
+		if (!set) {
+			store = func();
+			set = true;
+			return store;
+		} else {
+			return store;
+		}
+	};
 }

@@ -29,6 +29,8 @@
 		<meta name="twitter:card" content="summary" />
 
 		<link rel="stylesheet" href="style.css" />
+		<link rel="preload" href="/components/FeaturedProject.styles.css" as="style" />
+		<link rel="preload" href="/components/ProjectLink.styles.css" as="style" />
 		<link
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/fontawesome.min.css"
@@ -50,6 +52,7 @@
 			crossorigin="anonymous"
 			referrerpolicy="no-referrer"
 		/>
+		<script type="module" src="index.js"></script>
 	</head>
 
 	<body>
@@ -159,10 +162,29 @@
 					<i class="fa-solid fa-arrow-up-right-from-square fa-lg"></i>
 				</a>
 				<div class="featured-projects-grid">
-					<!-- <div style="background-color: red; height: 200px;"></div>
-					<div style="background-color: red; height: 200px;"></div>
-					<div style="background-color: red; height: 200px;"></div>
-					<div style="background-color: red; height: 200px;"></div> -->
+					<featured-project name="Tint Generator" icon-href="resources/imgs/tint_icon.png"
+						><p slot="description">
+							An online GUI for creating Tint programs for CS 3800 Theory of Computation at
+							Northeastern University.
+						</p></featured-project
+					>
+					<featured-project
+						name="Mocking SpongeBob Meme Generator"
+						icon-href="resources/imgs/spongebob_icon.png"
+						><p slot="description">
+							A generator for the Mocking SpongeBob meme that became popular in 2017.
+						</p></featured-project
+					>
+					<featured-project name="AlgeDraw Calculator" icon-href="resources/imgs/algedraw_icon.png"
+						><p slot="description">
+							A calculator for the Fitbit with the ability to parse handwritten digits.
+						</p></featured-project
+					>
+					<featured-project name="Vortecs Desktop" icon-href="resources/imgs/vortecs_icon.png">
+						<p slot="description">
+							An simple education tool for visualizing 2D linear transformations.
+						</p>
+					</featured-project>
 				</div>
 			</section>
 			<!-- <section class="section blogs">

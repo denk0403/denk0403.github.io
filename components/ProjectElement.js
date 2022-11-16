@@ -1,5 +1,5 @@
 // @ts-check
-import { createElement, id, prop, query } from "./utils.js";
+import { createElement, id, memo, prop, query } from "./utils.js";
 
 /**
  * @typedef PropKeys
@@ -14,48 +14,46 @@ import { createElement, id, prop, query } from "./utils.js";
 const toExpandMsg = "Click to expand details";
 const toCollapseMsg = "Click to collapse details";
 
-class ProjectElement extends HTMLElement {
+export class ProjectElement extends HTMLElement {
 	static TEMPLATE = createElement("template", { id: "project-template" });
 
-	/** @type {string | null} */
+	/** @type {?string} */
 	#name;
-	/** @type {string | null} */
+	/** @type {?string} */
 	#duration;
-	/** @type {string | null} */
+	/** @type {?string} */
 	#href;
 	/** @type {boolean} */
 	#noscroll;
+
+	/** @type {HTMLDetailsElement} */
+	#details;
 
 	get name() {
 		return this.#name;
 	}
 
 	get open() {
-		/** @type {HTMLDetailsElement} */
-		const details = id(this.root, "project-details");
-		return details.open;
+		return this.#details.open;
 	}
 
 	set open(value) {
-		/** @type {HTMLDetailsElement} */
-		const details = id(this.root, "project-details");
-		if (details.open !== !!value) {
-			details.open === !!value;
-		}
+		this.#details.open = !!value;
 	}
 
 	constructor() {
 		super();
 
-		const template = ProjectElement.TEMPLATE;
 		this.root = this.attachShadow({ mode: "open" });
+		this.root.appendChild(ProjectElement.TEMPLATE.content.cloneNode(true));
 
 		this.#name = prop(this, "name");
 		this.#duration = prop(this, "duration");
 		this.#href = prop(this, "href");
 		this.#noscroll = prop(this, "noscroll") !== null;
 
-		this.root.appendChild(template.content.cloneNode(true));
+		this.#details = id(this.root, "project-details");
+
 		this.style.display = "unset";
 		this.style.height = "unset";
 		this.style.opacity = "1";
@@ -90,24 +88,18 @@ class ProjectElement extends HTMLElement {
 		}
 
 		/** @type {HTMLDetailsElement} */
-		const details = id(this.root, "project-details");
+		const details = this.#details;
 		const summary = id(this.root, "project-summary");
 		const scrollBtn = id(this.root, "scroll-btn");
 
-		details.addEventListener("toggle", (e) => {
-			console.log(
-				"toggle",
-				e,
-				details.open,
-				this.#noscroll,
-				this.#hasSlottedMedia(),
-				this.#hasSlottedHero()
-			);
+		details.addEventListener("toggle", () => {
+			location.hash = this.#name ?? "";
+
 			if (details.open && !this.#noscroll) {
 				if (this.#hasSlottedMedia() || this.#hasSlottedHero()) {
-					summary.scrollIntoView({ behavior: "smooth", block: "start" });
+					this.scrollIntoView({ behavior: "smooth", block: "start" });
 				} else {
-					summary.scrollIntoView({ behavior: "smooth", block: "center" });
+					this.scrollIntoView({ behavior: "smooth", block: "nearest" });
 				}
 			}
 		});
@@ -117,6 +109,7 @@ class ProjectElement extends HTMLElement {
 		});
 
 		details.addEventListener("toggle", () => {
+			console.log(details.clientHeight, window.innerHeight);
 			if (details.open && details.clientHeight > window.innerHeight) {
 				scrollBtn.style.visibility = "visible";
 			} else {
@@ -125,31 +118,30 @@ class ProjectElement extends HTMLElement {
 		});
 
 		scrollBtn.addEventListener("click", () => {
-			summary.scrollIntoView({ behavior: "smooth", block: "start" });
+			this.scrollIntoView({ behavior: "smooth", block: "start" });
 		});
 
-		const hash = decodeURIComponent(location.hash.slice(1));
-		if (hash && hash === this.#name) {
+		if (this.#isHashMatching()) {
 			details.open = true;
 		}
 	}
 
-	/** Toggles the state of the dropdown */
-	toggle() {
-		this.open = !this.open;
+	#isHashMatching() {
+		const hash = decodeURIComponent(location.hash.slice(1));
+		return hash && hash === this.#name;
 	}
 
-	#hasSlottedLinks() {
+	#hasSlottedLinks = memo(() => {
 		return !!query(this, "[slot=links]");
-	}
+	});
 
-	#hasSlottedHero() {
+	#hasSlottedHero = memo(() => {
 		return !!query(this, "[slot=hero]");
-	}
+	});
 
-	#hasSlottedMedia() {
+	#hasSlottedMedia = memo(() => {
 		return !!query(this, "[slot=media]");
-	}
+	});
 }
 
 ProjectElement.TEMPLATE.innerHTML = /* html */ `

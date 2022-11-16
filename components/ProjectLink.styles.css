@@ -4,7 +4,7 @@
     align-items: center;
     height: 40px;
     width: 40px;
-    border: 1px solid #303030;
+    border: 2px solid #303030;
     border-radius: 50%;
     background-color: #252525;
     transition: background-color 1s ease;
@@ -13,6 +13,10 @@
 
 #link:hover {
     background-color: #303030;
+}
+
+#icon {
+    vertical-align: middle;
 }
 
 #link:hover #icon {

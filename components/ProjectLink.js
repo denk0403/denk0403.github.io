@@ -1,5 +1,5 @@
 // @ts-check
-import { createElement, fr, id, prop } from "./utils.js";
+import { createElement, id, prop } from "./utils.js";
 
 /**
  * @typedef PropKeys
@@ -10,7 +10,7 @@ import { createElement, fr, id, prop } from "./utils.js";
  * @typedef {PropKeys & NamedNodeMap} Props
  */
 
-const ICON_TYPE_DATA_MAP = fr({
+const ICON_TYPE_DATA_MAP = /** @type {const} */ ({
 	github: /** @type {const} */ ({ classes: ["fa-brands", "fa-github"], tooltip: "Github" }),
 	twitter: /** @type {const} */ ({ classes: ["fa-brands", "fa-twitter"], tooltip: "Twitter" }),
 	faecbook: /** @type {const} */ ({ classes: ["fa-brands", "fa-facebook"], tooltip: "Facebook" }),
@@ -21,60 +21,132 @@ const ICON_TYPE_DATA_MAP = fr({
 	info: /** @type {const} */ ({ classes: ["fa-solid", "fa-circle-info"], tooltip: "Info" }),
 	store: /** @type {const} */ ({ classes: ["fa-solid", "fa-store"], tooltip: "Store Page" }),
 	download: /** @type {const} */ ({ classes: ["fa-solid", "fa-download"], tooltip: "Download" }),
+	next: /** @type {const} */ ({ classes: ["fa-solid", "fa-arrow-right"], tooltip: "Next" }),
 });
 
 /** @typedef {keyof ICON_TYPE_DATA_MAP} IconType*/
 
-class ProjectLink extends HTMLElement {
+export class ProjectLink extends HTMLElement {
 	static TEMPLATE = createElement("template", { id: "project-link-template" });
+
+	static get observedAttributes() {
+		return ["href", "type", "tooltip"];
+	}
+
+	/** @type {?string} */
+	#href = null;
+	/** @type {?string} */
+	#tooltip = null;
+	/** @type {?string} */
+	#type = null;
+	/** @type {boolean} */
+	#replace = false;
+
+	/** @type {HTMLAnchorElement} */
+	#link;
+	/** @type {HTMLElement} */
+	#icon;
+
+	get href() {
+		return this.#href;
+	}
+
+	get tooltip() {
+		return this.#tooltip;
+	}
+
+	get type() {
+		return this.#type;
+	}
+
+	set href(value) {
+		console.log("test")
+		if (value) {
+			this.#href = value;
+			this.#link.href = value;
+		} else {
+			this.#href = null;
+			this.#link.removeAttribute("href");
+		}
+	}
+
+	set tooltip(value) {
+		this.#tooltip = value;
+		this.#link.title = value ?? "";
+	}
+
+	set type(value) {
+		const icon = this.#icon;
+
+		/** @type {ICON_TYPE_DATA_MAP[IconType] | undefined} */
+		if (this.#type) {
+			const oldIconData = ICON_TYPE_DATA_MAP[this.#type];
+			this.#icon.classList.remove(...oldIconData.classes);
+		}
+
+		icon.title = "";
+
+		this.#type = value;
+		if (value && value in ICON_TYPE_DATA_MAP) {
+			/** @type {ICON_TYPE_DATA_MAP[IconType]} */
+			const iconData = ICON_TYPE_DATA_MAP[this.#type];
+			icon.classList.add(...iconData.classes);
+
+			if (!this.#tooltip) {
+				icon.title = iconData.tooltip;
+			}
+		}
+	}
 
 	constructor() {
 		super();
 
-		const template = ProjectLink.TEMPLATE;
 		this.root = this.attachShadow({ mode: "open" });
+		this.root.appendChild(ProjectLink.TEMPLATE.content.cloneNode(true));
 
-		this.root.appendChild(template.content.cloneNode(true));
+		this.#href = prop(this, "href");
+		this.#tooltip = prop(this, "tooltip");
+		this.#type = prop(this, "type");
+		this.#replace = prop(this, "replace") !== null;
+
+		this.#link = id(this.root, "link");
+		this.#icon = id(this.root, "icon");
+
 		this.style.display = "unset";
 		this.style.opacity = "1";
 	}
 
 	connectedCallback() {
-		const href = prop(this, "href"),
-			title = prop(this, "title"),
-			type = prop(this, "type"),
-			replace = prop(this, "replace") !== null;
-
-		if (type) {
-			/** @type {HTMLAnchorElement} */
-			const link = id(this.root, "link");
-			/** @type {HTMLSpanElement} */
-			const icon = id(this.root, "icon");
-
-			/** @type {ICON_TYPE_DATA_MAP[IconType] | undefined} */
-			const iconData = ICON_TYPE_DATA_MAP[type];
-			if (iconData) {
-				link.title = iconData.tooltip;
-				icon.classList.add(...iconData.classes);
-			}
+		if (this.#type) {
+			this.type = this.#type;
 		}
 
-		if (title) {
-			/** @type {HTMLAnchorElement} */
-			const link = id(this.root, "link");
-			link.title = title;
+		if (this.#tooltip) {
+			this.#tooltip = this.#tooltip;
 		}
 
-		if (href) {
-			/** @type {HTMLAnchorElement} */
-			const link = id(this.root, "link");
-			link.href = href;
+		if (this.#href) {
+			this.href = this.#href;
 		}
 
-		if (replace) {
-			/** @type {HTMLAnchorElement} */
-			const link = id(this.root, "link");
-			link.removeAttribute("target");
+		if (this.#replace) {
+			this.#link.removeAttribute("target");
+		}
+	}
+
+	/**
+	 *
+	 * @param {string} name
+	 * @param {?string} _
+	 * @param {?string} newValue
+	 */
+	attributeChangedCallback(name, _, newValue) {
+		if (name === "href") {
+			this.href = newValue;
+		} else if (name === "tooltip") {
+			this.tooltip = newValue;
+		} else if (name === "type") {
+			this.type = newValue;
 		}
 	}
 }

@@ -1,0 +1,31 @@
+#box {
+    border: 2px solid #303030;
+    border-radius: 5px;
+    padding: 20px;
+    padding-bottom: 10px;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+#header {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+#project-name {
+    display: inline-block;
+}
+
+#project-icon {
+    width: 50px;
+}
+
+#project-link {
+    margin-left: auto;
+    margin-top: auto;
+}
