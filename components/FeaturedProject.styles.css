@@ -1,3 +1,9 @@
+#project-link-box {
+    color: var(--primary-text);
+    text-decoration: none;
+
+}
+
 #box {
     border: 2px solid #303030;
     border-radius: 5px;
@@ -7,6 +13,11 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    transition: background-color 0.25s ease;
+}
+
+#project-link-box #box:hover {
+    background-color: #303030;
 }
 
 #header {
@@ -25,7 +36,34 @@
     width: 50px;
 }
 
-#project-link {
-    margin-left: auto;
-    margin-top: auto;
+#next-icon-wrapper {
+    height: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+}
+
+#next-icon {
+    width: 45px;
+    height: 45px;
+    margin-right: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 2px solid #303030;
+    border-radius: 50%;
+    background-color: #252525;
+
+    transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+#project-link-box #box:hover #next-icon {
+    background-color: #303030;
+    transform: translateX(10px);
+}
+
+::slotted([slot='description']) {
+    margin: 10px 0;
 }

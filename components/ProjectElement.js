@@ -92,22 +92,12 @@ export class ProjectElement extends HTMLElement {
 		const summary = id(this.root, "project-summary");
 		const scrollBtn = id(this.root, "scroll-btn");
 
-		details.addEventListener("toggle", () => {
-			location.hash = this.#name ?? "";
-
-			if (details.open && !this.#noscroll) {
-				if (this.#hasSlottedMedia() || this.#hasSlottedHero()) {
-					this.scrollIntoView({ behavior: "smooth", block: "start" });
-				} else {
-					this.scrollIntoView({ behavior: "smooth", block: "nearest" });
-				}
-			}
-		});
-
+		// update summary tooltip
 		details.addEventListener("toggle", () => {
 			summary.title = details.open ? toCollapseMsg : toExpandMsg;
 		});
 
+		// determine whether to show scroll to top button
 		details.addEventListener("toggle", () => {
 			console.log(details.clientHeight, window.innerHeight);
 			if (details.open && details.clientHeight > window.innerHeight) {
@@ -121,12 +111,27 @@ export class ProjectElement extends HTMLElement {
 			this.scrollIntoView({ behavior: "smooth", block: "start" });
 		});
 
-		if (this.#isHashMatching()) {
+		let shouldScrollToStartOnce = false;
+		if (this.#shouldOpenOnLoad()) {
+			shouldScrollToStartOnce = true;
 			details.open = true;
 		}
+
+		// update hash and determine how to scroll to opened element
+		details.addEventListener("toggle", () => {
+			location.hash = this.#name ?? "";
+			if (details.open && !this.#noscroll) {
+				if (this.#hasSlottedMedia() || this.#hasSlottedHero() || shouldScrollToStartOnce) {
+					shouldScrollToStartOnce = false;
+					this.scrollIntoView({ behavior: "smooth", block: "start" });
+				} else {
+					this.scrollIntoView({ behavior: "smooth", block: "nearest" });
+				}
+			}
+		});
 	}
 
-	#isHashMatching() {
+	#shouldOpenOnLoad() {
 		const hash = decodeURIComponent(location.hash.slice(1));
 		return hash && hash === this.#name;
 	}

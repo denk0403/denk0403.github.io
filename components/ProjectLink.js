@@ -60,7 +60,6 @@ export class ProjectLink extends HTMLElement {
 	}
 
 	set href(value) {
-		console.log("test")
 		if (value) {
 			this.#href = value;
 			this.#link.href = value;
