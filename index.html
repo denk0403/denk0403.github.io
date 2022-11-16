@@ -1,229 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-		<meta
-			name="keywords"
-			content="developer, software engineer, code, github, software, web developer, react, javascript, web components"
-		/>
-		<meta name="author" content="Dennis Kats" />
-		<meta
-			name="description"
-			content="Dennis Kats is a software engineer based in NYC. He specializes in full-stack web development, and he loves to learn about UX/DX, accessibility, and human-centered design."
-		/>
-		<title>Dennis Kats | Software Engineer</title>
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-		<!-- Open Graph protocol support-->
-		<meta property="og:title" content="Dennis Kats | Software Engineer" />
-		<meta property="og:url" content="https://denniskats.dev" />
-		<meta property="og:secure_url" content="https://denniskats.dev" />
-		<meta property="og:type" content="website" />
-		<meta
-			property="og:description"
-			content="Dennis Kats is a software engineer based in NYC. He specializes in full-stack web development, and he loves to learn about UX/DX, accessibility, and human-centered design."
-		/>
-		<link rel="icon" href="favicon.png" />
-		<link rel="apple-touch-icon" href="/favicon.png" />
+	<meta name="keywords"
+		content="developer, software engineer, code, github, software, web developer, react, javascript, web components" />
+	<meta name="author" content="Dennis Kats" />
+	<meta name="description"
+		content="Dennis Kats is a software engineer based in NYC. He specializes in full-stack web development, and he loves to learn about UX/DX, accessibility, and human-centered design." />
+	<title>Dennis Kats | Software Engineer</title>
 
-		<!-- Twitter Card support-->
-		<meta name="twitter:card" content="summary" />
+	<!-- Open Graph protocol support-->
+	<meta property="og:title" content="Dennis Kats | Software Engineer" />
+	<meta property="og:url" content="https://denniskats.dev" />
+	<meta property="og:secure_url" content="https://denniskats.dev" />
+	<meta property="og:type" content="website" />
+	<meta property="og:description"
+		content="Dennis Kats is a software engineer based in NYC. He specializes in full-stack web development, and he loves to learn about UX/DX, accessibility, and human-centered design." />
+	<link rel="icon" href="favicon.png" />
+	<link rel="apple-touch-icon" href="/favicon.png" />
 
-		<!-- Preload FontAwesome fonts -->
-		<link
-			as="font"
-			rel="preload"
-			referrerpolicy="no-referrer"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/webfonts/fa-brands-400.woff2"
-		/>
-		<link
-			as="font"
-			rel="preload"
-			referrerpolicy="no-referrer"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/webfonts/fa-solid-900.woff2"
-		/>
+	<!-- Twitter Card support-->
+	<meta name="twitter:card" content="summary" />
 
-		<!-- Preload images -->
-		<link rel="preload" href="resources/imgs/Dennis2021.jpg" as="image" />
-		<link rel="preload" href="resources/imgs/tint_icon.png" as="image" />
-		<link rel="preload" href="resources/imgs/spongebob_icon.png" as="image" />
-		<link rel="preload" href="resources/imgs/algedraw_icon.png" as="image" />
-		<link rel="preload" href="resources/imgs/vortecs_icon.png" as="image" />
+	<!-- Preload FontAwesome fonts -->
+	<link as="font" rel="preload" referrerpolicy="no-referrer"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/webfonts/fa-brands-400.woff2" />
+	<link as="font" rel="preload" referrerpolicy="no-referrer"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/webfonts/fa-solid-900.woff2" />
 
-		<!-- Preload component dependencies -->
-		<link rel="modulepreload" href="/components/utils.mjs" as="script" />
-		<link rel="preload" href="/components/FeaturedProject.styles.css" as="style" />
-		<link rel="modulepreload" href="/components/FeaturedProject.mjs" as="script" />
+	<!-- Preload images -->
+	<link rel="preload" href="resources/imgs/Dennis2021.jpg" as="image" />
+	<link rel="preload" href="resources/imgs/tint_icon.png" as="image" />
+	<link rel="preload" href="resources/imgs/spongebob_icon.png" as="image" />
+	<link rel="preload" href="resources/imgs/algedraw_icon.png" as="image" />
+	<link rel="preload" href="resources/imgs/vortecs_icon.png" as="image" />
 
-		<link rel="stylesheet" href="style.css" />
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/fontawesome.min.css"
-			integrity="sha512-RvQxwf+3zJuNwl4e0sZjQeX7kUa3o82bDETpgVCH2RiwYSZVDdFJ7N/woNigN/ldyOOoKw8584jM4plQdt8bhA=="
-			crossorigin="anonymous"
-			referrerpolicy="no-referrer"
-		/>
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/brands.min.css"
-			integrity="sha512-+oRH6u1nDGSm3hH8poU85YFIVTdSnS2f+texdPGrURaJh8hzmhMiZrQth6l56P4ZQmxeZzd2DqVEMqQoJ8J89A=="
-			crossorigin="anonymous"
-			referrerpolicy="no-referrer"
-		/>
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/solid.css"
-			integrity="sha512-RayiVbmLmW7DvtIA/RblYy7YqTlog8MVBYEwLkPFYY1GTTaVuDdBxC3RaJE6kEyWyCeSwROiH+2rR3rREm6eWQ=="
-			crossorigin="anonymous"
-			referrerpolicy="no-referrer"
-		/>
-		<script src="index.js"></script>
-	</head>
+	<!-- Preload component dependencies -->
+	<link rel="modulepreload" href="/components/utils.mjs" as="script" />
+	<link rel="preload" href="/components/FeaturedProject.styles.css" as="style" />
+	<link rel="modulepreload" href="/components/FeaturedProject.mjs" as="script" />
 
-	<body>
-		<header class="header">
-			<div class="title-image">
-				<div class="contact-info">
-					<h1 style="margin-bottom: 0">Dennis Kats</h1>
-					<span
-						style="display: inline-block; margin: 5px 0 0; text-align: center; font-size: smaller"
-						>He/Him</span
-					>
-					<nav class="desktop-only links">
-						<a class="link" href="mailto:denniskats43@gmail.com" target="_blank" title="Email"
-							><i class="fa-solid fa-envelope fa-2x"></i
-						></a>
-						<a class="link" href="https://github.com/denk0403" target="_blank" title="GitHub"
-							><i class="fa-brands fa-github fa-2x"></i
-						></a>
-						<a
-							class="link"
-							href="https://www.linkedin.com/in/dennis-kats/"
-							target="_blank"
-							title="LinkedIn"
-							><i class="fa-brands fa-linkedin fa-2x"></i
-						></a>
-						<a class="link" href="https://twitter.com/denk0403" target="_blank" title="Twitter"
-							><i class="fa-brands fa-twitter fa-2x"></i
-						></a>
-					</nav>
-					<span class="desktop-only quote">
-						<q>Life's a journey to find the people weird like you.</q>
-						—atticus
-					</span>
-				</div>
-				<div style="display: flex; flex-direction: column; justify-content: center">
-					<img
-						class="portrait"
-						src="resources/imgs/Dennis2021.jpg"
-						alt="A picture of Dennis Kats"
-					/>
-				</div>
+	<link rel="stylesheet" href="style.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/fontawesome.min.css"
+		integrity="sha512-RvQxwf+3zJuNwl4e0sZjQeX7kUa3o82bDETpgVCH2RiwYSZVDdFJ7N/woNigN/ldyOOoKw8584jM4plQdt8bhA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/brands.min.css"
+		integrity="sha512-+oRH6u1nDGSm3hH8poU85YFIVTdSnS2f+texdPGrURaJh8hzmhMiZrQth6l56P4ZQmxeZzd2DqVEMqQoJ8J89A=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/solid.css"
+		integrity="sha512-RayiVbmLmW7DvtIA/RblYy7YqTlog8MVBYEwLkPFYY1GTTaVuDdBxC3RaJE6kEyWyCeSwROiH+2rR3rREm6eWQ=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<script src="index.js"></script>
+</head>
+
+<body>
+	<header class="header">
+		<div class="title-image">
+			<div class="contact-info">
+				<h1 style="margin-bottom: 0">Dennis Kats</h1>
+				<span
+					style="display: inline-block; margin: 5px 0 0; text-align: center; font-size: smaller">He/Him</span>
+				<nav class="desktop-only links">
+					<a class="link" href="mailto:denniskats43@gmail.com" target="_blank" title="Email"><i
+							class="fa-solid fa-envelope fa-2x"></i></a>
+					<a class="link" href="https://github.com/denk0403" target="_blank" title="GitHub"><i
+							class="fa-brands fa-github fa-2x"></i></a>
+					<a class="link" href="https://www.linkedin.com/in/dennis-kats/" target="_blank" title="LinkedIn"><i
+							class="fa-brands fa-linkedin fa-2x"></i></a>
+					<a class="link" href="https://twitter.com/denk0403" target="_blank" title="Twitter"><i
+							class="fa-brands fa-twitter fa-2x"></i></a>
+				</nav>
+				<span class="desktop-only quote">
+					<q>Life's a journey to find the people weird like you.</q>
+					—atticus
+				</span>
 			</div>
-			<nav class="mobile-only links">
-				<a class="link" href="mailto:denniskats43@gmail.com" target="_blank" title="Email"
-					><i class="fa-inverse fa-solid fa-envelope fa-2x"></i
-				></a>
-				<a class="link" href="https://github.com/denk0403" target="_blank" title="GitHub"
-					><i class="fa-inverse fa-brands fa-github fa-2x"></i
-				></a>
-				<a
-					class="link"
-					href="https://www.linkedin.com/in/dennis-kats/"
-					target="_blank"
-					title="LinkedIn"
-					><i class="fa-inverse fa-brands fa-linkedin fa-2x"></i
-				></a>
-				<a class="link" href="https://twitter.com/denk0403" target="_blank" title="Twitter"
-					><i class="fa-inverse fa-brands fa-twitter fa-2x"></i
-				></a>
-			</nav>
-		</header>
-		<main class="main-content">
-			<section class="section resume">
-				<details class="details" title="Click to toggle résumé view.">
-					<summary class="summary">Résumé</summary>
-					<iframe
-						loading="lazy"
-						class="pdf"
-						width="100%"
-						allow="autoplay"
-						referrerpolicy="no-referrer"
-						src="https://drive.google.com/file/d/1EeEUbbnUaHCzj27siybMlpPHmwX2a8n9/preview"
-					></iframe>
-				</details>
-			</section>
-			<section class="section about-me">
-				<h1>About Me</h1>
-				<p class="p">
-					Hello 👋! My name is Dennis Kats. I am a software engineer based in NYC. Most of my
-					experience is in full-stack web development, but I love to learn all new things, and work
-					on projects which reduce user/developer friction (e.g. improving UX/DX, accessibility, web
-					performance, and internal tooling).
-				</p>
-				<p class="p">
-					My career goal is simply to make software that is practical and fun for end users.
-					However, I also hope that along the way, I get opportunities to mentor and help others in
-					my field.
-				</p>
-			</section>
-			<section class="section skills">
-				<h1>Skills</h1>
-				<div class="skill-list">
-					<span class="skill"
-						>Web Development
-						<div style="display: inline-flex; gap: 5px; vertical-align: middle">
-							<i class="fa-brands fa-html5"></i>
-							<i class="fa-brands fa-css3-alt"></i><i class="fa-brands fa-square-js"></i>
-						</div>
-					</span>
-					<span class="skill">Python <i class="fa-brands fa-python"></i></span>
-					<span class="skill">Java <i class="fa-brands fa-java"></i></span>
-					<span class="skill">PHP/Hack <i class="fa-brands fa-php"></i></span>
-					<span class="skill">Go <i class="fa-brands fa-golang"></i></span>
-					<span class="skill">SQL <i class="fa-solid fa-database"></i></span>
-					<span class="skill">Shell Scripting <i class="fa-solid fa-terminal"></i></span>
-					<span class="skill">Problem Solving <i class="fa-solid fa-calculator"></i></span>
-					<span class="skill">Mentorship <i class="fa-solid fa-person-chalkboard"></i></span>
-				</div>
-			</section>
-			<section class="section projects">
-				<h1 style="display: inline-block">Featured Projects</h1>
-				<a href="./projects.html" title="Click here to see all projects">
-					<i class="fa-solid fa-arrow-up-right-from-square fa-lg"></i>
-				</a>
-				<div class="featured-projects-grid">
-					<featured-project name="Tint Generator" icon-href="resources/imgs/tint_icon.png"
-						><p slot="description">
-							An online GUI for creating Tint programs for CS 3800 Theory of Computation at
-							Northeastern University.
-						</p></featured-project
-					>
-					<featured-project
-						name="Mocking SpongeBob Meme Generator"
-						icon-href="resources/imgs/spongebob_icon.png"
-						><p slot="description">
-							A generator for the Mocking SpongeBob meme that became popular in 2017.
-						</p></featured-project
-					>
-					<featured-project name="AlgeDraw Calculator" icon-href="resources/imgs/algedraw_icon.png"
-						><p slot="description">
-							A calculator for the Fitbit with the ability to parse handwritten digits.
-						</p></featured-project
-					>
-					<featured-project name="Vortecs Desktop" icon-href="resources/imgs/vortecs_icon.png">
-						<p slot="description">
-							An simple education tool for visualizing 2D linear transformations.
-						</p>
-					</featured-project>
-				</div>
-			</section>
-			<!-- <section class="section blogs">
+			<div style="display: flex; flex-direction: column; justify-content: center">
+				<img class="portrait" src="resources/imgs/Dennis2021.jpg" alt="A picture of Dennis Kats" />
+			</div>
+		</div>
+		<nav class="mobile-only links">
+			<a class="link" href="mailto:denniskats43@gmail.com" target="_blank" title="Email"><i
+					class="fa-inverse fa-solid fa-envelope fa-2x"></i></a>
+			<a class="link" href="https://github.com/denk0403" target="_blank" title="GitHub"><i
+					class="fa-inverse fa-brands fa-github fa-2x"></i></a>
+			<a class="link" href="https://www.linkedin.com/in/dennis-kats/" target="_blank" title="LinkedIn"><i
+					class="fa-inverse fa-brands fa-linkedin fa-2x"></i></a>
+			<a class="link" href="https://twitter.com/denk0403" target="_blank" title="Twitter"><i
+					class="fa-inverse fa-brands fa-twitter fa-2x"></i></a>
+		</nav>
+	</header>
+	<main class="main-content">
+		<section class="section resume">
+			<details class="details" title="Click to toggle résumé view.">
+				<summary class="summary">Résumé</summary>
+				<iframe loading="lazy" class="pdf" width="100%" allow="autoplay" referrerpolicy="no-referrer"
+					src="https://drive.google.com/file/d/1EeEUbbnUaHCzj27siybMlpPHmwX2a8n9/preview"></iframe>
+			</details>
+		</section>
+		<section class="section about-me">
+			<h1>About Me</h1>
+			<p class="p">
+				Hello 👋! My name is Dennis Kats. I am a software engineer based in NYC. Most of my
+				experience is in full-stack web development, but I love to learn all new things, and work
+				on projects which reduce user/developer friction (e.g. improving UX/DX, accessibility, web
+				performance, and internal tooling).
+			</p>
+			<p class="p">
+				My career goal is simply to make software that is practical and fun for end users.
+				However, I also hope that along the way, I get opportunities to mentor and help others in
+				my field.
+			</p>
+		</section>
+		<section class="section skills">
+			<h1>Skills</h1>
+			<div class="skill-list">
+				<span class="skill">Web Development
+					<div style="display: inline-flex; gap: 5px; vertical-align: middle">
+						<i class="fa-brands fa-html5"></i>
+						<i class="fa-brands fa-css3-alt"></i><i class="fa-brands fa-square-js"></i>
+					</div>
+				</span>
+				<span class="skill">Python <i class="fa-brands fa-python"></i></span>
+				<span class="skill">Java <i class="fa-brands fa-java"></i></span>
+				<span class="skill">PHP/Hack <i class="fa-brands fa-php"></i></span>
+				<span class="skill">Go <i class="fa-brands fa-golang"></i></span>
+				<span class="skill">SQL <i class="fa-solid fa-database"></i></span>
+				<span class="skill">Shell Scripting <i class="fa-solid fa-terminal"></i></span>
+				<span class="skill">Problem Solving <i class="fa-solid fa-calculator"></i></span>
+				<span class="skill">Mentorship <i class="fa-solid fa-person-chalkboard"></i></span>
+			</div>
+		</section>
+		<section class="section projects">
+			<h1 style="display: inline-block">Featured Projects</h1>
+			<a href="./projects.html" title="Click here to see all projects">
+				<i class="fa-solid fa-arrow-up-right-from-square fa-lg"></i>
+			</a>
+			<div class="featured-projects-grid">
+				<featured-project name="Tint Generator" icon-href="resources/imgs/tint_icon.png">
+					<p slot="description">
+						An online GUI for creating Tint programs for CS 3800 Theory of Computation at
+						Northeastern University.
+					</p>
+				</featured-project>
+				<featured-project name="Mocking SpongeBob Meme Generator" icon-href="resources/imgs/spongebob_icon.png">
+					<p slot="description">
+						A generator for the Mocking SpongeBob meme that became popular in 2017.
+					</p>
+				</featured-project>
+				<featured-project name="AlgeDraw Calculator" icon-href="resources/imgs/algedraw_icon.png">
+					<p slot="description">
+						A calculator for the Fitbit with the ability to parse handwritten digits.
+					</p>
+				</featured-project>
+				<featured-project name="Vortecs Desktop" icon-href="resources/imgs/vortecs_icon.png">
+					<p slot="description">
+						An simple education tool for visualizing 2D linear transformations.
+					</p>
+				</featured-project>
+			</div>
+		</section>
+		<!-- <section class="section blogs">
 				<h1>Blogs</h1>
 				<h3 style="width: 100%; display: flex; justify-content: center">Coming soon...</h3>
 			</section> -->
-		</main>
-	</body>
+	</main>
+</body>
+
 </html>
