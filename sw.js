@@ -65,18 +65,18 @@ function update(request) {
 
 self.addEventListener("fetch", (event) => {
 	// Cache-First Strategy
-	let fetched = false;
+	let fetching = false;
 	event.respondWith(
 		caches
 			.match(event.request) // check if the request has already been cached
 			.then((cached) => {
 				if (!cached) {
 					// otherwise request network
-					fetched = true;
+					fetching = true;
 					return update(event.request);
 				}
 				return cached;
 			})
 	);
-	!fetched && event.waitUntil(update(event.request));
+	!fetching && event.waitUntil(update(event.request));
 });
