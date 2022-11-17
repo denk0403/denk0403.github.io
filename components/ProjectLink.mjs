@@ -1,10 +1,10 @@
 // @ts-check
-import { createElement, id, prop } from "./utils.mjs";
+import { id, prop, template } from "./utils.mjs";
 
 const ICON_TYPE_DATA_MAP = /** @type {const} */ ({
 	github: /** @type {const} */ ({ classes: ["fa-brands", "fa-github"], tooltip: "Github" }),
 	twitter: /** @type {const} */ ({ classes: ["fa-brands", "fa-twitter"], tooltip: "Twitter" }),
-	faecbook: /** @type {const} */ ({ classes: ["fa-brands", "fa-facebook"], tooltip: "Facebook" }),
+	facebook: /** @type {const} */ ({ classes: ["fa-brands", "fa-facebook"], tooltip: "Facebook" }),
 	website: /** @type {const} */ ({ classes: ["fa-solid", "fa-link"], tooltip: "Website" }),
 	devpost: /** @type {const} */ ({ classes: ["fa-brands", "fa-dev"], tooltip: "Devpost" }),
 	devto: /** @type {const} */ ({ classes: ["fa-brands", "fa-dev"], tooltip: "Dev.to" }),
@@ -12,13 +12,38 @@ const ICON_TYPE_DATA_MAP = /** @type {const} */ ({
 	info: /** @type {const} */ ({ classes: ["fa-solid", "fa-circle-info"], tooltip: "Info" }),
 	store: /** @type {const} */ ({ classes: ["fa-solid", "fa-store"], tooltip: "Store Page" }),
 	download: /** @type {const} */ ({ classes: ["fa-solid", "fa-download"], tooltip: "Download" }),
-	next: /** @type {const} */ ({ classes: ["fa-solid", "fa-arrow-right"], tooltip: "Next" }),
 });
 
 /** @typedef {keyof ICON_TYPE_DATA_MAP} IconType*/
 
 export class ProjectLink extends HTMLElement {
-	static TEMPLATE = createElement("template");
+	static #TEMPLATE = template`
+		<link rel="stylesheet" href="/components/ProjectLink.styles.css"/>
+        <link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/fontawesome.min.css"
+			integrity="sha512-RvQxwf+3zJuNwl4e0sZjQeX7kUa3o82bDETpgVCH2RiwYSZVDdFJ7N/woNigN/ldyOOoKw8584jM4plQdt8bhA=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/brands.min.css"
+			integrity="sha512-+oRH6u1nDGSm3hH8poU85YFIVTdSnS2f+texdPGrURaJh8hzmhMiZrQth6l56P4ZQmxeZzd2DqVEMqQoJ8J89A=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/solid.css"
+			integrity="sha512-RayiVbmLmW7DvtIA/RblYy7YqTlog8MVBYEwLkPFYY1GTTaVuDdBxC3RaJE6kEyWyCeSwROiH+2rR3rREm6eWQ=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+        <a id="link" target="_blank"
+            ><i id="icon" class="fa-inverse fa-lg"></i
+        ></a>
+	`;
 
 	static get observedAttributes() {
 		return ["href", "type", "tooltip"];
@@ -92,7 +117,7 @@ export class ProjectLink extends HTMLElement {
 		super();
 
 		this.root = this.attachShadow({ mode: "open" });
-		this.root.appendChild(ProjectLink.TEMPLATE.content.cloneNode(true));
+		this.root.appendChild(ProjectLink.#TEMPLATE.content.cloneNode(true));
 
 		this.#href = prop(this, "href");
 		this.#tooltip = prop(this, "tooltip");
@@ -140,33 +165,5 @@ export class ProjectLink extends HTMLElement {
 		}
 	}
 }
-
-ProjectLink.TEMPLATE.innerHTML = /* html */ `
-        <link rel="stylesheet" href="/components/ProjectLink.styles.css"/>
-        <link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/fontawesome.min.css"
-			integrity="sha512-RvQxwf+3zJuNwl4e0sZjQeX7kUa3o82bDETpgVCH2RiwYSZVDdFJ7N/woNigN/ldyOOoKw8584jM4plQdt8bhA=="
-			crossorigin="anonymous"
-			referrerpolicy="no-referrer"
-		/>
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/brands.min.css"
-			integrity="sha512-+oRH6u1nDGSm3hH8poU85YFIVTdSnS2f+texdPGrURaJh8hzmhMiZrQth6l56P4ZQmxeZzd2DqVEMqQoJ8J89A=="
-			crossorigin="anonymous"
-			referrerpolicy="no-referrer"
-		/>
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/solid.css"
-			integrity="sha512-RayiVbmLmW7DvtIA/RblYy7YqTlog8MVBYEwLkPFYY1GTTaVuDdBxC3RaJE6kEyWyCeSwROiH+2rR3rREm6eWQ=="
-			crossorigin="anonymous"
-			referrerpolicy="no-referrer"
-		/>
-        <a id="link" target="_blank"
-            ><i id="icon" class="fa-inverse fa-lg"></i
-        ></a>
-    `;
 
 customElements.define("project-link", ProjectLink);

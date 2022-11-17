@@ -1,4 +1,4 @@
-import("./components/FeaturedProject.mjs");
+import("/components/FeaturedProject.mjs");
 
 // if ("serviceWorker" in navigator) {
 // 	if (navigator.serviceWorker.controller) {

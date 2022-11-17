@@ -1,5 +1,5 @@
-import("./components/ProjectElement.mjs");
-import("./components/ProjectLink.mjs");
+import("/components/ProjectElement.mjs");
+import("/components/ProjectLink.mjs");
 
 // if ("serviceWorker" in navigator) {
 // 	if (navigator.serviceWorker.controller) {

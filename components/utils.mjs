@@ -22,6 +22,26 @@ export function createElement(tag, attributes, children) {
 }
 
 /**
+ * @param {TemplateStringsArray} innerHTML
+ * @param {...any} rest
+ * @return {HTMLTemplateElement}
+ */
+export function template(innerHTML, ...rest) {
+	const templElt = createElement("template");
+
+	let parsedHTML = "";
+	let i = 0;
+	while (i < rest.length) {
+		parsedHTML += innerHTML[i] + String(rest[i]);
+		i++;
+	}
+	parsedHTML += innerHTML[i];
+
+	templElt.innerHTML = parsedHTML;
+	return templElt;
+}
+
+/**
  * Queries the children of the given element for an element with the specified id.
  * @template {HTMLElement} K
  * @param {HTMLElement | DocumentFragment | InnerHTML | DocumentOrShadowRoot} elt

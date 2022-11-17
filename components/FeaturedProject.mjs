@@ -1,8 +1,36 @@
 // @ts-check
-import { createElement, id, prop } from "./utils.mjs";
+import { id, prop, template } from "./utils.mjs";
 
 class FeaturedProject extends HTMLElement {
-	static TEMPLATE = createElement("template");
+	static #TEMPLATE = template`
+		<link rel="stylesheet" href="/components/FeaturedProject.styles.css"/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/fontawesome.min.css"
+			integrity="sha512-RvQxwf+3zJuNwl4e0sZjQeX7kUa3o82bDETpgVCH2RiwYSZVDdFJ7N/woNigN/ldyOOoKw8584jM4plQdt8bhA=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/solid.css"
+			integrity="sha512-RayiVbmLmW7DvtIA/RblYy7YqTlog8MVBYEwLkPFYY1GTTaVuDdBxC3RaJE6kEyWyCeSwROiH+2rR3rREm6eWQ=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<a id="project-link-box" title="Learn more">
+			<div id="box">
+				<div id="header">
+					<span id="project-name"></span>
+					<img width='50' id="project-icon"></img>
+				</div>
+				<slot name="description"></slot>
+				<div id="next-icon-wrapper">
+					<i id="next-icon" class="fa-inverse fa-xl fa-solid fa-arrow-right"></i>
+				</div>
+			</div>
+		</a>
+	`;
 
 	/** @type {?string} */
 	#name;
@@ -12,7 +40,7 @@ class FeaturedProject extends HTMLElement {
 	constructor() {
 		super();
 
-		const template = FeaturedProject.TEMPLATE;
+		const template = FeaturedProject.#TEMPLATE;
 		this.root = this.attachShadow({ mode: "open" });
 
 		this.#name = prop(this, "name");
@@ -43,35 +71,5 @@ class FeaturedProject extends HTMLElement {
 		}
 	}
 }
-
-FeaturedProject.TEMPLATE.innerHTML = /* html */ `
-        <link rel="stylesheet" href="/components/FeaturedProject.styles.css"/>
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/fontawesome.min.css"
-			integrity="sha512-RvQxwf+3zJuNwl4e0sZjQeX7kUa3o82bDETpgVCH2RiwYSZVDdFJ7N/woNigN/ldyOOoKw8584jM4plQdt8bhA=="
-			crossorigin="anonymous"
-			referrerpolicy="no-referrer"
-		/>
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/solid.css"
-			integrity="sha512-RayiVbmLmW7DvtIA/RblYy7YqTlog8MVBYEwLkPFYY1GTTaVuDdBxC3RaJE6kEyWyCeSwROiH+2rR3rREm6eWQ=="
-			crossorigin="anonymous"
-			referrerpolicy="no-referrer"
-		/>
-		<a id="project-link-box" title="Learn more">
-			<div id="box">
-				<div id="header">
-					<span id="project-name"></span>
-					<img width='50' id="project-icon"></img>
-				</div>
-				<slot name="description"></slot>
-				<div id="next-icon-wrapper">
-					<i id="next-icon" class="fa-inverse fa-xl fa-solid fa-arrow-right"></i>
-				</div>
-			</div>
-		</a>
-    `;
 
 customElements.define("featured-project", FeaturedProject);

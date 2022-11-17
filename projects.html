@@ -19,6 +19,7 @@
 	<meta property="og:description"
 		content="Dennis Kats is a software engineer based in NYC. He specializes in full-stack web development, and he loves to learn about UX/DX, accessibility, and human-centered design." />
 	<link rel="icon" href="favicon.png" />
+	<link rel="apple-touch-icon" href="favicon.png" />
 
 	<!-- Twitter Card support-->
 	<meta name="twitter:card" content="summary" />
@@ -47,11 +48,11 @@
 	<link rel="preload" href="resources/imgs/vortecs.png" as="image" />
 
 	<!-- Preload component dependencies -->
-	<link rel="modulepreload" href="/components/utils.mjs" as="script" />
-	<link rel="preload" href="/components/ProjectElement.styles.css" as="style" />
-	<link rel="preload" href="/components/ProjectLink.styles.css" as="style" />
-	<link rel="modulepreload" href="/components/ProjectLink.mjs" as="script" />
-	<link rel="modulepreload" href="/components/ProjectElement.mjs" as="script" />
+	<link rel="modulepreload" href="components/utils.mjs" as="script" />
+	<link rel="preload" href="components/ProjectElement.styles.css" as="style" />
+	<link rel="preload" href="components/ProjectLink.styles.css" as="style" />
+	<link rel="modulepreload" href="components/ProjectLink.mjs" as="script" />
+	<link rel="modulepreload" href="components/ProjectElement.mjs" as="script" />
 
 	<link rel="stylesheet" href="style.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/fontawesome.min.css"
@@ -220,6 +221,7 @@
 							<span class="skill">Redux</span>
 							<span class="skill">MongoDB</span>
 							<span class="skill">Go</span>
+							<span class="skill">PWA</span>
 						</span>
 						<span slot="links">
 							<project-link type="website" href="https://tintgenerator.vercel.app/"></project-link>
@@ -297,6 +299,7 @@
 						<span slot="tech">
 							<span class="skill">JavaScript</span>
 							<span class="skill">MathML</span>
+							<span class="skill">PWA</span>
 							<span class="skill">Canvas API</span>
 							<span class="skill">Media Streams API</span>
 						</span>
@@ -429,7 +432,7 @@
 				<li>
 					<project-elt name="Vortecs Desktop" duration="Fall 2018 - Spring 2019">
 						<p slot="description">
-							Vortecs <i>(an anagram of "Vectors")</i> is a free, offline, and simple education
+							Vortecs <i>(an anagram of "Vectors")</i> is a free, offline, and simple educational
 							tool for displaying 2D vectors and visualizing 2D linear transformations. It is
 							designed to be used primarily by students who are being introduced to Linear Algebra
 							concepts for the first time.
