@@ -11,7 +11,7 @@
     text-decoration: none;
 }
 
-#link:hover {
+#link:is(:hover, :focus-within) {
     background-color: #303030;
 }
 
@@ -19,8 +19,8 @@
     vertical-align: middle;
 }
 
-#link:hover #icon {
-    scale: 1.08;
+#link:is(:hover, :focus-within) #icon {
+    scale: 1.1;
     transition: scale 0.25s ease;
 }
 

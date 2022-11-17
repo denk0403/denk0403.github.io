@@ -11,8 +11,7 @@
     cursor: pointer
 }
 
-#project-details:has(#project-summary:hover),
-#project-summary:hover {
+#project-details:has(#project-summary:is(:hover, :focus-within)) {
     background-color: #333;
 }
 
@@ -54,7 +53,7 @@
     cursor: pointer;
 }
 
-#scroll-btn:hover {
+#scroll-btn:is(:hover, :focus-within) {
     background-color: #303030;
 }
 
@@ -62,13 +61,13 @@
     transition: scale 0.25s ease;
 }
 
-#scroll-btn:hover i {
+#scroll-btn:is(:hover, :focus-within) i {
     scale: 1.1;
 }
 
 ::slotted([slot='subtitle']) {
     display: block;
-    margin-top: -15px;
+    margin-top: -9px;
     margin-bottom: 15px;
     color: var(--secondary-text)
 }

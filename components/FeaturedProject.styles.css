@@ -16,7 +16,7 @@
     transition: background-color 0.25s ease;
 }
 
-#project-link-box #box:hover {
+#project-link-box:is(:hover, :focus-within) #box {
     background-color: #303030;
 }
 
@@ -55,7 +55,7 @@
     transition: transform 0.25s ease, background-color 0.25s ease;
 }
 
-#project-link-box #box:hover #next-icon {
+#project-link-box:is(:hover, :focus-within) #box #next-icon {
     background-color: #303030;
     transform: translateX(10px);
 }
