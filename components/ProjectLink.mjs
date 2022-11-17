@@ -91,6 +91,10 @@ export class ProjectLink extends HTMLElement {
 	}
 
 	set type(value) {
+		if (value === this.#type) {
+			return;
+		}
+
 		const icon = this.#icon;
 
 		/** @type {ICON_TYPE_DATA_MAP[IconType] | undefined} */
@@ -119,11 +123,6 @@ export class ProjectLink extends HTMLElement {
 		this.root = this.attachShadow({ mode: "open" });
 		this.root.appendChild(ProjectLink.#TEMPLATE.content.cloneNode(true));
 
-		this.#href = prop(this, "href");
-		this.#tooltip = prop(this, "tooltip");
-		this.#type = prop(this, "type");
-		this.#replace = prop(this, "replace") !== null;
-
 		this.#link = id(this.root, "link");
 		this.#icon = id(this.root, "icon");
 
@@ -132,6 +131,11 @@ export class ProjectLink extends HTMLElement {
 	}
 
 	connectedCallback() {
+		this.#href = prop(this, "href");
+		this.#tooltip = prop(this, "tooltip");
+		this.#type = prop(this, "type");
+		this.#replace = prop(this, "replace") !== null;
+
 		if (this.#type) {
 			this.type = this.#type;
 		}

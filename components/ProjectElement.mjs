@@ -77,11 +77,6 @@ export class ProjectElement extends HTMLElement {
 		this.root = this.attachShadow({ mode: "open" });
 		this.root.appendChild(ProjectElement.#TEMPLATE.content.cloneNode(true));
 
-		this.#name = prop(this, "name");
-		this.#duration = prop(this, "duration");
-		this.#href = prop(this, "href");
-		this.#noscroll = prop(this, "noscroll") !== null;
-
 		this.#details = id(this.root, "project-details");
 
 		this.style.display = "unset";
@@ -90,6 +85,11 @@ export class ProjectElement extends HTMLElement {
 	}
 
 	connectedCallback() {
+		this.#name = prop(this, "name");
+		this.#duration = prop(this, "duration");
+		this.#href = prop(this, "href");
+		this.#noscroll = prop(this, "noscroll") !== null;
+
 		if (this.#name) {
 			/** @type {HTMLSpanElement} */
 			const projectName = id(this.root, "project-name");

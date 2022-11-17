@@ -42,10 +42,6 @@ class FeaturedProject extends HTMLElement {
 
 		const template = FeaturedProject.#TEMPLATE;
 		this.root = this.attachShadow({ mode: "open" });
-
-		this.#name = prop(this, "name");
-		this.#iconHref = prop(this, "icon-href");
-
 		this.root.appendChild(template.content.cloneNode(true));
 
 		this.style.display = "unset";
@@ -54,6 +50,9 @@ class FeaturedProject extends HTMLElement {
 	}
 
 	connectedCallback() {
+		this.#name = prop(this, "name");
+		this.#iconHref = prop(this, "icon-href");
+
 		/** @type {HTMLHeadingElement} */
 		const nameElt = id(this.root, "project-name");
 		if (nameElt && this.#name) {

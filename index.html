@@ -61,7 +61,7 @@
 	<header class="header">
 		<div class="title-image">
 			<div class="contact-info">
-				<h1 style="margin-bottom: 0">Dennis Kats</h1>
+				<h1 class="header-name">Dennis Kats</h1>
 				<span
 					style="display: inline-block; margin: 5px 0 0; text-align: center; font-size: smaller">He/Him</span>
 				<nav class="desktop-only links">
@@ -93,30 +93,32 @@
 			<a class="link" href="https://twitter.com/denk0403" target="_blank" title="Twitter"><i
 					class="fa-inverse fa-brands fa-twitter fa-2x"></i></a>
 		</nav>
+		<nav class="tab-bar">
+			<span class="tab" selected title="About Me Page">About Me</span>
+			<a class="tab" href="projects.html" title="Projects Page">Projects</a>
+		</nav>
 	</header>
 	<main class="main-content">
+		<section class="section about-me">
+			<p class="p">
+				Hey <span class="wave">👋</span>, I'm Dennis! I am a software engineer living in my hometown of NYC. I
+				primarily do full-stack web development, but I love to try and learn all new things.
+			</p>
+			<p class="p">
+				My career goal is simply to create software that is practical, trustworthy, and easy to use.
+				However, I also hope that along the way I get opportunities to mentor and help others in
+				my field.
+			</p>
+		</section>
 		<section class="section resume">
-			<details class="details" title="Click to toggle résumé view.">
-				<summary class="summary">Résumé</summary>
+			<details class="details" title="Click to toggle résumé view."
+				ontoggle="event.currentTarget.scrollIntoView({behavior: 'smooth', block: 'center'})">
+				<summary class="summary">My Résumé</summary>
 				<iframe loading="lazy" class="pdf" width="100%" allow="autoplay" referrerpolicy="no-referrer"
 					src="https://drive.google.com/file/d/1EeEUbbnUaHCzj27siybMlpPHmwX2a8n9/preview"></iframe>
 			</details>
 		</section>
-		<section class="section about-me">
-			<h1>About Me</h1>
-			<p class="p">
-				Hello 👋! My name is Dennis Kats. I am a software engineer based in NYC. Most of my
-				experience is in full-stack web development, but I love to learn all new things, and work
-				on projects which reduce user/developer friction (e.g. improving UX/DX, accessibility, web
-				performance, and internal tooling).
-			</p>
-			<p class="p">
-				My career goal is simply to make software that is practical and fun for end users.
-				However, I also hope that along the way, I get opportunities to mentor and help others in
-				my field.
-			</p>
-		</section>
-		<section class="section skills">
+		<!-- <section class="section skills">
 			<h1>Skills</h1>
 			<div class="skill-list">
 				<span class="skill">Web Development
@@ -130,21 +132,14 @@
 				<span class="skill">PHP/Hack <i class="fa-brands fa-php"></i></span>
 				<span class="skill">Go <i class="fa-brands fa-golang"></i></span>
 				<span class="skill">SQL <i class="fa-solid fa-database"></i></span>
-				<span class="skill">Shell Scripting <i class="fa-solid fa-terminal"></i></span>
-				<span class="skill">Problem Solving <i class="fa-solid fa-calculator"></i></span>
-				<span class="skill">Mentorship <i class="fa-solid fa-person-chalkboard"></i></span>
 			</div>
-		</section>
+		</section> -->
 		<section class="section projects">
 			<h1 style="display: inline-block">Featured Projects</h1>
-			<a href="./projects.html" title="Click here to see all projects">
-				<i class="fa-solid fa-arrow-up-right-from-square fa-lg"></i>
-			</a>
 			<div class="featured-projects-grid">
 				<featured-project name="Tint Generator" icon-href="resources/imgs/tint_icon.png">
 					<p slot="description">
-						An online GUI for creating Tint programs for CS 3800 Theory of Computation at
-						Northeastern University.
+						An online GUI for creating and simulating mathematical models of computation.
 					</p>
 				</featured-project>
 				<featured-project name="Mocking SpongeBob Meme Generator" icon-href="resources/imgs/spongebob_icon.png">
@@ -164,10 +159,26 @@
 				</featured-project>
 			</div>
 		</section>
-		<!-- <section class="section blogs">
-				<h1>Blogs</h1>
-				<h3 style="width: 100%; display: flex; justify-content: center">Coming soon...</h3>
-			</section> -->
+		<section class="section interests">
+			<h1>Interests</h1>
+			<div class="skill-list">
+				<span class="skill">Mentorship <i class="fa-solid fa-person-chalkboard"></i></span>
+				<span class="skill">Puzzles & Games
+					<div style="display: inline-flex; gap: 5px; vertical-align: middle">
+						<i class="fa-solid fa-puzzle-piece"></i>
+						<i class="fa-solid fa-dice"></i>
+						<i class="fa-solid fa-gamepad"></i>
+					</div>
+				</span>
+				<span class="skill">Film & Theatre
+					<div style="display: inline-flex; gap: 5px; vertical-align: middle">
+						<i class="fa-solid fa-masks-theater"></i>
+						<i class="fa-solid fa-film"></i>
+					</div>
+				</span>
+				<span class="skill">Dogs <i class="fa-solid fa-dog"></i></span>
+			</div>
+		</section>
 	</main>
 </body>
 

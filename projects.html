@@ -32,7 +32,7 @@
 
 	<!-- Preload images -->
 	<link rel="preload" href="resources/imgs/Dennis2021.jpg" as="image" />
-	<link rel="preload" href="resources/imgs/speakaac.png" as="image" />
+	<link rel="preload" href="resources/imgs/speakaac.jpg" as="image" />
 	<link rel="preload" href="resources/imgs/tint-gen.jpg" as="image" />
 	<link rel="preload" href="resources/imgs/atlas-logo.png" as="image" />
 	<link rel="preload" href="resources/imgs/mocking-spongebob.png" as="image" />
@@ -72,16 +72,10 @@
 </head>
 
 <body>
-	<a class="mobile-only back-btn" onclick="location.assign('/')" title="Go back">
-		<i class="fa-solid fa-arrow-left fa-2x"></i>
-	</a>
 	<header class="header">
 		<div class="title-image">
 			<div class="contact-info">
 				<h1 class="header-name">
-					<a class="desktop-only back-btn" onclick="location.assign('/')" title="Go back">
-						<i class="fa-solid fa-arrow-left"></i>
-					</a>
 					Dennis Kats
 				</h1>
 				<span
@@ -114,6 +108,10 @@
 					class="fa-inverse fa-brands fa-linkedin fa-2x"></i></a>
 			<a class="link" href="https://twitter.com/denk0403" target="_blank" title="Twitter"><i
 					class="fa-inverse fa-brands fa-twitter fa-2x"></i></a>
+		</nav>
+		<nav class="tab-bar">
+			<a class="tab" href="/" title="About Me Page">About Me</a>
+			<span class="tab" selected title="Projects Page">Projects</span>
 		</nav>
 	</header>
 	<main class="main-content">
@@ -152,7 +150,41 @@
 						<span slot="links">
 							<project-link type="website" href="https://speakaac.vercel.app/"></project-link>
 						</span>
-						<img slot="media" src="resources/imgs/speakaac.png" width="500" />
+						<img slot="media" src="resources/imgs/speakaac.jpg" width="600" />
+					</project-elt>
+				</li>
+				<li>
+					<project-elt name="Cat Compiler" duration="Jan. 2022 - May 2022">
+						<span slot="subtitle">A compiler for a functional language with a Python-like syntax</span>
+						<div slot="description">
+							Cat is a compiler built for CS 4410 at Northeastern University.
+							It is implemented in OCaml and C, and it targets x86 Assembly.
+
+							<div style="text-indent: 0">
+								<h3>Features</h3>
+								<ul>
+									<li>Garbage collection via Cheney's algorithm</li>
+									<li>Register allocation and dead-code elimination via graph-coloring</li>
+									<li>First-class functions and mutually recursive definitions</li>
+									<li>JavaScript-like exception handling with try/catch/finally</li>
+									<li>Arbitrary length tuples, tuple destructuring, and mutation</li>
+									<li>Syntax highlighting via custom TextMate grammar</li>
+									<li>Tail-call optimization</li>
+									<li>Dynamically typed</li>
+									<li>Basic IO functionality</li>
+								</ul>
+							</div>
+						</div>
+						<span slot="tech">
+							<span class="skill">OCaml</span>
+							<span class="skill">C</span>
+							<span class="skill">x86 Assembly</span>
+							<span class="skill">Bash</span>
+						</span>
+						<a slot="links" href="mailto:denniskats43@gmail.com">
+							Available upon request
+						</a>
+						<img slot="media" src="resources/imgs/cat_compiler.jpeg" width="600" />
 					</project-elt>
 				</li>
 				<li>
@@ -195,12 +227,14 @@
 							<project-link type="github" href="https://github.com/jrosen081/CampingAR"></project-link>
 						</span>
 						<div slot="media">
-							<iframe width="200" height="300" src="https://www.youtube.com/embed/WI7oCWqJz2A"
-								title="YouTube video player" frameborder="0"
+							<iframe loading="lazy" width="200" height="300"
+								src="https://www.youtube.com/embed/WI7oCWqJz2A" title="YouTube video player"
+								frameborder="0"
 								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 								allowfullscreen referrerpolicy="no-referrer"></iframe>
-							<iframe width="200" height="300" src="https://www.youtube.com/embed/iP4-8CzEfeI"
-								title="YouTube video player" frameborder="0"
+							<iframe loading="lazy" width="200" height="300"
+								src="https://www.youtube.com/embed/iP4-8CzEfeI" title="YouTube video player"
+								frameborder="0"
 								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 								allowfullscreen referrerpolicy="no-referrer"></iframe>
 						</div>
@@ -280,21 +314,19 @@
 				<li>
 					<project-elt name="Mocking SpongeBob Meme Generator" duration="Jan. 2020 - Summer 2020">
 						<span slot="subtitle">An excessively versatile Mocking SpongeBob meme generator</span>
-						<div slot="description">
-							<div style="text-indent: 0">
-								<h3>Features</h3>
-								<ul>
-									<li>
-										Automatically and intelligently resizes and formats caption in the lower
-										region of the image.
-									</li>
-									<li>Supports uploading other images and TeX typesetting for the caption.</li>
-									<li>
-										Includes options for copying mock text, link sharing, and saving images.
-									</li>
-									<li>Installable as a Progressive Web App (PWA).</li>
-								</ul>
-							</div>
+						<div slot="description" style="text-indent: 0">
+							<h3>Features</h3>
+							<ul>
+								<li>
+									Automatically and intelligently resizes and formats caption in the lower
+									region of the image.
+								</li>
+								<li>Supports uploading other images and TeX typesetting for the caption.</li>
+								<li>
+									Includes options for copying mock text, link sharing, and saving images.
+								</li>
+								<li>Installable as a Progressive Web App (PWA).</li>
+							</ul>
 						</div>
 						<span slot="tech">
 							<span class="skill">JavaScript</span>
@@ -477,8 +509,7 @@
 				</li>
 				<li><a href="./aprilfools.html">April Fools 2022 Prank</a></li>
 			</ul>
-
-			<details>
+			<details ontoggle="body.scrollIntoView({behavior: 'smooth', block: 'end'})">
 				<summary>
 					<h3 style="display: inline-block;">Study Guides</h3>
 				</summary>
@@ -494,7 +525,6 @@
 						<li><a href="resources/pdfs/OOD Final.pdf">Object-Oriented Design Final</a></li>
 				</ul>
 			</details>
-
 		</section>
 	</main>
 </body>
