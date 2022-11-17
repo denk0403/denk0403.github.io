@@ -207,7 +207,8 @@ code {
     display: inline-block;
 }
 
-.projects a:hover, .projects a:hover i {
+.projects a:hover,
+.projects a:hover i {
     text-decoration: underline;
     text-underline-offset: 5px;
 }
@@ -266,7 +267,7 @@ project-elt [slot='tech'] {
     }
 
     .title-image {
-        gap: 15px;
+        gap: 10px;
         justify-content: space-evenly;
     }
 
@@ -283,7 +284,13 @@ project-elt [slot='tech'] {
     }
 }
 
-@media (min-width: 500px) and (max-width: 750px) {
+@media (max-width: 425px) {
+    .contact-info {
+        width: min-content;
+    }
+}
+
+@media (min-width: 525px) and (max-width: 750px) {
     .portrait {
         --radius: 75px;
     }
