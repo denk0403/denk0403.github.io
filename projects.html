@@ -18,11 +18,16 @@
 	<meta property="og:type" content="website" />
 	<meta property="og:description"
 		content="Dennis Kats is a software engineer based in NYC. He specializes in full-stack web development, and he loves to learn about UX/DX, accessibility, and human-centered design." />
-	<link rel="icon" href="favicon.png" />
-	<link rel="apple-touch-icon" href="favicon.png" />
+	<meta name="og:image" content="https://denniskats.dev/resources/imgs/Dennis2021.jpg" />
+	<meta name="og:image:alt" content="A picture of Dennis Kats" />
 
 	<!-- Twitter Card support-->
 	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:site" content="@denk0403" />
+	<meta name="twitter:creator" content="@denk0403" />
+
+	<link rel="icon" href="favicon.png" />
+	<link rel="apple-touch-icon" href="favicon.png" />
 
 	<!-- Preload FontAwesome fonts -->
 	<link as="font" rel="preload" referrerpolicy="no-referrer"
@@ -31,7 +36,7 @@
 		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/webfonts/fa-solid-900.woff2" />
 
 	<!-- Preload images -->
-	<link rel="preload" href="resources/imgs/Dennis2021.jpg" as="image" />
+	<link rel="preload" href="resources/imgs/Dennis2021-200.webp" as="image" />
 	<link rel="preload" href="resources/imgs/speakaac.jpg" as="image" />
 	<link rel="preload" href="resources/imgs/tint-gen.jpg" as="image" />
 	<link rel="preload" href="resources/imgs/atlas-logo.png" as="image" />
@@ -54,21 +59,23 @@
 	<link rel="modulepreload" href="components/ProjectLink.mjs" as="script" />
 	<link rel="modulepreload" href="components/ProjectElement.mjs" as="script" />
 
-	<link rel="stylesheet" href="style.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/fontawesome.min.css"
 		integrity="sha512-RvQxwf+3zJuNwl4e0sZjQeX7kUa3o82bDETpgVCH2RiwYSZVDdFJ7N/woNigN/ldyOOoKw8584jM4plQdt8bhA=="
-		crossorigin="anonymous" referrerpolicy="no-referrer" />
+		crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/brands.min.css"
 		integrity="sha512-+oRH6u1nDGSm3hH8poU85YFIVTdSnS2f+texdPGrURaJh8hzmhMiZrQth6l56P4ZQmxeZzd2DqVEMqQoJ8J89A=="
-		crossorigin="anonymous" referrerpolicy="no-referrer" />
+		crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/solid.css"
 		integrity="sha512-RayiVbmLmW7DvtIA/RblYy7YqTlog8MVBYEwLkPFYY1GTTaVuDdBxC3RaJE6kEyWyCeSwROiH+2rR3rREm6eWQ=="
-		crossorigin="anonymous" referrerpolicy="no-referrer" />
+		crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
+
+	<script type="module" src="components/ProjectElement.mjs"></script>
+	<script type="module" src="components/ProjectLink.mjs"></script>
+	<link rel="stylesheet" href="style.css" />
 
 	<script>
 		history.scrollRestoration = "manual";
 	</script>
-	<script type="module" src="projects.js"></script>
 </head>
 
 <body>
@@ -96,7 +103,8 @@
 				</span>
 			</div>
 			<div style="display: flex; flex-direction: column; justify-content: center">
-				<img class="portrait" src="resources/imgs/Dennis2021.jpg" alt="A picture of Dennis Kats" />
+				<img width="200" class="portrait" src="resources/imgs/Dennis2021-200.webp"
+					alt="A picture of Dennis Kats" />
 			</div>
 		</div>
 		<nav class="mobile-only links">

@@ -14,19 +14,22 @@
 	<title>Dennis Kats | Software Engineer</title>
 
 	<!-- Open Graph protocol support-->
+	<meta property="og:type" content="website" />
 	<meta property="og:title" content="Dennis Kats | Software Engineer" />
 	<meta property="og:url" content="https://denniskats.dev" />
 	<meta property="og:secure_url" content="https://denniskats.dev" />
-	<meta property="og:type" content="website" />
 	<meta property="og:description"
 		content="Dennis Kats is a software engineer based in NYC. He specializes in full-stack web development, and he loves to learn about UX/DX, accessibility, and human-centered design." />
-	<link rel="icon" href="favicon.png" />
-	<link rel="apple-touch-icon" href="favicon.png" />
+	<meta name="og:image" content="https://denniskats.dev/resources/imgs/Dennis2021.jpg" />
+	<meta name="og:image:alt" content="A picture of Dennis Kats" />
 
 	<!-- Twitter Card support-->
 	<meta name="twitter:card" content="summary" />
 	<meta name="twitter:site" content="@denk0403" />
 	<meta name="twitter:creator" content="@denk0403" />
+
+	<link rel="icon" href="favicon.png" />
+	<link rel="apple-touch-icon" href="favicon.png" />
 
 	<!-- Preload FontAwesome fonts -->
 	<link as="font" rel="preload" referrerpolicy="no-referrer"
@@ -35,28 +38,29 @@
 		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/webfonts/fa-solid-900.woff2" />
 
 	<!-- Preload images -->
-	<link rel="preload" href="resources/imgs/Dennis2021.jpg" as="image" />
-	<link rel="preload" href="resources/imgs/tint_icon.png" as="image" />
-	<link rel="preload" href="resources/imgs/spongebob_icon.png" as="image" />
-	<link rel="preload" href="resources/imgs/algedraw_icon.png" as="image" />
-	<link rel="preload" href="resources/imgs/vortecs_icon.png" as="image" />
+	<link rel="preload" href="resources/imgs/Dennis2021-200.webp" as="image" />
+	<link rel="preload" href="resources/imgs/tint_icon.webp" as="image" />
+	<link rel="preload" href="resources/imgs/spongebob_icon.webp" as="image" />
+	<link rel="preload" href="resources/imgs/algedraw_icon.webp" as="image" />
+	<link rel="preload" href="resources/imgs/vortecs_icon.webp" as="image" />
 
 	<!-- Preload component dependencies -->
 	<link rel="modulepreload" href="components/utils.mjs" as="script" />
 	<link rel="preload" href="components/FeaturedProject.styles.css" as="style" />
 	<link rel="modulepreload" href="components/FeaturedProject.mjs" as="script" />
 
-	<link rel="stylesheet" href="style.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/fontawesome.min.css"
 		integrity="sha512-RvQxwf+3zJuNwl4e0sZjQeX7kUa3o82bDETpgVCH2RiwYSZVDdFJ7N/woNigN/ldyOOoKw8584jM4plQdt8bhA=="
-		crossorigin="anonymous" referrerpolicy="no-referrer" />
+		crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/brands.min.css"
 		integrity="sha512-+oRH6u1nDGSm3hH8poU85YFIVTdSnS2f+texdPGrURaJh8hzmhMiZrQth6l56P4ZQmxeZzd2DqVEMqQoJ8J89A=="
-		crossorigin="anonymous" referrerpolicy="no-referrer" />
+		crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/solid.css"
 		integrity="sha512-RayiVbmLmW7DvtIA/RblYy7YqTlog8MVBYEwLkPFYY1GTTaVuDdBxC3RaJE6kEyWyCeSwROiH+2rR3rREm6eWQ=="
-		crossorigin="anonymous" referrerpolicy="no-referrer" />
-	<script src="index.js"></script>
+		crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
+
+	<script type="module" src="components/FeaturedProject.mjs"></script>
+	<link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
@@ -82,7 +86,8 @@
 				</span>
 			</div>
 			<div style="display: flex; flex-direction: column; justify-content: center">
-				<img class="portrait" src="resources/imgs/Dennis2021.jpg" alt="A picture of Dennis Kats" />
+				<img width="200" class="portrait" src="resources/imgs/Dennis2021-200.webp"
+					alt="A picture of Dennis Kats" />
 			</div>
 		</div>
 		<nav class="mobile-only links">
@@ -117,7 +122,8 @@
 				ontoggle="event.currentTarget.scrollIntoView({behavior: 'smooth', block: 'center'})">
 				<summary class="summary">My Résumé</summary>
 				<iframe loading="lazy" class="pdf" width="100%" allow="autoplay" referrerpolicy="no-referrer"
-					src="https://drive.google.com/file/d/1EeEUbbnUaHCzj27siybMlpPHmwX2a8n9/preview"></iframe>
+					src="https://drive.google.com/file/d/1EeEUbbnUaHCzj27siybMlpPHmwX2a8n9/preview"
+					title="My Résumé"></iframe>
 			</details>
 		</section>
 		<!-- <section class="section skills">
@@ -139,22 +145,26 @@
 		<section class="section projects">
 			<h1 style="display: inline-block">Featured Projects</h1>
 			<div class="featured-projects-grid">
-				<featured-project name="Tint Generator" icon-href="resources/imgs/tint_icon.png">
+				<featured-project name="Tint Generator" icon-href="resources/imgs/tint_icon.webp"
+					icon-alt="Tint Generator icon">
 					<p slot="description">
 						An online GUI for creating and simulating mathematical models of computation.
 					</p>
 				</featured-project>
-				<featured-project name="Mocking SpongeBob Meme Generator" icon-href="resources/imgs/spongebob_icon.png">
+				<featured-project name="Mocking SpongeBob Meme Generator" icon-href="resources/imgs/spongebob_icon.webp"
+					icon-alt="Mocking SpongeBob Meme Generator icon">
 					<p slot="description">
 						An over the top generator for the Mocking SpongeBob meme that became popular in 2017.
 					</p>
 				</featured-project>
-				<featured-project name="AlgeDraw Calculator" icon-href="resources/imgs/algedraw_icon.png">
+				<featured-project name="AlgeDraw Calculator" icon-href="resources/imgs/algedraw_icon.webp"
+					icon-alt="AlgeDraw Calculator icon">
 					<p slot="description">
 						A calculator for the Fitbit with the ability to parse handwritten digits.
 					</p>
 				</featured-project>
-				<featured-project name="Vortecs Desktop" icon-href="resources/imgs/vortecs_icon.png">
+				<featured-project name="Vortecs Desktop" icon-href="resources/imgs/vortecs_icon.webp"
+					icon-alt="Vortecs Desktop icon">
 					<p slot="description">
 						A simple educational tool for visualizing 2D linear transformations.
 					</p>

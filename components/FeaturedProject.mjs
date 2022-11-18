@@ -22,7 +22,7 @@ class FeaturedProject extends HTMLElement {
 			<div id="box">
 				<div id="header">
 					<span id="project-name"></span>
-					<img width='50' id="project-icon"></img>
+					<img width='60' id="project-icon"></img>
 				</div>
 				<slot name="description"></slot>
 				<div id="next-icon-wrapper">
@@ -36,6 +36,8 @@ class FeaturedProject extends HTMLElement {
 	#name;
 	/** @type {?string} */
 	#iconHref;
+	/** @type {?string} */
+	#iconAlt;
 
 	/** @type {ShadowRoot} */
 	#r;
@@ -54,6 +56,7 @@ class FeaturedProject extends HTMLElement {
 	connectedCallback() {
 		this.#name = prop(this, "name");
 		this.#iconHref = prop(this, "icon-href");
+		this.#iconAlt = prop(this, "icon-alt");
 
 		/** @type {HTMLHeadingElement} */
 		const nameElt = id(this.#r, "project-name");
@@ -67,8 +70,13 @@ class FeaturedProject extends HTMLElement {
 
 		/** @type {HTMLImageElement} */
 		const iconElt = id(this.#r, "project-icon");
-		if (iconElt && this.#iconHref) {
-			iconElt.src = this.#iconHref;
+		if (iconElt) {
+			if (this.#iconHref) {
+				iconElt.src = this.#iconHref;
+			}
+			if (this.#iconAlt) {
+				iconElt.alt = this.#iconAlt;
+			}
 		}
 	}
 }
