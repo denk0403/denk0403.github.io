@@ -22,10 +22,11 @@
 }
 
 body {
-    background-color: rgb(25, 25, 25);
-    max-width: 900px;
     margin: auto;
     min-height: 100%;
+    max-width: 900px;
+
+    background-color: rgb(25, 25, 25);
     border: 1px solid rgb(40, 40, 40);
     font-family: monospace, auto;
     color: var(--primary-text);
@@ -130,6 +131,7 @@ h1 {
     justify-content: center;
     gap: 50px;
     font-size: larger;
+    overflow-x: auto;
 }
 
 .tab-bar .tab {
@@ -139,9 +141,10 @@ h1 {
     color: var(--primary-text);
     text-decoration: none;
 
-    padding: 10px;
+    padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
+    white-space: nowrap;
 
     transition: background-color 0.25s ease;
 }
@@ -303,6 +306,16 @@ project-elt [slot="tech"] {
     flex-wrap: wrap;
 }
 
+@media (max-width: 750px) {
+    .tab-bar {
+        gap: 0;
+    }
+
+    .tab-bar .tab {
+        width: 100%;
+    }
+}
+
 /* Mobile-specific styles */
 @media (max-width: 750px) {
     .desktop-only {
@@ -328,6 +341,10 @@ project-elt [slot="tech"] {
 }
 
 @media (max-width: 425px) {
+    body {
+        min-width: fit-content;
+    }
+
     .contact-info {
         width: min-content;
     }
