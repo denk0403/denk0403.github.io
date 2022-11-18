@@ -37,12 +37,14 @@ class FeaturedProject extends HTMLElement {
 	/** @type {?string} */
 	#iconHref;
 
+	/** @type {ShadowRoot} */
+	#r;
+
 	constructor() {
 		super();
 
-		const template = FeaturedProject.#TEMPLATE;
-		this.root = this.attachShadow({ mode: "open" });
-		this.root.appendChild(template.content.cloneNode(true));
+		this.#r = this.attachShadow({ mode: "open" });
+		this.#r.appendChild(FeaturedProject.#TEMPLATE.content.cloneNode(true));
 
 		this.style.display = "unset";
 		this.style.height = "unset";
@@ -54,17 +56,17 @@ class FeaturedProject extends HTMLElement {
 		this.#iconHref = prop(this, "icon-href");
 
 		/** @type {HTMLHeadingElement} */
-		const nameElt = id(this.root, "project-name");
+		const nameElt = id(this.#r, "project-name");
 		if (nameElt && this.#name) {
 			nameElt.textContent = this.#name;
 
 			/** @type {HTMLAnchorElement} */
-			const projectLinkBoxElt = id(this.root, "project-link-box");
+			const projectLinkBoxElt = id(this.#r, "project-link-box");
 			projectLinkBoxElt.href = `/projects.html#${this.#name}`;
 		}
 
 		/** @type {HTMLImageElement} */
-		const iconElt = id(this.root, "project-icon");
+		const iconElt = id(this.#r, "project-icon");
 		if (iconElt && this.#iconHref) {
 			iconElt.src = this.#iconHref;
 		}

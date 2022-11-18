@@ -56,6 +56,8 @@ export class ProjectElement extends HTMLElement {
 	/** @type {boolean} */
 	#noscroll;
 
+	/** @type {ShadowRoot} */
+	#r;
 	/** @type {HTMLDetailsElement} */
 	#details;
 
@@ -74,10 +76,10 @@ export class ProjectElement extends HTMLElement {
 	constructor() {
 		super();
 
-		this.root = this.attachShadow({ mode: "open" });
-		this.root.appendChild(ProjectElement.#TEMPLATE.content.cloneNode(true));
+		this.#r = this.attachShadow({ mode: "open" });
+		this.#r.appendChild(ProjectElement.#TEMPLATE.content.cloneNode(true));
 
-		this.#details = id(this.root, "project-details");
+		this.#details = id(this.#r, "project-details");
 
 		this.style.display = "unset";
 		this.style.height = "unset";
@@ -92,41 +94,40 @@ export class ProjectElement extends HTMLElement {
 
 		if (this.#name) {
 			/** @type {HTMLSpanElement} */
-			const projectName = id(this.root, "project-name");
+			const projectName = id(this.#r, "project-name");
 			projectName.textContent = this.#name;
 		}
 
 		if (this.#duration) {
 			/** @type {HTMLSpanElement} */
-			const projectDuration = id(this.root, "project-duration");
+			const projectDuration = id(this.#r, "project-duration");
 			projectDuration.textContent = this.#duration;
 		}
 
 		if (this.#hasSlottedTech()) {
 			/** @type {HTMLLabelElement} */
-			const techLabel = id(this.root, "tech-label");
+			const techLabel = id(this.#r, "tech-label");
 			techLabel.textContent = "Technologies:";
 		}
 
 		if (this.#hasSlottedLinks()) {
 			/** @type {HTMLLabelElement} */
-			const linkLabel = id(this.root, "links-label");
+			const linkLabel = id(this.#r, "links-label");
 			linkLabel.textContent = "Links:";
 		} else if (this.#href) {
 			/** @type {HTMLLabelElement} */
-			const linkLabel = id(this.root, "links-label");
+			const linkLabel = id(this.#r, "links-label");
 			linkLabel.textContent = "Link:";
 
 			/** @type {HTMLAnchorElement} */
-			const link = id(this.root, "project-link");
+			const link = id(this.#r, "project-link");
 			link.href = this.#href;
 			link.style.display = "unset";
 		}
 
-		/** @type {HTMLDetailsElement} */
 		const details = this.#details;
-		const summary = id(this.root, "project-summary");
-		const scrollBtn = id(this.root, "scroll-btn");
+		const summary = id(this.#r, "project-summary");
+		const scrollBtn = id(this.#r, "scroll-btn");
 
 		// update summary tooltip
 		details.addEventListener("toggle", () => {
@@ -142,34 +143,31 @@ export class ProjectElement extends HTMLElement {
 			}
 		});
 
+		// set up scroll to top button
 		scrollBtn.addEventListener("click", () => {
 			this.scrollIntoView({ behavior: "smooth", block: "start" });
 		});
-
-		let shouldScrollToStartOnce = false;
-		if (this.#shouldOpenOnLoad()) {
-			shouldScrollToStartOnce = true;
-
-			// only open details when all assets have loaded
-			this.#onLoadAssets(() => {
-				details.open = true;
-			});
-		}
 
 		// update hash and determine how to scroll to opened element
 		details.addEventListener("toggle", () => {
 			if (details.open && !this.#noscroll) {
 				location.hash = this.#name ?? "";
-				if (this.#hasSlottedMedia() || this.#hasSlottedHero() || shouldScrollToStartOnce) {
-					shouldScrollToStartOnce = false;
+				if (this.#hasSlottedMedia() || this.#hasSlottedHero()) {
 					this.scrollIntoView({ behavior: "smooth", block: "start" });
 				} else {
-					this.scrollIntoView({ behavior: "smooth", block: "nearest" });
+					this.scrollIntoView({ behavior: "smooth", block: "center" });
 				}
 			} else {
 				location.hash = "";
 			}
 		});
+
+		if (this.#shouldOpenOnLoad()) {
+			// only open details when all assets have loaded
+			this.#onLoadAssets(() => {
+				details.open = true;
+			});
+		}
 	}
 
 	/**
@@ -188,27 +186,12 @@ export class ProjectElement extends HTMLElement {
 			return callback();
 		}
 
-		if (images.length > 0) {
-			images.map((image) => {
-				if (image.complete) {
-					loadingAssetsCount--;
-					if (loadingAssetsCount === 0) callback();
-				} else {
-					image.addEventListener(
-						"load",
-						() => {
-							loadingAssetsCount--;
-							if (loadingAssetsCount === 0) callback();
-						},
-						{ passive: true, once: true }
-					);
-				}
-			});
-		}
-
-		if (iframes.length > 0) {
-			iframes.map((iframe) => {
-				iframe.addEventListener(
+		images.forEach((image) => {
+			if (image.complete) {
+				loadingAssetsCount--;
+				if (loadingAssetsCount === 0) callback();
+			} else {
+				image.addEventListener(
 					"load",
 					() => {
 						loadingAssetsCount--;
@@ -216,8 +199,19 @@ export class ProjectElement extends HTMLElement {
 					},
 					{ passive: true, once: true }
 				);
-			});
-		}
+			}
+		});
+
+		iframes.forEach((iframe) => {
+			iframe.addEventListener(
+				"load",
+				() => {
+					loadingAssetsCount--;
+					if (loadingAssetsCount === 0) callback();
+				},
+				{ passive: true, once: true }
+			);
+		});
 	}
 
 	#shouldOpenOnLoad() {

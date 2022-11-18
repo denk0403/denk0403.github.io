@@ -11,7 +11,7 @@
     cursor: pointer
 }
 
-#project-details:has(#project-summary:is(:hover, :focus-within)) {
+#project-details:has(#project-summary:is(:hover, :focus-visible)) {
     background-color: #333;
 }
 

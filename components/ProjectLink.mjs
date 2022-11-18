@@ -58,6 +58,8 @@ export class ProjectLink extends HTMLElement {
 	/** @type {boolean} */
 	#replace = false;
 
+	/** @type {ShadowRoot} */
+	#r;
 	/** @type {HTMLAnchorElement} */
 	#link;
 	/** @type {HTMLElement} */
@@ -120,11 +122,11 @@ export class ProjectLink extends HTMLElement {
 	constructor() {
 		super();
 
-		this.root = this.attachShadow({ mode: "open" });
-		this.root.appendChild(ProjectLink.#TEMPLATE.content.cloneNode(true));
+		this.#r = this.attachShadow({ mode: "open" });
+		this.#r.appendChild(ProjectLink.#TEMPLATE.content.cloneNode(true));
 
-		this.#link = id(this.root, "link");
-		this.#icon = id(this.root, "icon");
+		this.#link = id(this.#r, "link");
+		this.#icon = id(this.#r, "icon");
 
 		this.style.display = "unset";
 		this.style.opacity = "1";
