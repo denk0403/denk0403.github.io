@@ -3,4 +3,9 @@ User-agent: *
 User-agent: AdsBot-Google
 Allow: /Mocking-Spongebob/img/icon.png
 Allow: /Mocking-Spongebob/img/apple_app_icon.png
+Allow: /Mocking-Spongebob/img/spongebob.jpg
+Allow: /resources/imgs/Dennis2021-200.webp
 Disallow: /*.png$
+Disallow: /*.gif$
+Disallow: /*.jpg$
+Disallow: /*.webp$
