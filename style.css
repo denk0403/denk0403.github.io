@@ -166,7 +166,7 @@ h1 {
     transition: width 0.25s ease, transform 0.25s ease;
 }
 
-.tab-bar .tab[selected]::after {
+.tab-bar .tab.selected::after {
     width: 100%;
     background: var(--accent-2);
 }
