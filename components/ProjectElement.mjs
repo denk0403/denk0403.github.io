@@ -171,27 +171,34 @@ export class ProjectElement extends HTMLElement {
 	}
 
 	/**
+	 * @typedef LoadableType
+	 * @property {boolean} complete
+	 *
+	 * @typedef {LoadableType & HTMLElement} HTMLoadable
+	 */
+
+	/**
 	 * Executes a callback once all of this component's assets
 	 * have finished loading.
 	 * @param {() => void} callback
 	 */
 	#onLoadAssets(callback) {
-		const images = /** @type {HTMLImageElement[]} */ ([...queryAll(this, "img")]);
+		const images = /** @type {NodeListOf<HTMLoadable>} */ (queryAll(this, "img"));
+		const iframes = /** @type {NodeListOf<HTMLoadable>} */ (queryAll(this, "iframe"));
+		const loadingAssets = [...images, ...iframes];
 
-		const iframes = /** @type {HTMLIFrameElement[]} */ ([...queryAll(this, "iframe")]);
-
-		let loadingAssetsCount = images.length + iframes.length;
+		let loadingAssetsCount = loadingAssets.length;
 
 		if (loadingAssetsCount === 0) {
 			return callback();
 		}
 
-		images.forEach((image) => {
-			if (image.complete) {
+		for (const asset of loadingAssets) {
+			if (asset.complete) {
 				loadingAssetsCount--;
 				if (loadingAssetsCount === 0) callback();
 			} else {
-				image.addEventListener(
+				asset.addEventListener(
 					"load",
 					() => {
 						loadingAssetsCount--;
@@ -200,18 +207,7 @@ export class ProjectElement extends HTMLElement {
 					{ passive: true, once: true }
 				);
 			}
-		});
-
-		iframes.forEach((iframe) => {
-			iframe.addEventListener(
-				"load",
-				() => {
-					loadingAssetsCount--;
-					if (loadingAssetsCount === 0) callback();
-				},
-				{ passive: true, once: true }
-			);
-		});
+		}
 	}
 
 	#shouldOpenOnLoad() {
