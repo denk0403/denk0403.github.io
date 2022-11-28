@@ -1,44 +1,64 @@
 @charset "UTF-8";
 /* CSS Document */
 
-body {
-	background: rgba(0, 165, 230, 1.00)
+* {
+	box-sizing: border-box;
 }
 
-.page-title {
+body {
+	background: rgba(0, 165, 230, 1.00);
+	max-width: 1700px;
+	margin: auto;
+	padding: 5px;
+}
+
+header {
 	background-color: rgba(255, 255, 255, 0.67);
 	border-style: outset;
 	border-width: 7px;
+	margin-bottom: 5px;
 }
 
-.page-title h1 {
+header img {
+	margin-left: 10px;
+}
+
+@media (max-width: 600px) {
+	header img {
+		width: 100px;
+	}
+}
+
+header .page-title {
+	padding-top: 25px;
+	display: flex;
+}
+
+header h1 {
 	font-weight: 600;
 	align-self: center;
 	text-align: center;
-	font-size: 6vw;
+	font-size: min(72px, 6vw);
+	margin: 0;
+	width: 100%;
 }
 
-.page-title a {
-	max-height: 15%;
-	max-width: 15%;
-}
-
-.section {
-	justify-content: space-between;
-	box-shadow: 5px 5px 5px;
+section {
+	box-shadow: 0px 5px 5px;
 	background-color: white;
 	border-radius: 5px;
-	margin-bottom: 15px;
+	margin-block: 15px;
 	padding: 5px;
 }
 
 .name {
-	float: right;
-	font-size: 2vmin;
+	display: block;
 	text-align: right;
+	margin-right: 10px;
+	height: 25px;
 }
 
-p {
+main p {
 	padding-left: 10px;
 	font-size: large;
 }
@@ -55,6 +75,12 @@ p {
 	margin: 10px;
 }
 
+@media (max-width: 600px) {
+	.images img {
+		width: 150px;
+	}
+}
+
 .tutorial-list>a {
 	display: block;
 	padding: 5px;
@@ -63,12 +89,15 @@ p {
 }
 
 footer {
-	margin: 10px;
-	padding-top: 15px;
-	border-style: solid;
-	border-color: gray;
+	border: 3px solid gray;
+	border-radius: 5px;
 	background-color: rgba(255, 255, 255, 0.67);
-	border-radius: 10px;
+	padding: 15px 10px;
+	margin-bottom: 10px;
+}
+
+footer * {
+	margin: 0;
 }
 
 a.email:link {
