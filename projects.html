@@ -37,20 +37,6 @@
 
 	<!-- Preload images -->
 	<link rel="preload" href="resources/imgs/Dennis2021-200.webp" as="image" />
-	<link rel="preload" href="resources/imgs/speakaac.jpg" as="image" />
-	<link rel="preload" href="resources/imgs/tint-gen.jpg" as="image" />
-	<link rel="preload" href="resources/imgs/atlas-logo.png" as="image" />
-	<link rel="preload" href="resources/imgs/mocking-spongebob.png" as="image" />
-	<link rel="preload" href="algedraw calculator/gifs/phi.gif" as="image" />
-	<link rel="preload" href="algedraw calculator/gifs/degrees.gif" as="image" />
-	<link rel="preload" href="algedraw calculator/gifs/four.gif" as="image" />
-	<link rel="preload" href="resources/imgs/find-your-bus.gif" as="image" />
-	<link rel="preload" href="resources/imgs/mario1.png" as="image" />
-	<link rel="preload" href="resources/imgs/mario2.png" as="image" />
-	<link rel="preload" href="resources/imgs/mario3.png" as="image" />
-	<link rel="preload" href="resources/imgs/mario4.png" as="image" />
-	<link rel="preload" href="resources/imgs/connect4.png" as="image" />
-	<link rel="preload" href="resources/imgs/vortecs.png" as="image" />
 
 	<!-- Preload component dependencies -->
 	<link rel="modulepreload" href="components/utils.mjs" as="script" />
@@ -152,6 +138,19 @@
 				<li>
 					<project-elt name="My Personal Website" duration="Nov. 2022">
 						<span slot="subtitle">You're looking at it right now!</span>
+						<div slot="description">
+							<p>
+								This website's primary goal is to be my portfolio. However, in it's design, there were
+								several principals I put in place in order to challenge myself and learn more about web
+								development. These principals were:
+							</p>
+							<ul style="text-indent: 0">
+								<li>No web frameworks or libraries (i.e. React, Next.js, etc.).</li>
+								<li>Defer or lazily load nonessential assets.</li>
+								<li>Prioritize accessibility, user experience, and other best practices.</li>
+								<li>Keep it simple 🙂.</li>
+							</ul>
+						</div>
 						<span slot="tech">
 							<span class="skill">HTML5</span>
 							<span class="skill">CSS3</span>
@@ -181,7 +180,8 @@
 						<span slot="links">
 							<project-link type="website" href="https://speakaac.vercel.app/"></project-link>
 						</span>
-						<img slot="media" src="resources/imgs/speakaac.jpg" width="600" />
+						<img slot="media" loading="lazy" src="resources/imgs/speakaac.jpg" height="350"
+							alt="An image of a portion of the SpeakAAC website" />
 					</project-elt>
 				</li>
 				<li>
@@ -192,7 +192,7 @@
 							It is implemented in OCaml and C, and it targets x86 Assembly.
 
 							<div style="text-indent: 0">
-								<h3>Features</h3>
+								<h2>Features</h2>
 								<ul>
 									<li>Garbage collection via Cheney's algorithm</li>
 									<li>Register allocation and dead-code elimination via graph-coloring</li>
@@ -215,7 +215,8 @@
 						<a slot="links" href="mailto:denniskats43@gmail.com">
 							Available upon request
 						</a>
-						<img slot="media" src="resources/imgs/cat_compiler.jpeg" width="600" />
+						<img slot="media" loading="lazy" src="resources/imgs/cat_compiler.jpeg" height="350"
+							alt="An image of code in the Cat programming language with syntactic highlighting" />
 					</project-elt>
 				</li>
 				<li>
@@ -292,7 +293,8 @@
 							<project-link type="website" href="https://tintgenerator.vercel.app/"></project-link>
 							<project-link type="api" href="https://tint-api2.vercel.app/"></project-link>
 						</span>
-						<img slot="media" src="resources/imgs/tint-gen.jpg" width="700" />
+						<img slot="media" loading="lazy" src="resources/imgs/tint-gen.jpg" height="350"
+							alt="An image of the Tint Generator Website on the Turing Machine page" />
 					</project-elt>
 				</li>
 				<li>
@@ -315,7 +317,8 @@
 				<li>
 					<project-elt name="Project Atlas" duration="Sept. 2020 - May 2021">
 						<span slot="subtitle">Visualize your code in a whole new way</span>
-						<img slot="hero" src="resources/imgs/atlas-logo.png" style="display: block; margin: auto" />
+						<img slot="hero" loading="lazy" src="resources/imgs/atlas-logo.png" height="150"
+							alt="The Project Atlas logo" />
 						<div slot="description">
 							<p>
 								Project Atlas is a static analysis and visualization extension for Java projects.
@@ -346,7 +349,7 @@
 					<project-elt name="Mocking SpongeBob Meme Generator" duration="Jan. 2020 - Summer 2020">
 						<span slot="subtitle">An excessively versatile Mocking SpongeBob meme generator</span>
 						<div slot="description" style="text-indent: 0">
-							<h3>Features</h3>
+							<h2>Features</h2>
 							<ul>
 								<li>
 									Automatically and intelligently resizes and formats caption in the lower
@@ -372,7 +375,8 @@
 							<project-link type="github" href="https://github.com/denk0403/Mocking-Spongebob">
 							</project-link>
 						</span>
-						<img slot="media" src="resources/imgs/mocking-spongebob.png" width="300" />
+						<img slot="media" loading="lazy" src="resources/imgs/mocking-spongebob.png" height="215"
+							alt="An example image generated with the project" />
 					</project-elt>
 				</li>
 				<li>
@@ -397,9 +401,12 @@
 							</project-link>
 						</span>
 						<div slot="media">
-							<img width="200" src="algedraw calculator/gifs/phi.gif" />
-							<img width="200" src="algedraw calculator/gifs/degrees.gif" />
-							<img width="200" src="algedraw calculator/gifs/four.gif" />
+							<img width="200" height="200" src="algedraw calculator/gifs/phi.gif" loading="lazy"
+								alt="An animation showing how to input the mathematical constant phi into the calculator" />
+							<img width="200" height="200" src="algedraw calculator/gifs/degrees.gif" loading="lazy"
+								alt="An animation showing how to switch the trigonometric mode to use degrees on the calculator" />
+							<img width="200" height="200" src="algedraw calculator/gifs/four.gif" loading="lazy"
+								alt="An animation showing how to input the number four into the calculator" />
 						</div>
 					</project-elt>
 				</li>
@@ -418,7 +425,8 @@
 							<project-link type="github" href="https://github.com/denk0403/Fitbit-Find-Your-Bus">
 							</project-link>
 						</span>
-						<img slot="media" src="resources/imgs/find-your-bus.gif" width="250" />
+						<img slot="media" loading="lazy" src="resources/imgs/find-your-bus.gif" width="250" height="250"
+							alt="An animation showing how to search for the tracking information of the next bus from a particular MTA bus stop" />
 					</project-elt>
 				</li>
 				<li>
@@ -450,10 +458,14 @@
 							</project-link>
 						</span>
 						<div slot="media">
-							<img width="125" src="resources/imgs/mario1.png" />
-							<img width="125" src="resources/imgs/mario2.png" />
-							<img width="125" src="resources/imgs/mario3.png" />
-							<img width="125" src="resources/imgs/mario4.png" />
+							<img width="125" height="125" src="resources/imgs/mario1.png" loading="lazy"
+								alt="An image of the watchface during the day" />
+							<img width="125" height="125" src="resources/imgs/mario2.png" loading="lazy"
+								alt="An image of the watchface with Mario jumping" />
+							<img width="125" height="125" src="resources/imgs/mario3.png" loading="lazy"
+								alt="An image of the watchface during the night" />
+							<img width="125" height="125" src="resources/imgs/mario4.png" loading="lazy"
+								alt="An image of the watchface's 'Have Your Phone?' feature" />
 						</div>
 					</project-elt>
 				</li>
@@ -489,7 +501,8 @@
 						<span slot="links">
 							<project-link type="github" href="https://github.com/denk0403/Connect-4"></project-link>
 						</span>
-						<img slot="media" src="resources/imgs/connect4.png" width="300" />
+						<img slot="media" loading="lazy" src="resources/imgs/connect4.png" height="250"
+							alt="An image of a completed Connect4 game" />
 					</project-elt>
 				</li>
 				<li>
@@ -511,7 +524,8 @@
 								href="https://drive.google.com/uc?export=download&id=1XN24E-9drJ4RyT7Lsf1913K7O97MKvXl">
 							</project-link>
 						</span>
-						<img width="600" slot="media" src="resources/imgs/vortecs.png" />
+						<img slot="media" loading="lazy" src="resources/imgs/vortecs.png" height="375"
+							alt="An image of the Vortecs application" />
 					</project-elt>
 				</li>
 				<li>
@@ -542,19 +556,24 @@
 			</ul>
 			<details ontoggle="body.scrollIntoView({behavior: 'smooth', block: 'end'})">
 				<summary>
-					<h3 style="display: inline-block;">Study Guides</h3>
+					<h1 style="display: inline-block;">Study Guides</h1>
 				</summary>
-				<ul>
-					<h4>Math Classes</h4>
-					<li><a href="resources/pdfs/Calc 3 Midterm 1.pdf">Calculus 3 Midterm 1</a></li>
-					<li><a href="resources/pdfs/Calc 3 Midterm 2.pdf">Calculus 3 Midterm2</a></li>
-					<li><a href="resources/pdfs/Calc 3 Final.pdf">Calculus 3 Final</a></li>
-					<li><a href="resources/pdfs/LA Final.pdf">Linear Algebra Final</a></li>
-					<li><a href="resources/pdfs/Diff Eq Final.pdf">Differential Equations Final</a></li>
-					<h4>CS Classes</h3>
+				<div style="margin-left: 20px">
+					<h2>Math Classes</h2>
+					<ul>
+
+						<li><a href="resources/pdfs/Calc 3 Midterm 1.pdf">Calculus 3 Midterm 1</a></li>
+						<li><a href="resources/pdfs/Calc 3 Midterm 2.pdf">Calculus 3 Midterm2</a></li>
+						<li><a href="resources/pdfs/Calc 3 Final.pdf">Calculus 3 Final</a></li>
+						<li><a href="resources/pdfs/LA Final.pdf">Linear Algebra Final</a></li>
+						<li><a href="resources/pdfs/Diff Eq Final.pdf">Differential Equations Final</a></li>
+					</ul>
+					<h2>CS Classes</h2>
+					<ul>
 						<li><a href="resources/pdfs/Fundies 2 Final.pdf">Fundamentals of CS 2 Final</a></li>
 						<li><a href="resources/pdfs/OOD Final.pdf">Object-Oriented Design Final</a></li>
-				</ul>
+					</ul>
+				</div>
 			</details>
 		</section>
 	</main>

@@ -143,39 +143,68 @@ export class ProjectElement extends HTMLElement {
 			}
 		});
 
-		// set up scroll to top button
-		scrollBtn.addEventListener("click", () => {
-			this.scrollIntoView({ behavior: "smooth", block: "start" });
-		});
-
-		// update hash and determine how to scroll to opened element
+		// determine how to scroll to opened element
 		details.addEventListener("toggle", () => {
 			if (details.open && !this.#noscroll) {
-				location.hash = this.#name ?? "";
 				if (this.#hasSlottedMedia() || this.#hasSlottedHero()) {
 					this.scrollIntoView({ behavior: "smooth", block: "start" });
 				} else {
 					this.scrollIntoView({ behavior: "smooth", block: "center" });
 				}
+			}
+		});
+
+		// update hash
+		details.addEventListener("toggle", () => {
+			if (details.open) {
+				location.hash = this.#name ?? "";
 			} else {
 				location.hash = "";
 			}
 		});
 
+		// set up scroll to top button
+		scrollBtn.addEventListener("click", () => {
+			this.scrollIntoView({ behavior: "smooth", block: "start" });
+		});
+
 		if (this.#shouldOpenOnLoad()) {
-			// only open details when all assets have loaded
-			this.#onLoadAssets(() => {
-				details.open = true;
+			// render slots
+			this.#renderAssetSlots();
+
+			// remove lazy loading from assets
+			this.#getAssets().forEach((asset) => {
+				asset.loading = "eager";
 			});
+
+			details.open = true;
+		} else {
+			// render media and hero content first time details is opened
+			details.addEventListener("toggle", () => this.#renderAssetSlots(), { once: true });
 		}
+	}
+
+	#renderAssetSlots() {
+		const media = this.#getSlottedMedia();
+		const hero = this.#getSlottedHero();
+
+		if (media) media.style.display = "flex";
+		if (hero) hero.style.display = "block";
 	}
 
 	/**
 	 * @typedef LoadableType
 	 * @property {boolean} complete
+	 * @property {"eager" | "lazy"} loading
 	 *
 	 * @typedef {LoadableType & HTMLElement} HTMLoadable
 	 */
+
+	#getAssets = memo(() => {
+		const images = /** @type {NodeListOf<HTMLoadable>} */ (queryAll(this, "img"));
+		const iframes = /** @type {NodeListOf<HTMLoadable>} */ (queryAll(this, "iframe"));
+		return [...images, ...iframes];
+	});
 
 	/**
 	 * Executes a callback once all of this component's assets
@@ -183,10 +212,7 @@ export class ProjectElement extends HTMLElement {
 	 * @param {() => void} callback
 	 */
 	#onLoadAssets(callback) {
-		const images = /** @type {NodeListOf<HTMLoadable>} */ (queryAll(this, "img"));
-		const iframes = /** @type {NodeListOf<HTMLoadable>} */ (queryAll(this, "iframe"));
-		const loadingAssets = [...images, ...iframes];
-
+		const loadingAssets = this.#getAssets();
 		let loadingAssetsCount = loadingAssets.length;
 
 		if (loadingAssetsCount === 0) {
@@ -223,12 +249,20 @@ export class ProjectElement extends HTMLElement {
 		return !!query(this, "[slot=links]");
 	});
 
+	#getSlottedHero = memo(() => {
+		return query(this, "[slot=hero]");
+	});
+
 	#hasSlottedHero = memo(() => {
-		return !!query(this, "[slot=hero]");
+		return !!this.#getSlottedHero();
+	});
+
+	#getSlottedMedia = memo(() => {
+		return query(this, "[slot=media]");
 	});
 
 	#hasSlottedMedia = memo(() => {
-		return !!query(this, "[slot=media]");
+		return !!this.#getSlottedMedia();
 	});
 }
 

@@ -34,6 +34,7 @@ body {
 
 * {
     box-sizing: border-box;
+    object-fit: contain;
 }
 
 h1 {
@@ -288,12 +289,16 @@ featured-project {
 
 project-elt {
     display: block;
-    height: 38px;
+    height: 36px;
     opacity: 0;
 }
 
 project-elt [slot="description"]>* {
     max-width: 100%;
+}
+
+project-elt :is([slot="media"], [slot="hero"]) {
+    display: none;
 }
 
 project-elt [slot="media"]>* {
@@ -365,5 +370,37 @@ project-elt [slot="tech"] {
 @media (min-width: 750px) {
     .mobile-only {
         display: none;
+    }
+}
+
+.skeleton-loader {
+    position: relative;
+    display: inline-block;
+    line-height: 0;
+}
+
+.skeleton-loader::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    border-radius: 10px;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.33) 50%, rgba(255, 255, 255, 0) 100%), rgb(211 211 211 / 5%);
+    background-repeat: repeat-y;
+    background-size: 50px 500px;
+    background-position: 0 0;
+    animation: shine 1.5s infinite alternate ease-in-out;
+}
+
+@keyframes shine {
+    to {
+        background-position: 100% 0,
+            /* move highlight to right */
+            0 0;
     }
 }

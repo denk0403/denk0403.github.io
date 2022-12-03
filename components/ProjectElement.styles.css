@@ -111,3 +111,11 @@
         display: block;
     }
 }
+
+/* Mobile-specific styles */
+@media (max-width: 500px) {
+    ::slotted(img[slot='media']) {
+        /* max-width: 300px; */
+        max-height: 200px;
+    }
+}

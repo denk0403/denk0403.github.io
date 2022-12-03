@@ -91,12 +91,12 @@ export function prop(elt, name) {
  * @returns {() => K}
  */
 export function memo(func) {
-	let set = false;
+	let isStored = false;
 	let store;
 	return () => {
-		if (!set) {
+		if (!isStored) {
 			store = func();
-			set = true;
+			isStored = true;
 			return store;
 		} else {
 			return store;

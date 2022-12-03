@@ -22,7 +22,7 @@ class FeaturedProject extends HTMLElement {
 			<div id="box">
 				<div id="header">
 					<span id="project-name"></span>
-					<img width='60' id="project-icon"></img>
+					<img width="60" height="60" id="project-icon"/>
 				</div>
 				<slot name="description"></slot>
 				<div id="next-icon-wrapper">
