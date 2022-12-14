@@ -149,9 +149,17 @@ export class ProjectElement extends HTMLElement {
 		// update hash
 		details.addEventListener("toggle", () => {
 			if (details.open) {
-				location.hash = this.#name ?? "";
+				// `replaceState` prevents the browser session history from growing every
+				// time the user toggles a dropdown and the URL hash changes
+				history.replaceState(null, "", `#${this.#name ?? ""}`);
 			} else {
-				location.hash = "";
+				// Also, by using `replaceState` rather than modifying the hash directly,
+				// we prevent a true "navigation" from occurring, and so the scroll position will
+				// not jump to its default position
+				// - Note: 	this is important for the project.html page because scrollRestoration
+				//			is managed manually, so the default position is the top of the page,
+				//			which may cause the user to become disoriented
+				history.replaceState(null, "", "#");
 			}
 		});
 
