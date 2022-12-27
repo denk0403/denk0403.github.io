@@ -84,6 +84,10 @@ export class ProjectElement extends HTMLElement {
 		this.#href = prop(this, "href");
 		this.#noscroll = prop(this, "noscroll") !== null;
 
+		/** @type {?HTMLSlotElement} */
+		const descriptionSlot = query(this.#r, "slot[name='description']");
+		const description = descriptionSlot?.assignedElements()?.[0];
+
 		if (this.#name) {
 			/** @type {HTMLSpanElement} */
 			const projectName = id(this.#r, "project-name");
@@ -121,18 +125,24 @@ export class ProjectElement extends HTMLElement {
 		const summary = id(this.#r, "project-summary");
 		const scrollBtn = id(this.#r, "scroll-btn");
 
+		if (this.#shouldOpenOnLoad()) {
+			// render assets to enable ability to load
+			this.#unhideAssets();
+
+			// remove lazy loading from assets
+			this.#getAssets().forEach((asset) => {
+				asset.loading = "eager";
+			});
+
+			details.open = true;
+		} else {
+			// render media and hero content first time details is opened
+			details.addEventListener("toggle", () => this.#unhideAssets(), { once: true });
+		}
+
 		// update summary tooltip
 		details.addEventListener("toggle", () => {
 			summary.title = details.open ? toCollapseMsg : toExpandMsg;
-		});
-
-		// determine whether to show scroll to top button
-		details.addEventListener("toggle", () => {
-			if (details.open && details.clientHeight > window.innerHeight) {
-				scrollBtn.style.visibility = "visible";
-			} else {
-				scrollBtn.style.visibility = "hidden";
-			}
 		});
 
 		// determine how to scroll to opened element
@@ -141,7 +151,11 @@ export class ProjectElement extends HTMLElement {
 				if (this.#hasSlottedMedia() || this.#hasSlottedHero()) {
 					this.scrollIntoView({ behavior: "smooth", block: "start" });
 				} else {
-					this.scrollIntoView({ behavior: "smooth", block: "center" });
+					if (description) {
+						description.scrollIntoView({ behavior: "smooth", block: "center" });
+					} else {
+						this.scrollIntoView({ behavior: "smooth", block: "center" });
+					}
 				}
 			}
 		});
@@ -163,28 +177,23 @@ export class ProjectElement extends HTMLElement {
 			}
 		});
 
-		// set up scroll to top button
+		// Determine whether to show the scroll to top button
+		details.addEventListener("toggle", () => {
+			if (details.open && details.clientHeight > window.innerHeight) {
+				scrollBtn.style.visibility = "visible";
+			} else {
+				scrollBtn.style.visibility = "hidden";
+			}
+		});
+
+		// scroll to top when clicked
 		scrollBtn.addEventListener("click", () => {
 			this.scrollIntoView({ behavior: "smooth", block: "start" });
 		});
-
-		if (this.#shouldOpenOnLoad()) {
-			// render slots
-			this.#renderAssetSlots();
-
-			// remove lazy loading from assets
-			this.#getAssets().forEach((asset) => {
-				asset.loading = "eager";
-			});
-
-			details.open = true;
-		} else {
-			// render media and hero content first time details is opened
-			details.addEventListener("toggle", () => this.#renderAssetSlots(), { once: true });
-		}
 	}
 
-	#renderAssetSlots() {
+	/** Sets the display styles of assets to be visible, potentially triggering loading */
+	#unhideAssets() {
 		const media = this.#getSlottedMedia();
 		const hero = this.#getSlottedHero();
 
