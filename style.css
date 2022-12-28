@@ -234,7 +234,7 @@ h1 {
     }
 }
 
-code {
+.inline-code {
     background-color: #444;
     padding: 3px;
     border-radius: 3px;
