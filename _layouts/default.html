@@ -53,6 +53,9 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
 
   <link rel="stylesheet" href="/style.css" />
+  {% for head_tag in page.add_head %}
+  {{ head_tag }}
+  {% endfor %}
 </head>
 
 <body>
@@ -93,12 +96,26 @@
       <a class="link" href="https://twitter.com/denk0403" target="_blank" title="Twitter"><i
           class="fa-inverse fa-brands fa-twitter fa-2x"></i></a>
     </nav>
-    <nav class="tab-bar">
-      <a class="tab" href="/index.html" title="About Me Page">About Me</a>
-      <a class="tab" href="/projects.html" title="Projects Page">Projects</a>
-      <a class="tab selected" href="/blog/index.html" title="Blog Page">Blog</a>
-    </nav>
   </header>
+  <nav class="tab-bar">
+    {% if page.active_tab == "about me" %}
+    <a class="tab selected" href="/index.html" title="About Me Page">About Me</a>
+    {% else %}
+    <a class="tab" href="/index.html" title="About Me Page">About Me</a>
+    {% endif %}
+
+    {% if page.active_tab == "projects" %}
+    <a class="tab selected" href="/projects.html" title="Projects Page">Projects</a>
+    {% else %}
+    <a class="tab" href="/projects.html" title="Projects Page">Projects</a>
+    {% endif %}
+
+    {% if page.active_tab == "blog" %}
+    <a class="tab selected" href="/blog.html" title="Blog Page">Blog</a>
+    {% else %}
+    <a class="tab" href="/blog.html" title="Blog Page">Blog</a>
+    {% endif %}
+  </nav>
   <main class="main-content">
     {{ content }}
   </main>

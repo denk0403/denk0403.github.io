@@ -1,7 +1,17 @@
 ---
 title: "Blog"
-layout: blog
+layout: default
+active_tab: blog
 ---
+
+# Posts
+
+{% if site.posts.size == 0 %}
+{: style="text-align: center"}
+
+## 🚧 Coming soon! 🚜
+
+{% else %}
 
 <ul>
   {% for post in site.posts %}
@@ -10,3 +20,4 @@ layout: blog
     </li>
   {% endfor %}
 </ul>
+{% endif %}
