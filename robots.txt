@@ -9,3 +9,4 @@ Disallow: /*.png$
 Disallow: /*.gif$
 Disallow: /*.jpg$
 Disallow: /*.webp$
+Disallow: /__blog/*

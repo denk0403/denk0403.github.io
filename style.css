@@ -4,6 +4,10 @@
     --accent: #0090ea;
     --accent-2: #a867e6;
 
+    --tab-height: 55px;
+    --tab-bar-top-padding: max(env(safe-area-inset-top), 20px);
+    --tab-bar-height: calc(var(--tab-height) + var(--tab-bar-top-padding));
+
     background-color: rgb(20, 20, 20);
     height: 100%;
 }
@@ -47,6 +51,7 @@ h1 {
     flex-direction: column;
 
     padding-top: 5px;
+    max-width: 100vw;
 
     background-color: #212121;
 }
@@ -127,12 +132,21 @@ h1 {
 }
 
 .tab-bar {
-    margin-top: 20px;
     display: flex;
     justify-content: center;
     gap: 50px;
+
     font-size: larger;
     overflow-x: auto;
+
+    padding-top: var(--tab-bar-top-padding);
+
+    position: sticky;
+    top: -10px;
+    z-index: 1;
+
+    background-color: #212121;
+    border-bottom: 1px solid #303030;
 }
 
 .tab-bar .tab {
@@ -142,6 +156,7 @@ h1 {
     color: var(--primary-text);
     text-decoration: none;
 
+    height: var(--tab-height);
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
@@ -234,7 +249,7 @@ h1 {
     }
 }
 
-code {
+.inline-code {
     background-color: #444;
     padding: 3px;
     border-radius: 3px;
@@ -291,6 +306,7 @@ project-elt {
     display: block;
     height: 36px;
     opacity: 0;
+    scroll-margin-top: var(--tab-bar-height);
 }
 
 project-elt [slot="description"]>* {
@@ -354,6 +370,47 @@ project-elt [slot="tech"] {
         width: min-content;
     }
 }
+
+@media (max-width: 525px) {
+    :root {
+        --tab-bar-top-padding: 5px;
+        --tab-bar-bottom-padding: env(safe-area-inset-bottom, 15px);
+        --tab-bar-height: calc(var(--tab-height) + var(--tab-bar-bottom-padding) + var(--tab-bar-top-padding));
+    }
+
+    body {
+        padding-bottom: var(--tab-bar-height);
+    }
+
+    .header {
+        padding-bottom: 20px;
+    }
+
+    .tab-bar {
+        width: 100%;
+        padding-top: var(--tab-bar-top-padding);
+        padding-bottom: var(--tab-bar-bottom-padding);
+
+        position: fixed;
+        top: unset;
+        bottom: 0;
+        left: 0;
+
+        border-top: 1px solid #303030;
+        border-bottom: none;
+    }
+
+    project-elt {
+        scroll-margin-top: 0;
+        scroll-margin-bottom: var(--tab-bar-height);
+    }
+
+    project-elt::part(scroll-btn) {
+        bottom: calc(var(--tab-bar-height) + 15px);
+    }
+}
+
+
 
 @media (min-width: 525px) and (max-width: 750px) {
     .portrait {

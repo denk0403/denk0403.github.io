@@ -105,11 +105,13 @@
 			<a class="link" href="https://twitter.com/denk0403" target="_blank" title="Twitter"><i
 					class="fa-inverse fa-brands fa-twitter fa-2x"></i></a>
 		</nav>
-		<nav class="tab-bar">
-			<a class="tab" href="/" title="About Me Page">About Me</a>
-			<span class="tab selected" title="Projects Page">Projects</span>
-		</nav>
+
 	</header>
+	<nav class="tab-bar">
+		<a class="tab" href="/" title="About Me Page">About Me</a>
+		<span class="tab selected" title="Projects Page">Projects</span>
+		<a class="tab" href="/blog.html" title="Blog Page">Blog</a>
+	</nav>
 	<main class="main-content">
 		<section class="section projects">
 			<h1>Projects</h1>
@@ -157,6 +159,7 @@
 							<span class="skill">CSS3</span>
 							<span class="skill">JavaScript</span>
 							<span class="skill">Web Components</span>
+							<span class="skill">Jekyll</span>
 						</span>
 						<span slot="links">
 							<project-link type="website" href="/"></project-link>
@@ -225,7 +228,8 @@
 						<span slot="subtitle">An offline video cropping tool in your browser</span>
 						<p slot="description">
 							VideoCrop is an offline, browser-based video cropping tool built on top of
-							<code>ffmpeg.wasm</code>. The app never uploads or sends anything to a server,
+							<code class="inline-code">ffmpeg.wasm</code>. The app never uploads or sends anything to a
+							server,
 							therefore performing all video manipulation on the client.
 						</p>
 						<span slot="tech">

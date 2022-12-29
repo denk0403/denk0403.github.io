@@ -34,7 +34,9 @@ export class ProjectElement extends HTMLElement {
 					</slot>
 				</div>
 				<slot name="media"></slot>
-				<button id="scroll-btn" title="Scroll to top"><i class="fa-solid fa-arrow-up fa-lg"></i></button>
+				<button id="scroll-btn" title="Scroll to top" part="scroll-btn">
+					<i class="fa-solid fa-arrow-up fa-lg"></i>
+				</button>
 			</div>
 		</details>
 	`;
@@ -83,10 +85,6 @@ export class ProjectElement extends HTMLElement {
 		this.#duration = prop(this, "duration");
 		this.#href = prop(this, "href");
 		this.#noscroll = prop(this, "noscroll") !== null;
-
-		/** @type {?HTMLSlotElement} */
-		const descriptionSlot = query(this.#r, "slot[name='description']");
-		const description = descriptionSlot?.assignedElements()?.[0];
 
 		if (this.#name) {
 			/** @type {HTMLSpanElement} */
@@ -148,14 +146,10 @@ export class ProjectElement extends HTMLElement {
 		// determine how to scroll to opened element
 		details.addEventListener("toggle", () => {
 			if (details.open && !this.#noscroll) {
-				if (this.#hasSlottedMedia() || this.#hasSlottedHero()) {
+				if (this.#isLargerThanInnerViewPort()) {
 					this.scrollIntoView({ behavior: "smooth", block: "start" });
 				} else {
-					if (description) {
-						description.scrollIntoView({ behavior: "smooth", block: "center" });
-					} else {
-						this.scrollIntoView({ behavior: "smooth", block: "center" });
-					}
+					this.scrollIntoView({ behavior: "smooth", block: "center" });
 				}
 			}
 		});
@@ -179,7 +173,7 @@ export class ProjectElement extends HTMLElement {
 
 		// Determine whether to show the scroll to top button
 		details.addEventListener("toggle", () => {
-			if (details.open && details.clientHeight > window.innerHeight) {
+			if (details.open && this.#isLargerThanInnerViewPort()) {
 				scrollBtn.style.visibility = "visible";
 			} else {
 				scrollBtn.style.visibility = "hidden";
@@ -250,6 +244,14 @@ export class ProjectElement extends HTMLElement {
 		return hash && hash === this.#name;
 	}
 
+	#isLargerThanInnerViewPort() {
+		const scrollMarginBottom = getComputedStyle(this).getPropertyValue("scroll-margin-bottom");
+
+		// enforced by style sheet
+		const tabBarHeight = parseInt(scrollMarginBottom) ?? 0;
+		return this.#details.clientHeight > window.innerHeight - tabBarHeight;
+	}
+
 	#hasSlottedTech() {
 		return !!query(this, "[slot=tech]");
 	}
@@ -262,16 +264,8 @@ export class ProjectElement extends HTMLElement {
 		return query(this, "[slot=hero]");
 	});
 
-	#hasSlottedHero = memo(() => {
-		return !!this.#getSlottedHero();
-	});
-
 	#getSlottedMedia = memo(() => {
 		return query(this, "[slot=media]");
-	});
-
-	#hasSlottedMedia = memo(() => {
-		return !!this.#getSlottedMedia();
 	});
 }
 
