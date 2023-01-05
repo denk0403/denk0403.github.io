@@ -1,3 +1,6 @@
+---
+---
+
 // @ts-check
 import { id, prop, template } from "./utils.mjs";
 
@@ -18,7 +21,7 @@ const ICON_TYPE_DATA_MAP = /** @type {const} */ ({
 
 export class ProjectLink extends HTMLElement {
 	static #TEMPLATE = template`
-		<link rel="stylesheet" href="/components/ProjectLink.styles.css" />
+		<style>{% include ProjectLink.styles.css %}</style>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/fontawesome.min.css"
 			integrity="sha512-giQeaPns4lQTBMRpOOHsYnGw1tGVzbAIHUyHRgn7+6FmiEgGGjaG0T2LZJmAPMzRCl+Cug0ItQ2xDZpTmEc+CQ=="
 			crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -113,9 +116,6 @@ export class ProjectLink extends HTMLElement {
 
 		this.#link = id(this.#r, "link");
 		this.#icon = id(this.#r, "icon");
-
-		this.style.display = "unset";
-		this.style.opacity = "1";
 	}
 
 	connectedCallback() {

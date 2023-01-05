@@ -10,6 +10,8 @@
 
     background-color: rgb(20, 20, 20);
     height: 100%;
+
+    scrollbar-gutter: stable both-edges;
 }
 
 :root :any-link:is(:hover, :focus-within) {
@@ -79,12 +81,11 @@ h1 {
 
 .quote {
     display: block;
-    margin-top: 10px;
+    margin-top: 20px;
     font-size: small;
 }
 
 .quote q {
-    margin-top: 10px;
     font-style: italic;
 }
 
@@ -296,7 +297,7 @@ h1 {
     gap: 10px;
 }
 
-featured-project {
+featured-project:not(:defined) {
     display: block;
     height: 250px;
     opacity: 0;
@@ -304,17 +305,20 @@ featured-project {
 
 project-elt {
     display: block;
-    height: 36px;
-    opacity: 0;
+    min-height: 40px;
     scroll-margin-top: var(--tab-bar-height);
+}
+
+project-elt:not(:defined) {
+    opacity: 0;
+}
+
+project-elt:not(:defined) * {
+    display: none;
 }
 
 project-elt [slot="description"]>* {
     max-width: 100%;
-}
-
-project-elt :is([slot="media"], [slot="hero"]) {
-    display: none;
 }
 
 project-elt [slot="media"]>* {

@@ -30,9 +30,6 @@
   <meta name="twitter:image" content="https://denniskats.dev/resources/imgs/site_preview.jpg" />
   <meta name="twitter:image:alt" content="A preview of the home page of https://denniskats.dev" />
 
-  <link rel="icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-
   <!-- Preload FontAwesome fonts -->
   <link as="font" rel="preload" referrerpolicy="no-referrer" type="font/woff2" crossorigin
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/webfonts/fa-brands-400.woff2" />
@@ -52,10 +49,14 @@
     integrity="sha512-6mc0R607di/biCutMUtU9K7NtNewiGQzrvWX4bWTeqmljZdJrwYvKJtnhgR+Ryvj+NRJ8+NnnCM/biGqMe/iRA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
 
-  <link rel="stylesheet" href="/style.css" />
+  <style>{% include site.styles.css %}</style>
+
   {% for head_tag in page.add_head %}
   {{ head_tag }}
   {% endfor %}
+
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 </head>
 
 <body>
@@ -77,10 +78,10 @@
           <a class="link" href="https://twitter.com/denk0403" target="_blank" title="Twitter"><i
               class="fa-brands fa-twitter fa-2x"></i></a>
         </nav>
-        <span class="desktop-only quote">
-          <q>Life's a journey to find the people weird like you.</q>
-          —atticus
-        </span>
+				<span class="desktop-only quote">
+					<q>Life's a journey to find the <br>people weird like you.</q>
+					—atticus
+				</span>
       </div>
       <div style="display: flex; flex-direction: column; justify-content: center">
         <img width="200" class="portrait" src="/resources/imgs/Dennis2021-200.webp" alt="A picture of Dennis Kats" />

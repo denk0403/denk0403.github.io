@@ -1,3 +1,6 @@
+---
+---
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,9 +29,6 @@
 	<meta name="twitter:site" content="@denk0403" />
 	<meta name="twitter:creator" content="@denk0403" />
 
-	<link rel="icon" href="favicon.ico" />
-	<link rel="apple-touch-icon" href="apple-touch-icon.png" />
-
 	<!-- Preload FontAwesome fonts -->
 	<link as="font" rel="preload" referrerpolicy="no-referrer" type="font/woff2" crossorigin
 		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/webfonts/fa-brands-400.woff2" />
@@ -36,14 +36,12 @@
 		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/webfonts/fa-solid-900.woff2" />
 
 	<!-- Preload images -->
-	<link rel="preload" href="resources/imgs/Dennis2021-200.webp" as="image" />
+	<link rel="preload" href="/resources/imgs/Dennis2021-200.webp" as="image" />
 
 	<!-- Preload component dependencies -->
-	<link rel="modulepreload" href="components/utils.mjs" as="script" />
-	<link rel="preload" href="components/ProjectElement.styles.css" as="style" />
-	<link rel="preload" href="components/ProjectLink.styles.css" as="style" />
-	<link rel="modulepreload" href="components/ProjectLink.mjs" as="script" />
-	<link rel="modulepreload" href="components/ProjectElement.mjs" as="script" />
+	<link rel="modulepreload" href="/components/utils.mjs" as="script" />
+	<link rel="modulepreload" href="/components/ProjectLink.mjs" as="script" />
+	<link rel="modulepreload" href="/components/ProjectElement.mjs" as="script" />
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/fontawesome.min.css"
 		integrity="sha512-giQeaPns4lQTBMRpOOHsYnGw1tGVzbAIHUyHRgn7+6FmiEgGGjaG0T2LZJmAPMzRCl+Cug0ItQ2xDZpTmEc+CQ=="
@@ -55,13 +53,15 @@
 		integrity="sha512-6mc0R607di/biCutMUtU9K7NtNewiGQzrvWX4bWTeqmljZdJrwYvKJtnhgR+Ryvj+NRJ8+NnnCM/biGqMe/iRA=="
 		crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
 
-	<script type="module" src="components/ProjectElement.mjs"></script>
-	<script type="module" src="components/ProjectLink.mjs"></script>
-	<link rel="stylesheet" href="style.css" />
+	<link rel="icon" href="/favicon.ico" />
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-	<script>
-		history.scrollRestoration = "manual";
-	</script>
+	<style>{% include site.styles.css %}</style>
+
+	<script type="module" src="/components/ProjectElement.mjs"></script>
+	<script type="module" src="/components/ProjectLink.mjs"></script>
+
+	<script>history.scrollRestoration = "manual";</script>
 </head>
 
 <body>
@@ -86,7 +86,7 @@
 							class="fa-brands fa-twitter fa-2x"></i></a>
 				</nav>
 				<span class="desktop-only quote">
-					<q>Life's a journey to find the people weird like you.</q>
+					<q>Life's a journey to find the <br>people weird like you.</q>
 					—atticus
 				</span>
 			</div>

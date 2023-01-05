@@ -1,4 +1,8 @@
+---
+---
+
 // @ts-check
+// import ProjectElementStyles from "./ProjectElement.styles.mjs";
 import { id, memo, prop, query, queryAll, template } from "./utils.mjs";
 
 const toExpandMsg = "Click to expand details";
@@ -6,7 +10,7 @@ const toCollapseMsg = "Click to collapse details";
 
 export class ProjectElement extends HTMLElement {
 	static #TEMPLATE = template`
-		<link rel="stylesheet" href="/components/ProjectElement.styles.css" />
+		<style>{% include ProjectElement.styles.css %}</style>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/fontawesome.min.css"
 			integrity="sha512-giQeaPns4lQTBMRpOOHsYnGw1tGVzbAIHUyHRgn7+6FmiEgGGjaG0T2LZJmAPMzRCl+Cug0ItQ2xDZpTmEc+CQ=="
 			crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -74,10 +78,6 @@ export class ProjectElement extends HTMLElement {
 		this.#r.appendChild(ProjectElement.#TEMPLATE.content.cloneNode(true));
 
 		this.#details = id(this.#r, "project-details");
-
-		this.style.display = "unset";
-		this.style.height = "unset";
-		this.style.opacity = "1";
 	}
 
 	connectedCallback() {

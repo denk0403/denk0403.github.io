@@ -1,0 +1,121 @@
+:link {
+	color: #0090ea;
+}
+
+:visited {
+	color: #a867e6;
+}
+
+#project-summary {
+	padding: 0.5em;
+	cursor: pointer;
+}
+
+#project-details:has(#project-summary:is(:hover, :focus-visible)) {
+	background-color: #333;
+}
+
+#project-details[open] #project-summary {
+	margin-bottom: 0.5em;
+}
+
+#project-name {
+	font-weight: bold;
+}
+
+#project-duration {
+	float: right;
+}
+
+#project-content {
+	position: relative;
+	margin-left: 25px;
+	margin-right: 25px;
+	padding-bottom: 10px;
+}
+
+#scroll-btn {
+	position: sticky;
+	float: right;
+	bottom: 10px;
+	display: block;
+	margin-top: -45px;
+	visibility: hidden;
+
+	height: 45px;
+	width: 45px;
+
+	border: 2px solid #303030;
+	border-radius: 50%;
+	background-color: #252525;
+	transition: background-color 1s ease;
+	color: var(--primary-text);
+	cursor: pointer;
+}
+
+#scroll-btn:is(:hover, :focus-within) {
+	background-color: #303030;
+}
+
+#scroll-btn i {
+	transition: scale 0.25s ease;
+}
+
+#scroll-btn:is(:hover, :focus-within) i {
+	scale: 1.1;
+}
+
+::slotted([slot="subtitle"]) {
+	display: block;
+	margin-top: -9px;
+	margin-bottom: 15px;
+	color: var(--secondary-text);
+}
+
+::slotted([slot="hero"]) {
+	display: block;
+	margin: auto;
+	object-fit: contain;
+	max-width: 100%;
+}
+
+::slotted([slot="description"]) {
+	text-indent: 2ch;
+	line-height: 1.25;
+	margin-bottom: 10px;
+}
+
+::slotted([slot="tech"]) {
+	margin: 5px 0;
+}
+
+::slotted([slot="links"]) {
+	margin: 5px 0;
+}
+
+::slotted([slot="media"]) {
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+	flex-wrap: wrap;
+	object-fit: contain;
+	max-width: 100%;
+	margin: auto;
+	margin-top: 10px;
+}
+
+/* Mobile-specific styles */
+@media (max-width: 750px) {
+	#project-duration {
+		float: none;
+		display: block;
+	}
+}
+
+/* Mobile-specific styles */
+@media (max-width: 500px) {
+	::slotted(img[slot="media"]) {
+		/* max-width: 300px; */
+		max-height: 200px;
+	}
+}

@@ -1,3 +1,3 @@
 {
-    "liveServer.settings.port": 5501
+    "C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools"
 }
