@@ -1,0 +1,16 @@
+# run with `zsh .scripts <function_name>`
+# or with alias `run <function_name>`
+
+start() {
+    npx serve _site
+}
+
+build() {
+    jekyll build --trace
+}
+
+draft() {
+    jekyll build --trace --drafts
+}
+
+"$@"

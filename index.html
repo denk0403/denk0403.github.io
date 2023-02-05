@@ -1,6 +1,14 @@
 ---
 ---
+<!--
+	Hello! Welcome to my website's HTML.
 
+	If you are wondering how it was made,
+	it was with love and too much free time.
+
+	If you find any visual bugs or accessibility issues,
+	please let me know with an email at denniskats43@gmail.com!
+-->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +18,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 	<meta name="keywords"
-		content="developer, software engineer, code, github, software, web developer, react, javascript, web components" />
+		content="developer, software engineer, code, github, software, web developer, react, javascript, web components, tutor, mentor" />
 	<meta name="author" content="Dennis Kats" />
 	<meta name="description"
 		content="Dennis Kats is a software engineer based in NYC. He specializes in full-stack web development, and he loves to learn about UX/DX, accessibility, and human-centered design." />
@@ -23,15 +31,17 @@
 	<meta property="og:secure_url" content="https://denniskats.dev" />
 	<meta property="og:description"
 		content="Dennis Kats is a software engineer based in NYC. He specializes in full-stack web development, and he's extremely passionate about UX/DX, accessibility, and human-centered design." />
-	<meta name="og:image" content="https://denniskats.dev/resources/imgs/Dennis2021.jpg" />
-	<meta name="og:image:alt" content="A picture of Dennis Kats" />
+	<meta name="og:image" content="https://denniskats.dev/resources/imgs/og.image.jpg" />
+	<meta name="og:image:alt" content="Dennis Kats. Software Engineer. He/Him. NYC. denniskats43@gmail.com" />
+	<meta property="og:image:width" content="1200"/>
+	<meta property="og:image:height" content="630"/>
 
 	<!-- Twitter Card support-->
 	<meta name="twitter:card" content="summary" />
 	<meta name="twitter:site" content="@denk0403" />
 	<meta name="twitter:creator" content="@denk0403" />
-	<meta name="twitter:image" content="https://denniskats.dev/resources/imgs/site_preview.jpg" />
-	<meta name="twitter:image:alt" content="A preview of the home page of https://denniskats.dev" />
+	<meta name="twitter:image" content="https://denniskats.dev/resources/imgs/og.image.jpg" />
+	<meta name="twitter:image:alt" content="Dennis Kats. Software Engineer. He/Him. NYC. denniskats43@gmail.com" />
 
 	<!-- Preload FontAwesome fonts -->
 	<link as="font" rel="preload" referrerpolicy="no-referrer" type="font/woff2" crossorigin
@@ -40,15 +50,15 @@
 		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/webfonts/fa-solid-900.woff2" />
 
 	<!-- Preload images -->
-	<link rel="preload" href="/resources/imgs/Dennis2021-200.webp" as="image" />
-	<link rel="preload" href="/resources/imgs/tint_icon.webp" as="image" />
-	<link rel="preload" href="/resources/imgs/spongebob_icon.webp" as="image" />
-	<link rel="preload" href="/resources/imgs/algedraw_icon.webp" as="image" />
-	<link rel="preload" href="/resources/imgs/vortecs_icon.webp" as="image" />
+	<link rel="preload" href="./resources/imgs/Dennis2021-200.webp" as="image" />
+	<link rel="preload" href="./resources/imgs/tint_icon.webp" as="image" />
+	<link rel="preload" href="./resources/imgs/spongebob_icon.webp" as="image" />
+	<link rel="preload" href="./resources/imgs/algedraw_icon.webp" as="image" />
+	<link rel="preload" href="./resources/imgs/vortecs_icon.webp" as="image" />
 
 	<!-- Preload component dependencies -->
-	<link rel="modulepreload" href="/components/utils.mjs" as="script" />
-	<link rel="modulepreload" href="/components/FeaturedProject.mjs" as="script" />
+	<link rel="modulepreload" href="./components/utils.mjs" as="script" />
+	<link rel="modulepreload" href="./components/FeaturedProject.mjs" as="script" />
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/fontawesome.min.css"
 		integrity="sha512-giQeaPns4lQTBMRpOOHsYnGw1tGVzbAIHUyHRgn7+6FmiEgGGjaG0T2LZJmAPMzRCl+Cug0ItQ2xDZpTmEc+CQ=="
@@ -61,11 +71,12 @@
 		crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
 
 	<style>{% include site.styles.css %}</style>
+	<script>console.log(String.raw`{% include liveFootage.ascii.txt %}`);</script>
 
-	<script type="module" src="/components/FeaturedProject.mjs"></script>
+	<script type="module" src="./components/FeaturedProject.mjs"></script>
 
-	<link rel="icon" href="/favicon.ico" />
-	<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+	<link rel="icon" href="./favicon.ico" />
+	<link rel="apple-touch-icon" href="./apple-touch-icon.png" />
 </head>
 
 <body>
@@ -121,9 +132,7 @@
 				primarily do full-stack web development, but I love to try and learn all new things.
 			</p>
 			<p class="p">
-				My career goal is simply to create software that is practical, trustworthy, and easy to use.
-				However, I also hope to have opportunities to mentor and help others in
-				my field along the way.
+				My career goal is simply to create software that is practical, trustworthy, and easy to use. However, I also offer one on one tutoring in a variety of subjects, mentorship, and consultation services.
 			</p>
 		</section>
 		<section class="section resume">
@@ -135,22 +144,6 @@
 					title="My Résumé"></iframe>
 			</details>
 		</section>
-		<!-- <section class="section skills">
-			<h1>Skills</h1>
-			<div class="skill-list">
-				<span class="skill">Web Development
-					<div style="display: inline-flex; gap: 5px; vertical-align: middle">
-						<i class="fa-brands fa-html5"></i>
-						<i class="fa-brands fa-css3-alt"></i><i class="fa-brands fa-square-js"></i>
-					</div>
-				</span>
-				<span class="skill">Python <i class="fa-brands fa-python"></i></span>
-				<span class="skill">Java <i class="fa-brands fa-java"></i></span>
-				<span class="skill">PHP/Hack <i class="fa-brands fa-php"></i></span>
-				<span class="skill">Go <i class="fa-brands fa-golang"></i></span>
-				<span class="skill">SQL <i class="fa-solid fa-database"></i></span>
-			</div>
-		</section> -->
 		<section class="section projects">
 			<h1 style="display: inline-block">Featured Projects</h1>
 			<div class="featured-projects-grid">
