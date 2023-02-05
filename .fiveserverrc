@@ -1,0 +1,10 @@
+{
+	"__docs": "https://github.com/yandeu/five-server#documentation",
+	"root": "_site",
+	"open": "index.html",
+	"watch": "_site",
+	"logLevel": 0,
+	"injectCss": false,
+	"injectBody": false,
+	"wait": 2
+}

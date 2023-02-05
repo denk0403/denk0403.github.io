@@ -1,10 +1,9 @@
 ---
-title: "A Case for Option 4 (CSS Nesting)"
+title: "CSS Nesting Developer Tools"
 layout: default
 active_tab: blog
 tags: ["css", "nesting", "developer tools", "browser"]
+categories: ["opinion"]
 ---
 
-Test 1
-
-
+Test 2
