@@ -1,10 +1,8 @@
 ---
-title: "Blog"
+title: "DenniBlog"
 layout: default
 active_tab: blog
 ---
-
-# Posts
 
 {% if site.posts.size == 0 %}
 {: style="text-align: center"}

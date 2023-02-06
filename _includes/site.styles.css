@@ -121,7 +121,7 @@ h1 {
     scale: 1.08;
 }
 
-.links .link:focus-within {
+a:focus-within {
     outline: 2px var(--accent) solid;
 }
 
@@ -212,6 +212,14 @@ h1 {
 
 .resume .details:has(.summary:is(:hover, :focus-within)) {
     background-color: #303030;
+}
+
+.resume .details:has(.summary:focus-visible) {
+    outline: 2px var(--accent) solid;
+}
+
+.resume .summary:focus-visible {
+    outline: none;
 }
 
 .resume .summary {

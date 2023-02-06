@@ -58,31 +58,31 @@
         height: 630px;
         width: 1200px;
         background-color: #171717;
-        background-image: url(./denniskats.dev_.png);
+        background-image: url(./denniskats.dev.png);
         background-size: cover;
         filter: blur(30px);
         z-index: -1;
     }
 
-    #name {
-        font-size: 60px;
-    }
-
-    #role {
-        font-size: 45px;
+    #name, #role {
+        font-size: 65px;
     }
 
     #extra-info {
         display: flex;
         margin: 5px 0 0;
         text-align: center;
-        font-size: 25;
-        gap: 15px
+        font-size: 35px;
+        gap: 20px
     }
 
     .vert-center {
         display: flex;
         align-items: center;
+    }
+
+    .icon {
+        margin-right: 10px;
     }
 </style>
 
@@ -94,11 +94,11 @@
         <div id="name">Dennis Kats</div>
         <div id="role">Software Engineer</div>
         <div id="extra-info" class="vert-center">
-            <span><i style="margin-right: 5px;" class="fa-solid fa-person"></i>He/Him</span>
-            <span><i style="margin-right: 5px;" class="fa-solid fa-location-pin"></i>NYC</span>
+            <span><i class="icon fa-solid fa-person"></i>He/Him</span>
+            <span><i class="icon fa-solid fa-location-pin"></i>NYC</span>
         </div>
         <div id="extra-info" class="vert-center">
-            <span><i style="margin-right: 5px;" class="fa-solid fa-envelope"></i> denniskats43@gmail.com</span>
+            <span><i class="icon fa-solid fa-envelope"></i> denniskats43@gmail.com</span>
         </div>
     </div>
 </div>

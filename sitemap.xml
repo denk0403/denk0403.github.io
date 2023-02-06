@@ -26,6 +26,11 @@
     <priority>0.80</priority>
   </url>
   <url>
+    <loc>https://denniskats.dev/services.html</loc>
+    <lastmod>2023-02-05T13:04:40+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
     <loc>https://denniskats.dev/Mocking-Spongebob/</loc>
     <lastmod>2022-11-24T13:04:40+00:00</lastmod>
     <priority>0.80</priority>
