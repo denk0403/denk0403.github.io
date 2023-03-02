@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<label>Text: <input id="text" style="width: 550px;"
+        value="Fit And Balance (FAB) Format: an algorithm for resizing and balancing text." /></label><br />
+<br>
+<div>
+    <label>
+        Play Delay:
+        <input id="delay" type="number" step="10" min="0" max="1000" value="60" inputmode="numeric" /></label>
+    <button id="play">Play</button>
+    <button id="pause">Pause</button>
+    <button id="next">Next</button>
+    <button id="skip">Skip to end</button>
+    <button id="clear">Clear</button>
+</div>
+<br />
+<div>
+    <label><input id="bb" type="checkbox" checked />Show Bounding Box</label><br />
+    <label><input id="ebb" type="checkbox" checked />Show Effective Bounding Box</label><br />
+    <label><input id="sb" type="checkbox" checked />Show Balanced Text</label><br />
+</div>
+<br>
+<div>
+    Calculated font size: <span id="fs">0</span>px<br>
+    Effective Box Width: <span id="ebw">0</span>px<br>
+    Phase: <span id="phase">N/A</span><br>
+</div>
+<canvas id="canvas" style="border: 1px solid black" width="660" height="350"></canvas>
+<div>
+    X <input id="xin" type="number" step="1" min="0" max="350" value="100" inputmode="numeric" />
+    Y <input id="yin" type="number" step="1" min="0" max="350" value="100" inputmode="numeric" />
+    Width <input id="widthin" type="number" step="1" min="0" max="660" value="460" inputmode="numeric" />
+    Height <input id="heightin" type="number" step="1" min="0" max="350" value="150" inputmode="numeric" />
+</div>
+
+<script>
+    var REGION_X = xin.valueAsNumber;
+    var REGION_Y = yin.valueAsNumber;
+    var REGION_WIDTH = widthin.valueAsNumber;
+    var REGION_HEIGHT = heightin.valueAsNumber;
+
+    /** @type {CanvasRenderingContext2D} */
+    var ctx = canvas.getContext("2d");
+    ctx.lineJoin = "round";
+    ctx.textBaseline = "top";
+    ctx.imageSmoothingQuality = "high";
+    ctx.textRendering = "optimizeLegibility";
+    // ctx.textAlign = "center"
+
+    let drawBB;
+    let drawEBB;
+
+    let count = 0;
+    function drawCanvas(format, phase, effectiveBoxWidth, isGood) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawBB = !!bb.checked;
+        drawEBB = !!ebb.checked;
+
+        switch (phase) {
+            case "resize": {
+                if (drawBB) {
+                    ctx.fillStyle = isGood === undefined ? "lightblue" : isGood ? "limegreen" : "firebrick";
+                    ctx.fillRect(REGION_X, REGION_Y, REGION_WIDTH, REGION_HEIGHT);
+                }
+                break;
+            }
+            case "balance": {
+                if (drawBB) {
+                    ctx.fillStyle = "limegreen";
+                    ctx.fillRect(REGION_X, REGION_Y, REGION_WIDTH, REGION_HEIGHT);
+                }
+                if (drawEBB && format) {
+                    const { lines, fontSize } = format;
+                    const effectiveBoxHeight = lines.length * fontSize;
+                    ctx.fillStyle = isGood === undefined ? "orange" : isGood ? "limegreen" : "firebrick";
+                    ctx.fillRect(REGION_X, REGION_Y, effectiveBoxWidth, effectiveBoxHeight);
+                }
+                break;
+            }
+        }
+
+        count += 1;
+        if (!format) return;
+
+        fs.textContent = format.fontSize;
+        ebw.textContent = effectiveBoxWidth;
+        window.phase.textContent = phase;
+
+        drawText(format);
+    }
+
+    let interval = null;
+    let player = null
+    function restart() {
+        let finished;
+        let formatGen;
+
+        function reset() {
+            finished = false;
+            clearInterval(player);
+            clearTimeout(interval);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            formatGen = formatText(text.value, REGION_WIDTH, REGION_HEIGHT);
+        }
+
+        reset();
+
+        skip.onclick = () => { [...formatGen]; finished = true; };
+        play.onclick = () => {
+            clearInterval(player)
+
+            if (finished) reset();
+
+            player = setInterval(() => { if (formatGen.next().done) { clearInterval(player); finished = true; }; }, delay.valueAsNumber)
+            pause.onclick = () => clearInterval(player);
+            delay.oninput = () => {
+                clearInterval(player);
+                player = setInterval(() => { if (formatGen.next().done) clearInterval(player); }, delay.valueAsNumber)
+            }
+        }
+        next.onmousedown = () => {
+            if (!formatGen.next().done) {
+                repeat = (delay) => {
+                    interval = setTimeout(() => {
+                        if (!formatGen.next().done) { repeat(Math.max(delay * 0.95, 50)) } else {
+                            finished = true;
+                        }
+                    }, delay)
+                }
+                repeat(750);
+            } else {
+                finished = true;
+            }
+        }
+        next.onmouseup = () => clearTimeout(interval);
+        clear.onclick = () => reset();
+    }
+
+    text.oninput = () => restart();
+    sb.oninput = () => restart();
+    delay.oninput = () => restart();
+    xin.oninput = () => {
+        REGION_X = xin.valueAsNumber;
+        restart();
+    };
+    yin.oninput = () => {
+        REGION_Y = yin.valueAsNumber;
+        restart();
+    };
+    widthin.oninput = () => {
+        REGION_WIDTH = widthin.valueAsNumber;
+        restart();
+    };
+    heightin.oninput = () => {
+        REGION_HEIGHT = heightin.valueAsNumber;
+        restart();
+    };
+
+    restart();
+
+    /** @param {{lines: string[], fontSize: number}} intermediateFormat */
+    function step(intermediateFormat, phase, effectiveBoxWidth, isGood) {
+        // console.log(intermediateFormat);
+        drawCanvas(intermediateFormat, phase, effectiveBoxWidth, isGood);
+    }
+
+    function* formatText(str, boxWidth, boxHeight) {
+        count = 0;
+        const shouldBalance = !!sb.checked;
+
+        const MAX_LINE_WIDTH = boxWidth;
+        const MAX_FONT_SIZE = boxHeight;
+
+        const MIN_LINE_WIDTH = 1; // in pixels
+        const MIN_FONT_SIZE = 1; // in pixels
+
+        if (str === "") {
+            return { lines: [], fontSize: MAX_FONT_SIZE };
+        }
+
+        const words = str.split(" ");
+
+        /**
+         * A list representing how the caption should be broken up into
+         * separate lines using some formatting strategy.
+         * @type {string[][]}
+         */
+        let linesByWord;
+
+        /**
+         * This higher-order function returns a procedure (a.k.a. a callback)
+         * for determining whether a word is able to fit into the {@link linesByWord}
+         * list using the given font size and box width.
+         *
+         * The resulting procedure HAS SIDE EFFECTS: the procedure also appends the
+         * given word to a line of the {@link linesByWord} list if, but not only if,
+         * it fits.
+         *
+         * The resulting procedure should likely be used within another function
+         * that accepts a callback function such as {@link Array.prototype.every}.
+         *
+         * @param {number} fontSize The font size
+         * @param {number} boxWidth The max width of the region
+         * @returns {(word: string) => boolean} A procedure to determine if a word will fit.
+         */
+        function fitIntoLinesAtSize(fontSize, boxWidth, phase) {
+            // console.log("Max number of lines:", maxNumberOfLines(fontSize));
+            return function* (/** @type {string} */ word) {
+                const tempLinesByWord = [...linesByWord];
+                const modifiedLine = tempLinesByWord.at(-1).concat(word).join(" ").trim();
+
+                tempLinesByWord.splice(-1, 1)
+                tempLinesByWord.push([modifiedLine]);
+
+                // console.log(getTextWidth(modifiedLine), boxWidth)
+
+                yield step(
+                    {
+                        lines: tempLinesByWord.map((line) => line.join(" ").trim()),
+                        fontSize,
+                    },
+                    phase,
+                    boxWidth,
+                    getTextWidth(modifiedLine) <= boxWidth && tempLinesByWord.length * fontSize <= boxHeight ? undefined : false
+                );
+
+                // checks if adding new word exceeds the last line's box width
+                if (getTextWidth(modifiedLine) > boxWidth) {
+                    // check if a single word is too big to fit
+                    if (getTextWidth(word) > boxWidth) {
+                        return false;
+                    }
+
+                    // create a new line
+                    linesByWord.push([word]);
+
+                    yield step(
+                        {
+                            lines: linesByWord.map((line) => line.join(" ").trim()),
+                            fontSize,
+                        },
+                        phase,
+                        boxWidth,
+                        linesByWord.length <= maxNumberOfLines(fontSize) ? undefined : false
+                    );
+
+                    // return if we have exceeded the maximum allowed lines
+                    return linesByWord.length <= maxNumberOfLines(fontSize);
+                } else {
+                    // add the word if it fits on the last line
+                    linesByWord.at(-1).push(word);
+
+                    return true;
+                }
+            };
+        }
+
+        function* tryFormatAllWords(fontSize, boxWidth, phase) {
+            ctx.font = `bold ${fontSize}px Arial`;
+
+            // set up result array of lines
+            linesByWord = [[]];
+
+            // tries to fits every word into `linesByWord`, returning whether it was successful
+            const fitFunction = fitIntoLinesAtSize(fontSize, boxWidth, phase);
+            let allTrue = true;
+            for (const word of words) {
+                allTrue &= yield* fitFunction(word);
+                if (!allTrue) break;
+            }
+
+            if (allTrue) {
+                yield step(
+                    {
+                        lines: linesByWord.map((line) => line.join(" ").trim()),
+                        fontSize,
+                    },
+                    phase,
+                    boxWidth,
+                    true
+                );
+            }
+
+
+            return allTrue;
+        }
+
+        // Setup font size range
+        let lowerFontSize = MIN_FONT_SIZE - 1; // always safe
+        let upperFontSize = MAX_FONT_SIZE; // possibly too large
+
+        // Binary search through font size range
+        // This determines the maximum font size that fits all the text into the region
+        while (lowerFontSize !== upperFontSize) {
+            // Try new middle font-size
+            const currentFontSize = ~~((upperFontSize + lowerFontSize) / 2);
+
+            const formattedAllWords = yield* tryFormatAllWords(currentFontSize, MAX_LINE_WIDTH, "resize");
+
+            if (formattedAllWords) {
+                lowerFontSize = currentFontSize + 1;
+            } else {
+                upperFontSize = currentFontSize;
+            }
+        }
+
+        const finalFontSize = lowerFontSize - 1;
+
+        // check that text is a readable size, otherwise return null
+        if (finalFontSize < MIN_FONT_SIZE) {
+            return null;
+        }
+
+        let finalBoxWidth = MAX_LINE_WIDTH;
+
+        if (shouldBalance) {
+            // Setup max width range
+            let lowerBoxWidth = MIN_LINE_WIDTH - 1; // possibly too small
+            let upperBoxWidth = MAX_LINE_WIDTH; // always safe
+
+            // Binary search through max width range
+            // This determines the minimum width that optimally balances the text within the region
+            while (lowerBoxWidth !== upperBoxWidth) {
+                // Try new middle max width
+                const currentBoxWidth = ~~((upperBoxWidth + lowerBoxWidth) / 2);
+
+                const formattedAllWords = yield* tryFormatAllWords(
+                    finalFontSize,
+                    currentBoxWidth,
+                    "balance"
+                );
+
+                if (formattedAllWords) {
+                    upperBoxWidth = currentBoxWidth;
+                } else {
+                    lowerBoxWidth = currentBoxWidth + 1;
+                }
+            }
+
+            finalBoxWidth = upperBoxWidth;
+        }
+
+        // rebuild result array
+        [...tryFormatAllWords(finalFontSize, finalBoxWidth, "final result")];
+
+        // console.log("Done!", count);
+
+        return {
+            lines: linesByWord.map((line) => line.join(" ").trim()),
+            fontSize: finalFontSize,
+        };
+    }
+
+    function getTextWidth(str) {
+        return ctx.measureText(str).width;
+    }
+
+    function maxNumberOfLines(fontSize) {
+        return Math.floor(REGION_HEIGHT / fontSize);
+    }
+
+    function drawText(format) {
+        const { lines, fontSize } = format;
+
+        ctx.fillStyle = "black";
+        ctx.font = `bold ${fontSize}px Arial`;
+
+        const BOTTOM_MARGIN = 4;
+
+        const xloc = REGION_X;
+        const yloc = REGION_Y;
+
+        for (let i = 0; i < lines.length; i++) {
+            ctx.beginPath();
+            ctx.fillText(lines[i], xloc, yloc + i * fontSize + 1); // draw filled texts
+            ctx.closePath();
+        }
+    }
+
+    function log(...args) {
+        document.body.append(document.createElement("br"), ...args.map(JSON.stringify));
+    }
+</script>
