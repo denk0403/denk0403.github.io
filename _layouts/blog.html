@@ -61,7 +61,9 @@
       crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
 
     <style>{% include site.styles.css %}</style>
+    <style>{% include blog.styles.css %}</style>
     <script>console.log(String.raw`{% include liveFootage.ascii.txt %}`);</script>
+    <script src="/components/BalanceText.js"></script>
 
     {% for head_tag in page.add_head %}
     {{ head_tag }}
@@ -74,20 +76,24 @@
 	<body>
 		{% include header.html %}
 		<nav class="tab-bar">
-			{% if page.active_tab == "about me" %}
-			<a class="tab selected" href="/index.html" title="About Me Page">About Me</a>
-			{% else %}
 			<a class="tab" href="/index.html" title="About Me Page">About Me</a>
-			{% endif %} {% if page.active_tab == "projects" %}
-			<a class="tab selected" href="/projects.html" title="Projects Page">Projects</a>
-			{% else %}
 			<a class="tab" href="/projects.html" title="Projects Page">Projects</a>
-			{% endif %} {% if page.active_tab == "blog" %}
 			<a class="tab selected" href="/blog.html" title="Blog Page">Blog</a>
-			{% else %}
-			<a class="tab" href="/blog.html" title="Blog Page">Blog</a>
-			{% endif %}
 		</nav>
-		<main class="main-content">{{ content }}</main>
+		<main class="page-body">
+			<div class="blog-heading">
+				<a id="back-btn" href="{{ page.back_link }}" title="Go back">
+					<i class="fa-inverse fa-2x fa-solid fa-arrow-left"></i>
+				</a>
+				<balance-text>
+					<h2 class="post-title">{{ page.title }}</h2>
+				</balance-text>
+				<div style="display: flex; justify-content: space-between; flex-wrap: wrap">
+					<span>By: Dennis Kats</span>
+					<span>{{page.date | date_to_string: "ordinal", "US"}}</span>
+				</div>
+			</div>
+			<div class="main-content">{{ content }}</div>
+		</main>
 	</body>
 </html>

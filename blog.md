@@ -18,10 +18,16 @@ Welcome to my blog! Here you will find a series of posts I've written on topics 
 
 {% else %}
 
-<ul>
+<ul style="list-style: none; padding: 0;">
   {% for post in site.posts %}
     <li>
-      <a href="{{ post.url }}">{{ post.title }}<br>{{ post.subtitle }}</a>
+      <a class="container-link" href="{{ post.url }}" style="border-bottom: 2px solid #333">
+					<div class="title-date">
+						<span class="title">{{ post.title }}</span>
+						<span class="date">{{ post.date | date_to_string: "ordinal", "US" }}</span>
+					</div>
+					<div class="excerpt">{{ post.excerpt | strip_html | truncate:170 }}</div>
+				</a>
     </li>
   {% endfor %}
 </ul>

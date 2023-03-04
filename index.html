@@ -1,5 +1,6 @@
 ---
 ---
+
 <!--
 	Hello! Welcome to my website's HTML.
 
@@ -11,153 +12,188 @@
 -->
 <!DOCTYPE html>
 <html lang="en">
+	<!-- prettier-ignore -->
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<head>
-	<meta charset="UTF-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="keywords"
+			content="developer, software engineer, code, github, software, web developer, react, javascript, web components, tutor, mentor" />
+		<meta name="author" content="Dennis Kats" />
+		<meta name="description"
+			content="Dennis Kats is a software engineer based in NYC. He specializes in full-stack web development, and he loves to learn about UX/DX, accessibility, and human-centered design." />
+		<title>Dennis Kats | Software Engineer</title>
 
-	<meta name="keywords"
-		content="developer, software engineer, code, github, software, web developer, react, javascript, web components, tutor, mentor" />
-	<meta name="author" content="Dennis Kats" />
-	<meta name="description"
-		content="Dennis Kats is a software engineer based in NYC. He specializes in full-stack web development, and he loves to learn about UX/DX, accessibility, and human-centered design." />
-	<title>Dennis Kats | Software Engineer</title>
+		<!-- Open Graph protocol support-->
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="Dennis Kats | Software Engineer" />
+		<meta property="og:url" content="https://denniskats.dev" />
+		<meta property="og:secure_url" content="https://denniskats.dev" />
+		<meta property="og:description"
+			content="Dennis Kats is a software engineer based in NYC. He specializes in full-stack web development, and he's extremely passionate about UX/DX, accessibility, and human-centered design." />
+		<meta name="og:image" content="https://denniskats.dev/resources/imgs/og.image.jpg" />
+		<meta name="og:image:alt" content="Dennis Kats. Software Engineer. He/Him. NYC. denniskats43@gmail.com" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
 
-	<!-- Open Graph protocol support-->
-	<meta property="og:type" content="website" />
-	<meta property="og:title" content="Dennis Kats | Software Engineer" />
-	<meta property="og:url" content="https://denniskats.dev" />
-	<meta property="og:secure_url" content="https://denniskats.dev" />
-	<meta property="og:description"
-		content="Dennis Kats is a software engineer based in NYC. He specializes in full-stack web development, and he's extremely passionate about UX/DX, accessibility, and human-centered design." />
-	<meta name="og:image" content="https://denniskats.dev/resources/imgs/og.image.jpg" />
-	<meta name="og:image:alt" content="Dennis Kats. Software Engineer. He/Him. NYC. denniskats43@gmail.com" />
-	<meta property="og:image:width" content="1200" />
-	<meta property="og:image:height" content="630" />
+		<!-- Twitter Card support-->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:site" content="@denk0403" />
+		<meta name="twitter:creator" content="@denk0403" />
+		<meta name="twitter:image" content="https://denniskats.dev/resources/imgs/og.image.jpg" />
+		<meta name="twitter:image:alt" content="Dennis Kats. Software Engineer. He/Him. NYC. denniskats43@gmail.com" />
 
-	<!-- Twitter Card support-->
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:site" content="@denk0403" />
-	<meta name="twitter:creator" content="@denk0403" />
-	<meta name="twitter:image" content="https://denniskats.dev/resources/imgs/og.image.jpg" />
-	<meta name="twitter:image:alt" content="Dennis Kats. Software Engineer. He/Him. NYC. denniskats43@gmail.com" />
+		<!-- Preload FontAwesome fonts -->
+		<link as="font" rel="preload" referrerpolicy="no-referrer" type="font/woff2" crossorigin
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/webfonts/fa-brands-400.woff2" />
+		<link as="font" rel="preload" referrerpolicy="no-referrer" type="font/woff2" crossorigin
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/webfonts/fa-solid-900.woff2" />
 
-	<!-- Preload FontAwesome fonts -->
-	<link as="font" rel="preload" referrerpolicy="no-referrer" type="font/woff2" crossorigin
-		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/webfonts/fa-brands-400.woff2" />
-	<link as="font" rel="preload" referrerpolicy="no-referrer" type="font/woff2" crossorigin
-		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/webfonts/fa-solid-900.woff2" />
+		<!-- Preload images -->
+		<link rel="preload" href="/resources/imgs/Dennis2021-200.webp" as="image" />
+		<link rel="preload" href="/resources/imgs/tint_icon.webp" as="image" />
+		<link rel="preload" href="/resources/imgs/spongebob_icon.webp" as="image" />
+		<link rel="preload" href="/resources/imgs/algedraw_icon.webp" as="image" />
+		<link rel="preload" href="/resources/imgs/vortecs_icon.webp" as="image" />
 
-	<!-- Preload images -->
-	<link rel="preload" href="/resources/imgs/Dennis2021-200.webp" as="image" />
-	<link rel="preload" href="/resources/imgs/tint_icon.webp" as="image" />
-	<link rel="preload" href="/resources/imgs/spongebob_icon.webp" as="image" />
-	<link rel="preload" href="/resources/imgs/algedraw_icon.webp" as="image" />
-	<link rel="preload" href="/resources/imgs/vortecs_icon.webp" as="image" />
+		<!-- Preload component dependencies -->
+		<link rel="modulepreload" href="/components/utils.mjs" as="script" />
+		<link rel="modulepreload" href="/components/FeaturedProject.mjs" as="script" />
 
-	<!-- Preload component dependencies -->
-	<link rel="modulepreload" href="/components/utils.mjs" as="script" />
-	<link rel="modulepreload" href="/components/FeaturedProject.mjs" as="script" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/fontawesome.min.css"
+			integrity="sha512-giQeaPns4lQTBMRpOOHsYnGw1tGVzbAIHUyHRgn7+6FmiEgGGjaG0T2LZJmAPMzRCl+Cug0ItQ2xDZpTmEc+CQ=="
+			crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/brands.min.css"
+			integrity="sha512-G/T7HQJXSeNV7mKMXeJKlYNJ0jrs8RsWzYG7rVACye+qrcUhEAYKYzaa+VFy6eFzM2+/JT1Q+eqBbZFSHmJQew=="
+			crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/solid.min.css"
+			integrity="sha512-6mc0R607di/biCutMUtU9K7NtNewiGQzrvWX4bWTeqmljZdJrwYvKJtnhgR+Ryvj+NRJ8+NnnCM/biGqMe/iRA=="
+			crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
 
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/fontawesome.min.css"
-		integrity="sha512-giQeaPns4lQTBMRpOOHsYnGw1tGVzbAIHUyHRgn7+6FmiEgGGjaG0T2LZJmAPMzRCl+Cug0ItQ2xDZpTmEc+CQ=="
-		crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/brands.min.css"
-		integrity="sha512-G/T7HQJXSeNV7mKMXeJKlYNJ0jrs8RsWzYG7rVACye+qrcUhEAYKYzaa+VFy6eFzM2+/JT1Q+eqBbZFSHmJQew=="
-		crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/solid.min.css"
-		integrity="sha512-6mc0R607di/biCutMUtU9K7NtNewiGQzrvWX4bWTeqmljZdJrwYvKJtnhgR+Ryvj+NRJ8+NnnCM/biGqMe/iRA=="
-		crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
+		<style>{% include site.styles.css %}</style>
+		<script>console.log(String.raw`{% include liveFootage.ascii.txt %}`);</script>
 
-	<style>{% include site.styles.css %}</style>
-	<script>console.log(String.raw`{% include liveFootage.ascii.txt %}`);</script>
+		<script type="module" src="/components/FeaturedProject.mjs"></script>
 
-	<script type="module" src="/components/FeaturedProject.mjs"></script>
+		<link rel="icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+	</head>
 
-	<link rel="icon" href="/favicon.ico" />
-	<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-</head>
-
-<body>
-	{% include header.html %}
-	<nav class="tab-bar">
-		<span class="tab selected" title="About Me Page">About Me</span>
-		<a class="tab" href="projects.html" title="Projects Page">Projects</a>
-		<a class="tab" href="/blog.html" title="Blog Page">Blog</a>
-	</nav>
-	<main class="main-content">
-		<section class="section about-me">
-			<p class="p">
-				Hey <span class="wave">👋</span>, I'm Dennis! I am a software engineer living in my hometown of New York
-				City. I
-				primarily do full-stack web development, but I love to try and learn all new things.
-			</p>
-			<p class="p">
-				My career goal is simply to create software that is practical, trustworthy, and easy to use. However, I
-				also offer one-on-one tutoring in a wide range of subjects, mentorship, and consultation services. <a
-					href="{% link services.md %}" title="Professional services">Click here to learn more</a>.
-			</p>
-		</section>
-		<section class="section resume">
-			<details class="details" title="Click to toggle résumé view."
-				ontoggle="event.currentTarget.scrollIntoView({behavior: 'smooth', block: 'center'})">
-				<summary class="summary">My Résumé</summary>
-				<iframe loading="lazy" class="pdf" width="100%" allow="autoplay" referrerpolicy="no-referrer"
-					src="https://drive.google.com/file/d/1EeEUbbnUaHCzj27siybMlpPHmwX2a8n9/preview"
-					title="My Résumé"></iframe>
-			</details>
-		</section>
-		<section class="section projects">
-			<h1 style="display: inline-block">Featured Projects</h1>
-			<div class="featured-projects-grid">
-				<featured-project name="Tint Generator" icon-href="resources/imgs/tint_icon.webp"
-					icon-alt="Tint Generator icon">
-					<p slot="description">
-						An online GUI for creating and simulating mathematical models of computation.
-					</p>
-				</featured-project>
-				<featured-project name="Mocking SpongeBob Meme Generator" icon-href="resources/imgs/spongebob_icon.webp"
-					icon-alt="Mocking SpongeBob Meme Generator icon">
-					<p slot="description">
-						An over the top generator for the Mocking SpongeBob meme that became popular in 2017.
-					</p>
-				</featured-project>
-				<featured-project name="AlgeDraw Calculator" icon-href="resources/imgs/algedraw_icon.webp"
-					icon-alt="AlgeDraw Calculator icon">
-					<p slot="description">
-						A calculator for the Fitbit with the ability to parse handwritten digits.
-					</p>
-				</featured-project>
-				<featured-project name="Vortecs Desktop" icon-href="resources/imgs/vortecs_icon.webp"
-					icon-alt="Vortecs Desktop icon">
-					<p slot="description">
-						A simple educational tool for visualizing 2D linear transformations.
-					</p>
-				</featured-project>
-			</div>
-		</section>
-		<section class="section interests">
-			<h1>Interests</h1>
-			<div class="skill-list">
-				<span class="skill">Mentorship <i class="fa-solid fa-person-chalkboard"></i></span>
-				<span class="skill">Puzzles & Games
-					<div style="display: inline-flex; gap: 5px; vertical-align: middle">
-						<i class="fa-solid fa-puzzle-piece"></i>
-						<i class="fa-solid fa-dice"></i>
-						<i class="fa-solid fa-gamepad"></i>
+	<body>
+		{% include header.html %}
+		<nav class="tab-bar">
+			<span class="tab selected" title="About Me Page">About Me</span>
+			<a class="tab" href="projects.html" title="Projects Page">Projects</a>
+			<a class="tab" href="/blog.html" title="Blog Page">Blog</a>
+		</nav>
+		<main class="main-content">
+			<section class="section about-me">
+				<p class="p">
+					Hey <span class="wave">👋</span>, I'm Dennis! I am a software engineer living in my
+					hometown of New York City. I primarily do full-stack web development, but I love to try
+					and learn all new things.
+				</p>
+				<p class="p">
+					My career goal is simply to create software that is practical, trustworthy, and easy to
+					use. However, I also offer one-on-one tutoring in a wide range of subjects, mentorship,
+					and consultation services.
+					<a href="{% link services.md %}" title="Professional services">Click here to learn more</a
+					>.
+				</p>
+			</section>
+			<section class="section resume">
+				<details
+					class="details"
+					title="Click to toggle résumé view."
+					ontoggle="event.currentTarget.scrollIntoView({behavior: 'smooth', block: 'center'})"
+				>
+					<summary class="summary">My Résumé</summary>
+					<iframe
+						loading="lazy"
+						class="pdf"
+						width="100%"
+						allow="autoplay"
+						referrerpolicy="no-referrer"
+						src="https://drive.google.com/file/d/1EeEUbbnUaHCzj27siybMlpPHmwX2a8n9/preview"
+						title="My Résumé"
+					></iframe>
+				</details>
+			</section>
+			<section class="section recent-post">
+				<h1>Most Recent Blog Post</h1>
+				{% assign recent = site.posts[0] %}
+				<a class="container-link" href="{{ recent.url }}">
+					<div class="title-date">
+						<span class="title">{{ recent.title }}</span>
+						<span class="date">{{ recent.date | date_to_string: "ordinal", "US" }}</span>
 					</div>
-				</span>
-				<span class="skill">Film & Theatre
-					<div style="display: inline-flex; gap: 5px; vertical-align: middle">
-						<i class="fa-solid fa-film"></i>
-						<i class="fa-solid fa-masks-theater"></i>
-					</div>
-				</span>
-				<span class="skill">Dogs <i class="fa-solid fa-dog"></i></span>
-			</div>
-		</section>
-	</main>
-</body>
-
+					<div class="excerpt">{{ recent.excerpt | strip_html | truncate:170 }}</div>
+				</a>
+			</section>
+			<section class="section projects">
+				<h1>Featured Projects</h1>
+				<div class="featured-projects-grid">
+					<featured-project
+						name="Tint Generator"
+						icon-href="resources/imgs/tint_icon.webp"
+						icon-alt="Tint Generator icon"
+					>
+						<p slot="description">
+							An online GUI for creating and simulating mathematical models of computation.
+						</p>
+					</featured-project>
+					<featured-project
+						name="Mocking SpongeBob Meme Generator"
+						icon-href="resources/imgs/spongebob_icon.webp"
+						icon-alt="Mocking SpongeBob Meme Generator icon"
+					>
+						<p slot="description">
+							An over the top generator for the Mocking SpongeBob meme that became popular in 2017.
+						</p>
+					</featured-project>
+					<featured-project
+						name="AlgeDraw Calculator"
+						icon-href="resources/imgs/algedraw_icon.webp"
+						icon-alt="AlgeDraw Calculator icon"
+					>
+						<p slot="description">
+							A calculator for the Fitbit with the ability to parse handwritten digits.
+						</p>
+					</featured-project>
+					<featured-project
+						name="Vortecs Desktop"
+						icon-href="resources/imgs/vortecs_icon.webp"
+						icon-alt="Vortecs Desktop icon"
+					>
+						<p slot="description">
+							A simple educational tool for visualizing 2D linear transformations.
+						</p>
+					</featured-project>
+				</div>
+			</section>
+			<section class="section interests">
+				<h1>Interests</h1>
+				<div class="skill-list">
+					<span class="skill">Mentorship <i class="fa-solid fa-person-chalkboard"></i></span>
+					<span class="skill"
+						>Puzzles & Games
+						<div style="display: inline-flex; gap: 5px; vertical-align: middle">
+							<i class="fa-solid fa-puzzle-piece"></i>
+							<i class="fa-solid fa-dice"></i>
+							<i class="fa-solid fa-gamepad"></i>
+						</div>
+					</span>
+					<span class="skill"
+						>Film & Theatre
+						<div style="display: inline-flex; gap: 5px; vertical-align: middle">
+							<i class="fa-solid fa-film"></i>
+							<i class="fa-solid fa-masks-theater"></i>
+						</div>
+					</span>
+					<span class="skill">Dogs <i class="fa-solid fa-dog"></i></span>
+				</div>
+			</section>
+		</main>
+	</body>
 </html>

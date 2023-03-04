@@ -7,3 +7,11 @@ kramdown:
       line_numbers: true
     span:
       line_numbers: false
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "blog"
+      back_link: "/blog"
