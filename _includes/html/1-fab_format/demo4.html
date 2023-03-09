@@ -1,0 +1,91 @@
+<style>
+	#demo4 {
+		border: none;
+		width: 100%;
+		height: 100%;
+	}
+
+	#demo4_input {
+		display: inline-block;
+		width: 100%;
+	}
+
+	#demo4_canvas_wrapper {
+		display: block;
+		height: 65px;
+		min-width: 200px;
+		min-height: 65px;
+		max-width: 100%;
+		max-height: 210px;
+		resize: both;
+		overflow: hidden;
+		margin: auto;
+	}
+</style>
+<div>
+	<label style="display: flex; text-indent: 0; gap: 10px">
+		<span>Text:</span>
+		<input id="demo4_input" value="The quick brown fox jumps over the lazy dog." />
+	</label>
+	<div id="demo4_canvas_wrapper">
+		<canvas
+			id="demo4"
+			height="65"
+			width="400"
+			title="Demo 4: Rendering text dynamically with text wrapping, but text can still get clipped."
+		>
+			<noscript> Enable JavaScript to see this demo. </noscript>
+		</canvas>
+	</div>
+</div>
+
+<script>
+	"use strict";
+	{
+		const fontSize = 40;
+
+		/** @type {HTMLInputElement} */
+		const input = window["demo4_input"];
+		/** @type {HTMLCanvasElement} */
+		const canvas = window["demo4"];
+
+		new ResizeObserver(() => rerender()).observe(canvas);
+
+		const ctx = canvas.getContext("2d");
+
+		function getTextWidth(txt) {
+			return ctx.measureText(txt).width;
+		}
+
+		function rerender() {
+			canvas.width = canvas.offsetWidth;
+			canvas.height = canvas.offsetHeight;
+
+			ctx.textBaseline = "top";
+			ctx.font = `${fontSize}px Arial`;
+			ctx.fillStyle = "white";
+			ctx.fillRect(0, 0, canvas.width, canvas.height);
+			ctx.fillStyle = "black";
+
+			const lines = [[]];
+			const words = input.value.trim().split(" ");
+
+			let currentLine = 0;
+			for (const word of words) {
+				if (getTextWidth(lines[currentLine].concat(word).join(" ")) <= canvas.width) {
+					lines[currentLine].push(word);
+				} else {
+					currentLine += 1;
+					lines.push([word]);
+				}
+			}
+
+			for (let lineIndex = 0; lineIndex < lines.length; lineIndex++) {
+				ctx.fillText(lines[lineIndex].join(" "), 0, fontSize * lineIndex);
+			}
+		}
+
+		input.oninput = rerender;
+		rerender();
+	}
+</script>

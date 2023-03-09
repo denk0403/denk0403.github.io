@@ -1,0 +1,12 @@
+{% assign excerpt = include.excerpt | split: "<!-- excerpt-start -->" | last %}
+<a class="container-link" href="{{ include.url }}">
+	<div class="title-date">
+		<balance-text class="title"> {{ include.title }} </balance-text>
+		<span class="date">{{ include.date | date_to_string: "ordinal", "US" }}</span>
+	</div>
+	<div class="excerpt">{{ excerpt | strip_html | strip_newlines | truncate:170 }}</div>
+	<div class="continue">
+		Continue Reading
+		<i class="fa-inverse fa-md fa-solid fa-arrow-right" style="vertical-align: middle"></i>
+	</div>
+</a>

@@ -2,7 +2,7 @@
 ---
 
 // @ts-check
-import { id, prop, template } from "./utils.mjs";
+	import { id, prop, template } from "./utils.mjs";
 
 const ICON_TYPE_DATA_MAP = /** @type {const} */ ({
 	github: /** @type {const} */ ({ classes: ["fa-brands", "fa-github"], tooltip: "Github" }),
@@ -21,7 +21,7 @@ const ICON_TYPE_DATA_MAP = /** @type {const} */ ({
 
 export class ProjectLink extends HTMLElement {
 	static #TEMPLATE = template`
-		<style>{% include ProjectLink.styles.css %}</style>
+		<style>{% include styles/components/ProjectLink.styles.css %}</style>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/fontawesome.min.css"
 			integrity="sha512-giQeaPns4lQTBMRpOOHsYnGw1tGVzbAIHUyHRgn7+6FmiEgGGjaG0T2LZJmAPMzRCl+Cug0ItQ2xDZpTmEc+CQ=="
 			crossorigin="anonymous" referrerpolicy="no-referrer" />

@@ -1,0 +1,45 @@
+<style>
+	#demo3_input {
+		display: inline-block;
+		width: 100%;
+	}
+</style>
+<div>
+	<label style="display: flex; text-indent: 0; gap: 10px">
+		<span>Text:</span>
+		<input id="demo3_input" value="The quick brown fox jumps over the lazy dog." />
+	</label>
+	<canvas
+		id="demo3"
+		height="33"
+		title="Demo 3: Rendering text dynamically, but it can get clipped."
+	>
+		<noscript> Enable JavaScript to see this demo. </noscript>
+	</canvas>
+</div>
+
+<script>
+	"use strict";
+	{
+		/** @type {HTMLInputElement} */
+		const input = window["demo3_input"];
+		/** @type {HTMLCanvasElement} */
+		const canvas = window["demo3"];
+
+		const ctx = canvas.getContext("2d");
+		canvas.width = canvas.offsetWidth;
+		ctx.font = "30px Arial";
+		ctx.textBaseline = "top";
+
+		function rerender() {
+			ctx.fillStyle = "white";
+			ctx.fillRect(0, 0, canvas.width, canvas.height);
+			ctx.fillStyle = "black";
+
+			ctx.fillText(input.value, 0, 0);
+		}
+
+		input.oninput = rerender;
+		rerender();
+	}
+</script>

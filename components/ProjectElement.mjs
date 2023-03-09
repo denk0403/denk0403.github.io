@@ -10,7 +10,7 @@ const toCollapseMsg = "Click to collapse details";
 
 export class ProjectElement extends HTMLElement {
 	static #TEMPLATE = template`
-		<style>{% include ProjectElement.styles.css %}</style>
+		<style>{% include styles/components/ProjectElement.styles.css %}</style>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/fontawesome.min.css"
 			integrity="sha512-giQeaPns4lQTBMRpOOHsYnGw1tGVzbAIHUyHRgn7+6FmiEgGGjaG0T2LZJmAPMzRCl+Cug0ItQ2xDZpTmEc+CQ=="
 			crossorigin="anonymous" referrerpolicy="no-referrer" />

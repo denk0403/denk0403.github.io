@@ -1,0 +1,100 @@
+.page-body {
+    line-height: 1.5;
+}
+
+.blog-heading {
+    display: block;
+    justify-content: start;
+    align-items: center;
+    padding: 20px 15px;
+    background-color: #282828;
+    width: 100%;
+    text-align: center;
+}
+
+.indent {
+    text-indent: 2ch;
+}
+
+.no-indent {
+    text-indent: 0;
+}
+
+.main-content {
+    text-align: justify;
+    text-indent: 2ch;
+    font-family: Roboto, sans-serif;
+    font-size: 1.1rem;
+
+    max-width: 860px;
+    margin: 20px auto;
+    padding: 0 30px 15px;
+}
+
+:where(h1, h2, h3, h4, h5, h6) {
+    text-indent: 0;
+}
+
+.post-title {
+    margin: 0;
+    text-wrap: balance;
+    font-size: 25px;
+    max-width: 100%;
+    max-width: 95%;
+    margin: auto;
+}
+
+.main-content>*+* {
+    margin: 40px 0;
+}
+
+#back-btn {
+    display: block;
+    padding: 10px 15px;
+    margin-right: 25px;
+    translate: 10px 0;
+    border-radius: 5px;
+    float: left;
+    transition: translate 0.25s ease, background-color 0.25s ease;
+}
+
+#back-btn:is(:hover, :focus-within) {
+    background-color: #333;
+    translate: 0;
+}
+
+q {
+    font-style: italic;
+}
+
+canvas {
+    width: 100%;
+    display: block;
+    border: 1px solid #eee;
+    margin-block: 5px;
+    margin-inline: auto;
+}
+
+img {
+    display: block;
+    width: 100%;
+    max-height: 250px;
+}
+
+/* warning {
+    display: block;
+    width: 100%;
+    background-color: #ffde5d;
+    color: #8d5900;
+    border-radius: 5px;
+    padding: 10px;
+    text-indent: 0;
+} */
+
+@media (max-width: 525px) {
+    #back-btn {
+        padding: 5px 10px;
+        font-size: 14px;
+        align-self: start;
+    }
+}

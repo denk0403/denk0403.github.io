@@ -18,17 +18,15 @@
     <meta name="keywords"
       content="developer, software engineer, code, github, software, web developer, react, javascript, web components, tutor, mentor" />
     <meta name="author" content="Dennis Kats" />
-    <meta name="description"
-      content="Dennis Kats is a software engineer based in NYC. He specializes in full-stack web development, and he loves to learn about UX/DX, accessibility, and human-centered design." />
-    <title>Dennis Kats | Software Engineer - {{ page.title }}</title>
+    <meta name="description" content="{{ page.description }}" />
+    <title>{{ page.title }} - Dennis Kats Blog</title>
 
     <!-- Open Graph protocol support-->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Dennis Kats | Software Engineer - {{ page.title }}" />
+    <meta property="og:title" content="{{ page.title }} - Dennis Kats Blog" />
     <meta property="og:url" content="https://denniskats.dev" />
     <meta property="og:secure_url" content="https://denniskats.dev" />
-    <meta property="og:description"
-      content="Dennis Kats is a software engineer based in NYC. He specializes in full-stack web development, and he's extremely passionate about UX/DX, accessibility, and human-centered design." />
+    <meta property="og:description" content="{{ page.description }}" />
     <meta name="og:image" content="https://denniskats.dev/resources/imgs/og.image.jpg" />
     <meta name="og:image:alt" content="Dennis Kats. Software Engineer. He/Him. NYC. denniskats43@gmail.com" />
     <meta property="og:image:width" content="1200" />
@@ -43,27 +41,23 @@
 
     <!-- Preload FontAwesome fonts -->
     <link as="font" rel="preload" referrerpolicy="no-referrer" type="font/woff2" crossorigin
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/webfonts/fa-brands-400.woff2" />
-    <link as="font" rel="preload" referrerpolicy="no-referrer" type="font/woff2" crossorigin
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/webfonts/fa-solid-900.woff2" />
-
-    <!-- Preload images -->
-    <link rel="preload" href="/resources/imgs/Dennis2021-200.webp" as="image" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/fontawesome.min.css"
       integrity="sha512-giQeaPns4lQTBMRpOOHsYnGw1tGVzbAIHUyHRgn7+6FmiEgGGjaG0T2LZJmAPMzRCl+Cug0ItQ2xDZpTmEc+CQ=="
-      crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/brands.min.css"
-      integrity="sha512-G/T7HQJXSeNV7mKMXeJKlYNJ0jrs8RsWzYG7rVACye+qrcUhEAYKYzaa+VFy6eFzM2+/JT1Q+eqBbZFSHmJQew=="
       crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/solid.min.css"
       integrity="sha512-6mc0R607di/biCutMUtU9K7NtNewiGQzrvWX4bWTeqmljZdJrwYvKJtnhgR+Ryvj+NRJ8+NnnCM/biGqMe/iRA=="
       crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
 
     <style>{% include styles/site.styles.css %}</style>
+    <style>{% include styles/blog.styles.css %}</style>
     <script>
 			console.log(String.raw`%c{% include liveFootage.ascii.txt %}`, "font-family: monospace;");
 		</script>
+    <script src="/components/BalanceText.js"></script>
+
+    <link rel='stylesheet' href='/highlight_js.css' />
 
     {% for head_tag in page.add_head %}
     {{ head_tag }}
@@ -74,22 +68,25 @@
   </head>
 
 	<body>
-		{% include html/header.html %}
 		<nav class="tab-bar">
-			{% if page.active_tab == "about me" %}
-			<a class="tab selected" href="/index.html" title="About Me Page">About Me</a>
-			{% else %}
 			<a class="tab" href="/index.html" title="About Me Page">About Me</a>
-			{% endif %} {% if page.active_tab == "projects" %}
-			<a class="tab selected" href="/projects.html" title="Projects Page">Projects</a>
-			{% else %}
 			<a class="tab" href="/projects.html" title="Projects Page">Projects</a>
-			{% endif %} {% if page.active_tab == "blog" %}
 			<a class="tab selected" href="/blog.html" title="Blog Page">Blog</a>
-			{% else %}
-			<a class="tab" href="/blog.html" title="Blog Page">Blog</a>
-			{% endif %}
 		</nav>
-		<main class="main-content">{{ content }}</main>
+		<main class="page-body">
+			<div class="blog-heading">
+				<a id="back-btn" href="{{ page.back_link }}" title="Go back">
+					<i class="fa-inverse fa-2x fa-solid fa-arrow-left"></i>
+				</a>
+				<balance-text>
+					<h2 class="post-title">{{ page.title }}</h2>
+				</balance-text>
+				<div style="display: flex; justify-content: space-between; flex-wrap: wrap">
+					<span>By: {{ page.authors }}</span>
+					<span>{{page.date | date_to_string: "ordinal", "US"}}</span>
+				</div>
+			</div>
+			<article class="main-content">{{ content }}</article>
+		</main>
 	</body>
 </html>

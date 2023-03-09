@@ -1,0 +1,21 @@
+<canvas id="demo2" height="33" title="Demo 2: A simple 'Hello World'.">
+	<noscript> Enable JavaScript to see this demo. </noscript>
+</canvas>
+<script>
+	"use strict";
+	{
+		/** @type {HTMLCanvasElement} */
+		const canvas = window["demo2"];
+		const ctx = canvas.getContext("2d");
+		canvas.width = canvas.offsetWidth;
+
+		ctx.font = "33px Arial";
+		ctx.textBaseline = "top";
+
+		ctx.fillStyle = "white";
+		ctx.fillRect(0, 0, canvas.width, canvas.height);
+		ctx.fillStyle = "black";
+
+		ctx.fillText("Hello World", 0, 0);
+	}
+</script>
