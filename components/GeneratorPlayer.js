@@ -4,7 +4,7 @@
 	TEMPLATE.innerHTML = /* html */ `
 		<style>
 			* { font-size: 18px }
-			button { padding: 3px 12px; }
+			button { padding: 3px 12px; touch-action: manipulation; }
 		</style>
 		<div style="display: flex;">
 			<button id="back" title="Back">❬</button>
