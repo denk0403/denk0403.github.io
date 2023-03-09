@@ -12,10 +12,19 @@
     text-align: center;
 }
 
+.indent {
+    text-indent: 2ch;
+}
+
+.no-indent {
+    text-indent: 0;
+}
+
 .main-content {
     text-align: justify;
     text-indent: 2ch;
     font-family: Roboto, sans-serif;
+    font-size: 1.1rem;
 
     max-width: 860px;
     margin: 20px auto;
@@ -36,7 +45,7 @@
 }
 
 .main-content>*+* {
-    margin: 30px 0;
+    margin: 40px 0;
 }
 
 #back-btn {
@@ -54,7 +63,25 @@
     translate: 0;
 }
 
-warning {
+q {
+    font-style: italic;
+}
+
+canvas {
+    width: 100%;
+    display: block;
+    border: 1px solid #eee;
+    margin-block: 5px;
+    margin-inline: auto;
+}
+
+img {
+    display: block;
+    width: 100%;
+    max-height: 250px;
+}
+
+/* warning {
     display: block;
     width: 100%;
     background-color: #ffde5d;
@@ -62,7 +89,7 @@ warning {
     border-radius: 5px;
     padding: 10px;
     text-indent: 0;
-}
+} */
 
 @media (max-width: 525px) {
     #back-btn {

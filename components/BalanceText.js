@@ -1,7 +1,7 @@
 // @ts-check
 {
 	const TEMPLATE = document.createElement("template");
-	TEMPLATE.innerHTML = "<slot></slot>";
+	TEMPLATE.innerHTML = /* html */`<slot></slot>`;
 
 	class BalanceText extends HTMLElement {
 		/** @type {ShadowRoot} */
@@ -33,6 +33,7 @@
 
 			this.#resObs = new ResizeObserver(this.#balance);
 
+			this.#resObs.observe(this, { box: "border-box" });
 			if (this.parentElement) this.#resObs.observe(this.parentElement, { box: "border-box" });
 		}
 

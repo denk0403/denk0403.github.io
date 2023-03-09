@@ -71,17 +71,21 @@
 			integrity="sha512-6mc0R607di/biCutMUtU9K7NtNewiGQzrvWX4bWTeqmljZdJrwYvKJtnhgR+Ryvj+NRJ8+NnnCM/biGqMe/iRA=="
 			crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
 
-		<style>{% include site.styles.css %}</style>
-		<script>console.log(String.raw`{% include liveFootage.ascii.txt %}`);</script>
+		<style>{% include styles/site.styles.css %}</style>
+		<script>
+			console.log(String.raw`%c{% include liveFootage.ascii.txt %}`, "font-family: monospace;");
+		</script>
 
 		<script type="module" src="/components/FeaturedProject.mjs"></script>
+
+		<script src="/components/BalanceText.js"></script>
 
 		<link rel="icon" href="/favicon.ico" />
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 	</head>
 
 	<body>
-		{% include header.html %}
+		{% include html/header.html %}
 		<nav class="tab-bar">
 			<span class="tab selected" title="About Me Page">About Me</span>
 			<a class="tab" href="projects.html" title="Projects Page">Projects</a>
@@ -123,13 +127,11 @@
 			<section class="section recent-post">
 				<h1>Most Recent Blog Post</h1>
 				{% assign recent = site.posts[0] %}
-				<a class="container-link" href="{{ recent.url }}">
-					<div class="title-date">
-						<span class="title">{{ recent.title }}</span>
-						<span class="date">{{ recent.date | date_to_string: "ordinal", "US" }}</span>
-					</div>
-					<div class="excerpt">{{ recent.excerpt | strip_html | truncate:170 }}</div>
-				</a>
+				{% include html/blog_item.html
+					title=recent.title
+					date=recent.date
+					url=recent.url
+					excerpt=recent.excerpt  %}
 			</section>
 			<section class="section projects">
 				<h1>Featured Projects</h1>

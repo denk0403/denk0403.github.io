@@ -1,12 +1,16 @@
 future: true
 
 kramdown:
+  parse_block_html: true
   syntax_highlighter: rouge
   syntax_highlighter_opts:
     block:
       line_numbers: true
     span:
       line_numbers: false
+
+exclude:
+  - jsconfig.json
 
 defaults:
   - scope:
@@ -15,3 +19,5 @@ defaults:
     values:
       layout: "blog"
       back_link: "/blog"
+      authors: "<a href='/'>Dennis Kats</a>"
+      excerpt_separator: "<!-- excerpt-end -->"

@@ -66,8 +66,10 @@
 			integrity="sha512-6mc0R607di/biCutMUtU9K7NtNewiGQzrvWX4bWTeqmljZdJrwYvKJtnhgR+Ryvj+NRJ8+NnnCM/biGqMe/iRA=="
 			crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
 
-		<style>{% include site.styles.css %}</style>
-		<script>console.log(String.raw`{% include liveFootage.ascii.txt %}`);</script>
+		<style>{% include styles/site.styles.css %}</style>
+		<script>
+			console.log(String.raw`%c{% include liveFootage.ascii.txt %}`, "font-family: monospace;");
+		</script>
 
 		<script type="module" src="/components/ProjectElement.mjs"></script>
 		<script type="module" src="/components/ProjectLink.mjs"></script>
@@ -79,7 +81,7 @@
 	</head>
 
 	<body>
-		{% include header.html %}
+		{% include html/header.html %}
 		<nav class="tab-bar">
 			<a class="tab" href="/" title="About Me Page">About Me</a>
 			<span class="tab selected" title="Projects Page">Projects</span>
@@ -566,7 +568,7 @@
 					<li>
 						<project-elt name="Image to ASCII Converter" duration="Summer 2019">
 							<span slot="subtitle">Image to ASCII converter</span>
-							<p slot="description">A program that converts a given image into ASCII text</p>
+							<p slot="description">A program that converts a given image into ASCII text.</p>
 							<span slot="tech">
 								<span class="skill">Java</span>
 								<span class="skill">Swing</span>

@@ -1,5 +1,6 @@
 :root {
     --primary-text: #eee;
+    --fa-inverse: var(--primary-text);
     --secondary-text: #9b9b9b;
     --accent: #0090ea;
     --accent-2: #a867e6;
@@ -41,6 +42,7 @@ body {
 * {
     box-sizing: border-box;
     object-fit: contain;
+    scroll-margin-top: var(--tab-bar-height);
 }
 
 h1 {
@@ -290,6 +292,18 @@ a:focus-within {
     text-decoration-line: underline;
 }
 
+.container-link .continue {
+    color: var(--primary-text);
+    margin-top: 10px;
+    text-align: right;
+    translate: -10px 0;
+    transition: translate 0.25s ease;
+}
+
+.container-link:is(:hover, :focus-within) .continue {
+    translate: 0;
+}
+
 .wave {
     display: inline-block;
     text-indent: 0;
@@ -419,6 +433,16 @@ project-elt [slot="tech"] {
     .pdf {
         height: 375px;
     }
+
+    .container-link .title-date {
+        flex-direction: column;
+        gap: 0;
+        margin-bottom: 10px;
+    }
+
+    .container-link .date {
+        text-align: left;
+    }
 }
 
 @media (max-width: 425px) {
@@ -458,14 +482,6 @@ project-elt [slot="tech"] {
 
         border-top: 1px solid #303030;
         border-bottom: none;
-    }
-
-    .container-link .title-date {
-        flex-direction: column;
-    }
-
-    .container-link .date {
-        text-align: left;
     }
 
     project-elt {

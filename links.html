@@ -60,8 +60,10 @@
             integrity="sha512-6mc0R607di/biCutMUtU9K7NtNewiGQzrvWX4bWTeqmljZdJrwYvKJtnhgR+Ryvj+NRJ8+NnnCM/biGqMe/iRA=="
             crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
 
-        <style>{% include links.styles.css %}</style>
-        <script>console.log(String.raw`{% include liveFootage.ascii.txt %}`);</script>
+        <style>{% include styles/links.styles.css %}</style>
+		<script>
+			console.log(String.raw`%c{% include liveFootage.ascii.txt %}`, "font-family: monospace;");
+		</script>
 
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
