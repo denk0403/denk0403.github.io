@@ -8,14 +8,13 @@ add_head:
 
 # Pinned<i class="fa-solid fa-thumbtack fa-2xs" style="rotate: 45deg; margin-left: 10px;"></i>
 
-{% assign pinned = site.posts | find: "permalink","/blog/fab_format" %}
-
 <div markdown="0">
-    {% include html/blog_item.html
-      title=pinned.title
-      date=pinned.date
-      url=pinned.url
-      excerpt=pinned.excerpt  %}
+  {% assign pinned = site.posts | find: "permalink","/blog/fab_format" %}
+  {% include html/blog_item.html
+    title=pinned.title
+    date=pinned.date
+    url=pinned.url
+    excerpt=pinned.excerpt  %}
 </div>
 
 <div style="display: flex; justify-content: space-between; align-items: center;">

@@ -9,7 +9,6 @@ add_head:
 ---
 
 {: style="text-align: center"}
-
 ## 🚧 WIP - Come back soon! 🚜
 
 <div markdown="0">
