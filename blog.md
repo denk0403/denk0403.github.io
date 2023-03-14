@@ -6,16 +6,25 @@ add_head:
   - <script src="/components/BalanceText.js"></script>
 ---
 
+
+<!-- Pinned -->
+{% assign pinned_permalink = "/blog/fab_format" %}
+{% for post in site.posts %}
+  <!-- Can't use find filter (Jekyll 4.1.0) because Github uses Jekyll 3.9.3 -->
+  {% if post.permalink == pinned_permalink %}
 # Pinned<i class="fa-solid fa-thumbtack fa-2xs" style="rotate: 45deg; margin-left: 10px;"></i>
 
 <div markdown="0">
-  {% assign pinned = site.posts | find: "title" , "(WIP) A FABulous Text-Formatting Algorithm for the HTML Canvas" %}
   {% include html/blog_item.html
-    title=pinned.title
-    date=pinned.date
-    url=pinned.url
-    excerpt=pinned.excerpt  %}
+    title=post.title
+    date=post.date
+    url=post.url
+    excerpt=post.excerpt  %}
 </div>
+
+  {% endif %}
+{% endfor %}
+
 
 <div style="display: flex; justify-content: space-between; align-items: center;">
 # All Articles
