@@ -9,6 +9,7 @@ add_head:
 ---
 
 {: style="text-align: center"}
+
 ## 🚧 WIP - Come back soon! 🚜
 
 <div markdown="0">
@@ -65,9 +66,10 @@ You're probably thinking, <q>Well that's kind of frustrating. It should be easie
 <div>
 I personally had a use case for the algorithm when I was developing <a href="/Mocking-Spongebob/">Mocking SpongeBob Meme Generator</a>. The goal for that project was to be able to generate and send memes as quickly as possible, and doing so required automatically formatting the caption for the user into a fixed region of the image.
 
-<img src="/resources/imgs/spongebob_fab_format_demo.gif" loading="lazy">
+<img src="/resources/imgs/spongebob_fab_format_demo.gif" loading="lazy" height="250" alt="A GIF demoing the formatting algorithm in Mocking SpongeBob Meme Generator.">
 
 While this was one of my more silly projects, it came with a lot of interesting UI/UX challenges that probably deserve a blog post of their own. However, the most difficult challenge to solve by far was the automatic layout algorithm.
+
 </div>
 
 ## To be Continued

@@ -57,14 +57,37 @@
 		/** @type {number | undefined} */
 		#player;
 
+		get length() {
+			return this.#steps.length;
+		}
+
+		get step() {
+			return this.#currentIndex;
+		}
+
+		set step(newValue) {
+			this.#currentIndex = Math.max(0, Math.min(newValue, this.#steps.length - 1));
+			this.#rerender();
+		}
+
+		get speed() {
+			return 500 / this.#playDelay;
+		}
+
+		set speed(newValue) {
+			this.#speedSelector.value = "" + newValue;
+			this.#playDelay = 500 / newValue;
+
+			if (this.#player) {
+				this.play();
+			}
+		}
+
 		constructor() {
 			super();
 
 			this.#r = this.attachShadow({ mode: "open" });
 			this.#r.appendChild(TEMPLATE.content.cloneNode(true));
-
-			// @ts-ignore
-			// this.#slot = this.#r.querySelector("slot");
 		}
 
 		connectedCallback() {
@@ -135,20 +158,6 @@
 		setUpdateCallback(callback) {
 			this.#callback = callback;
 			this.#rerender();
-		}
-
-		setStep(step) {
-			this.#currentIndex = Math.max(0, Math.min(step, this.#steps.length - 1));
-			this.#rerender();
-		}
-
-		setSpeed(speedMultiplier) {
-			this.#speedSelector.value = speedMultiplier;
-			this.#playDelay = 500 / speedMultiplier;
-
-			if (this.#player) {
-				this.play();
-			}
 		}
 
 		play() {

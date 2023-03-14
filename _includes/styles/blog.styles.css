@@ -22,6 +22,9 @@
 
 .main-content {
     text-align: justify;
+    text-align-last: left;
+    hyphens: auto;
+    -webkit-hyphens: auto;
     text-indent: 2ch;
     font-family: Roboto, sans-serif;
     font-size: 1.1rem;

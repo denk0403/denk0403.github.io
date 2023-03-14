@@ -59,6 +59,8 @@
 			 * @returns {(word: string) => boolean} A procedure to determine if a word will fit.
 			 */
 			function fitIntoLinesAtSize(fontSize, boxWidth) {
+				const maxNumberOfLines = ~~(boxHeight / fontSize);
+
 				return function* (/** @type {string} */ word) {
 					const tempLinesByWord = [...linesByWord];
 					const modifiedLine = tempLinesByWord.at(-1).concat(word).join(" ").trim();
@@ -66,16 +68,9 @@
 					tempLinesByWord.splice(-1, 1);
 					tempLinesByWord.push([modifiedLine]);
 
-					const isOk =
-						getTextWidth(modifiedLine) <= boxWidth && tempLinesByWord.length * fontSize <= boxHeight
-							? undefined
-							: false;
 					yield {
 						lines: tempLinesByWord.map((line) => line.join(" ").trim()),
 						fontSize,
-						phase,
-						isOk,
-						effectiveWidth: boxWidth,
 					};
 
 					// checks if adding new word exceeds the last line's box width
@@ -88,18 +83,13 @@
 						// create a new line
 						linesByWord.push([word]);
 
-						const isOk =
-							linesByWord.length <= maxNumberOfLines(boxHeight, fontSize) ? undefined : false;
 						yield {
 							lines: linesByWord.map((line) => line.join(" ").trim()),
 							fontSize,
-							phase,
-							isOk,
-							effectiveWidth: boxWidth,
 						};
 
 						// return if we have exceeded the maximum allowed lines
-						return linesByWord.length <= maxNumberOfLines(boxHeight, fontSize);
+						return linesByWord.length <= maxNumberOfLines;
 					} else {
 						// add the word if it fits on the last line
 						linesByWord.at(-1).push(word);
@@ -127,9 +117,6 @@
 					yield {
 						lines: linesByWord.map((line) => line.join(" ").trim()),
 						fontSize,
-						phase,
-						isOk: true,
-						effectiveWidth: boxWidth,
 					};
 				}
 
@@ -199,18 +186,11 @@
 			yield {
 				lines: linesByWord.map((line) => line.join(" ").trim()),
 				fontSize: finalFontSize,
-				phase: "final result",
-				isOk: true,
-				effectiveWidth: finalBoxWidth,
 			};
 		}
 
 		function getTextWidth(str) {
 			return ctx.measureText(str).width;
-		}
-
-		function maxNumberOfLines(regionHeight, fontSize) {
-			return ~~(regionHeight / fontSize);
 		}
 
 		new ResizeObserver(() => {
@@ -222,10 +202,10 @@
 					canvas.height - 10
 				)
 			);
-			demo1.setStep(Infinity);
+			demo1.step = Infinity;
 		}).observe(canvas, { box: "border-box" });
 
-		demo1.setSpeed(8);
+		demo1.speed = 8;
 		demo1.setUpdateCallback(({ lines, fontSize }) => {
 			ctx.fillStyle = "#191919";
 			ctx.fillRect(0, 0, canvas.width, canvas.height);
