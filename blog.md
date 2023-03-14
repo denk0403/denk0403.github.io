@@ -9,7 +9,7 @@ add_head:
 # Pinned<i class="fa-solid fa-thumbtack fa-2xs" style="rotate: 45deg; margin-left: 10px;"></i>
 
 <div markdown="0">
-  {% assign pinned = site.posts | find: "permalink","/blog/fab_format" %}
+  {% assign pinned = site.posts | find: "title" , "(WIP) A FABulous Text-Formatting Algorithm for the HTML Canvas" %}
   {% include html/blog_item.html
     title=pinned.title
     date=pinned.date
