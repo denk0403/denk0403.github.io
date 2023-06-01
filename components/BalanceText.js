@@ -1,7 +1,7 @@
 // @ts-check
 {
 	const TEMPLATE = document.createElement("template");
-	TEMPLATE.innerHTML = /* html */`<slot></slot>`;
+	TEMPLATE.innerHTML = /* html */ `<slot></slot>`;
 
 	class BalanceText extends HTMLElement {
 		/** @type {ShadowRoot} */
@@ -24,8 +24,12 @@
 		}
 
 		connectedCallback() {
-			this.style.display ||= "inline-block";
+			if (CSS.supports("text-wrap", "balance")) {
+				this.style.textWrap = "balance";
+				return;
+			}
 
+			this.style.display ||= "inline-block";
 			this.#slot.addEventListener("slotchange", this.#balance);
 
 			this.#mutObs = new MutationObserver(this.#balance);
@@ -38,6 +42,8 @@
 		}
 
 		disconnectedCallback() {
+			if (CSS.supports("text-wrap", "balance")) return;
+
 			this.#slot.removeEventListener("slotchange", this.#balance);
 			this.#mutObs.disconnect();
 			this.#resObs.disconnect();
