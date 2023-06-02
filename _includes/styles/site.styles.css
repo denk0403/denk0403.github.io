@@ -514,3 +514,9 @@ project-elt [slot="tech"] {
         display: none;
     }
 }
+
+@media (max-width: 1000px) {
+    body {
+        min-width: 100vw;
+    }
+}

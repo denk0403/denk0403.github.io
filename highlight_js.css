@@ -1,4 +1,4 @@
-.highlight { --bgColor: #282c34}
+.highlight { --bgColor: #282c34; overflow: auto;}
 .highlight pre { margin: 10px }
 .highlight .lineno { margin: 10px;}
 div.highlight {border-radius: 5px;}

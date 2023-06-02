@@ -1,7 +1,7 @@
 // @ts-check
 {
 	const TEMPLATE = document.createElement("template");
-	TEMPLATE.innerHTML = /* html */ `<slot></slot>`;
+	TEMPLATE.innerHTML = /* html */ `<style>:host{ display: flow-root; }</style><slot></slot>`;
 
 	class BalanceText extends HTMLElement {
 		/** @type {ShadowRoot} */
