@@ -71,7 +71,7 @@ However, the method of attaching a scroll-driven timeline to your animation depe
 
 ## Case 1: The path spans the entire scroll container
 
-This is the simple case. We can associate a scroll timeline with the animation using `animation-timeline: scroll();`, which references the block axis of the nearest ancestor scroll container. And then we set the animation on the element using `animation: <name> linear;`.
+This is the simple case. We can associate a scroll timeline with the animation using `animation-timeline: scroll();`, which references the block axis of the nearest ancestor scroll container. And then we set the animation on the element using `animation: offsetDistance linear;`.
 
 Make sure to also set the initial position of the element to `(0,0)` of the offset parent via `position: absolute` and `inset: 0`. All together, the code should look something like this:
 

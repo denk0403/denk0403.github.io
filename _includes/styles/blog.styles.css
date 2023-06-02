@@ -28,6 +28,10 @@
     padding: 0 30px 15px;
 }
 
+.main-content li p {
+    text-indent: 0;
+}
+
 .main-content p {
     text-indent: 2ch;
     text-align: justify;
