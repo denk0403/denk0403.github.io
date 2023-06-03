@@ -12,577 +12,458 @@
 -->
 <!DOCTYPE html>
 <html lang="en">
-	<!-- prettier-ignore -->
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="keywords"
-			content="developer, software engineer, code, github, software, web developer, react, javascript, web components, tutor, mentor" />
-		<meta name="author" content="Dennis Kats" />
-		<meta name="description"
-			content="Dennis Kats is a software engineer based in NYC. He specializes in full-stack web development, and he loves to learn about UX/DX, accessibility, and human-centered design." />
-		<title>Dennis Kats | Software Engineer - Projects</title>
+<!-- prettier-ignore -->
 
-		<!-- Open Graph protocol support-->
-		<meta property="og:title" content="Dennis Kats | Software Engineer - Projects" />
-		<meta property="og:url" content="http://denniskats.dev/projects.html" />
-		<meta property="og:type" content="website" />
-		<meta property="og:description"
-			content="Dennis Kats is a software engineer based in NYC. He specializes in full-stack web development, and he's extremely passionate about UX/DX, accessibility, and human-centered design." />
-		<meta name="og:image" content="https://denniskats.dev/resources/imgs/og.image.jpg" />
-		<meta name="og:image:alt" content="Dennis Kats. Software Engineer. He/Him. NYC. denniskats43@gmail.com" />
-		<meta property="og:image:width" content="1200"/>
-		<meta property="og:image:height" content="630"/>
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="keywords"
+		content="developer, software engineer, code, github, software, web developer, react, javascript, web components, tutor, mentor" />
+	<meta name="author" content="Dennis Kats" />
+	<meta name="description"
+		content="Dennis Kats is a software engineer based in NYC. He specializes in full-stack web development, and he loves to learn about UX/DX, accessibility, and human-centered design." />
+	<title>Dennis Kats | Software Engineer - Projects</title>
 
-		<!-- Twitter Card support-->
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:site" content="@denk0403" />
-		<meta name="twitter:creator" content="@denk0403" />
-		<meta name="twitter:image" content="https://denniskats.dev/resources/imgs/og.image.jpg" />
-		<meta name="twitter:image:alt" content="Dennis Kats. Software Engineer. He/Him. NYC. denniskats43@gmail.com" />
+	<!-- Open Graph protocol support-->
+	<meta property="og:title" content="Dennis Kats | Software Engineer - Projects" />
+	<meta property="og:url" content="http://denniskats.dev/projects.html" />
+	<meta property="og:type" content="website" />
+	<meta property="og:description"
+		content="Dennis Kats is a software engineer based in NYC. He specializes in full-stack web development, and he's extremely passionate about UX/DX, accessibility, and human-centered design." />
+	<meta name="og:image" content="https://denniskats.dev/resources/imgs/og.image.jpg" />
+	<meta name="og:image:alt" content="Dennis Kats. Software Engineer. He/Him. NYC. denniskats43@gmail.com" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
 
-		<!-- Preload FontAwesome fonts -->
-		<link as="font" rel="preload" referrerpolicy="no-referrer" type="font/woff2" crossorigin
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/webfonts/fa-brands-400.woff2" />
-		<link as="font" rel="preload" referrerpolicy="no-referrer" type="font/woff2" crossorigin
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/webfonts/fa-solid-900.woff2" />
+	<!-- Twitter Card support-->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@denk0403" />
+	<meta name="twitter:creator" content="@denk0403" />
+	<meta name="twitter:image" content="https://denniskats.dev/resources/imgs/og.image.jpg" />
+	<meta name="twitter:image:alt" content="Dennis Kats. Software Engineer. He/Him. NYC. denniskats43@gmail.com" />
 
-		<!-- Preload images -->
-		<link rel="preload" href="/resources/imgs/Dennis2021-200.webp" as="image" />
+	<!-- Preload FontAwesome fonts -->
+	<link as="font" rel="preload" referrerpolicy="no-referrer" type="font/woff2" crossorigin
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/webfonts/fa-brands-400.woff2" />
+	<link as="font" rel="preload" referrerpolicy="no-referrer" type="font/woff2" crossorigin
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/webfonts/fa-solid-900.woff2" />
 
-		<!-- Preload component dependencies -->
-		<link rel="modulepreload" href="/components/utils.mjs" as="script" />
-		<link rel="modulepreload" href="/components/ProjectLink.mjs" as="script" />
-		<link rel="modulepreload" href="/components/ProjectElement.mjs" as="script" />
+	<!-- Preload images -->
+	<link rel="preload" href="/resources/imgs/Dennis2021-200.webp" as="image" />
 
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/fontawesome.min.css"
-			integrity="sha512-giQeaPns4lQTBMRpOOHsYnGw1tGVzbAIHUyHRgn7+6FmiEgGGjaG0T2LZJmAPMzRCl+Cug0ItQ2xDZpTmEc+CQ=="
-			crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/brands.min.css"
-			integrity="sha512-G/T7HQJXSeNV7mKMXeJKlYNJ0jrs8RsWzYG7rVACye+qrcUhEAYKYzaa+VFy6eFzM2+/JT1Q+eqBbZFSHmJQew=="
-			crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/solid.min.css"
-			integrity="sha512-6mc0R607di/biCutMUtU9K7NtNewiGQzrvWX4bWTeqmljZdJrwYvKJtnhgR+Ryvj+NRJ8+NnnCM/biGqMe/iRA=="
-			crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
+	<!-- Preload component dependencies -->
+	<link rel="modulepreload" href="/components/utils.mjs" as="script" />
+	<link rel="modulepreload" href="/components/ProjectLink.mjs" as="script" />
+	<link rel="modulepreload" href="/components/ProjectElement.mjs" as="script" />
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/fontawesome.min.css"
+		integrity="sha512-giQeaPns4lQTBMRpOOHsYnGw1tGVzbAIHUyHRgn7+6FmiEgGGjaG0T2LZJmAPMzRCl+Cug0ItQ2xDZpTmEc+CQ=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/brands.min.css"
+		integrity="sha512-G/T7HQJXSeNV7mKMXeJKlYNJ0jrs8RsWzYG7rVACye+qrcUhEAYKYzaa+VFy6eFzM2+/JT1Q+eqBbZFSHmJQew=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/solid.min.css"
+		integrity="sha512-6mc0R607di/biCutMUtU9K7NtNewiGQzrvWX4bWTeqmljZdJrwYvKJtnhgR+Ryvj+NRJ8+NnnCM/biGqMe/iRA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
 
 		<style>{% include styles/site.styles.css %}</style>
-		<script>
-			console.log(String.raw`%c{% include liveFootage.ascii.txt %}`, "font-family: monospace;");
-		</script>
+	<script>
+		console.log(String.raw`%c{% include liveFootage.ascii.txt %}`, "font-family: monospace;");
+	</script>
 
-		<script type="module" src="/components/ProjectElement.mjs"></script>
-		<script type="module" src="/components/ProjectLink.mjs"></script>
+	<script type="module" src="/components/ProjectElement.mjs"></script>
+	<script type="module" src="/components/ProjectLink.mjs"></script>
 
-		<script>history.scrollRestoration = "manual";</script>
+	<script>history.scrollRestoration = "manual";</script>
 
-		<link rel="icon" href="/favicon.ico" />
-		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-	</head>
+	<link rel="icon" href="/favicon.ico" />
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+</head>
 
-	<body>
-		{% include html/header.html %}
-		<nav class="tab-bar">
-			<a class="tab" href="/" title="About Me Page">About Me</a>
-			<span class="tab selected" title="Projects Page">Projects</span>
-			<a class="tab" href="/blog.html" title="Blog Page">Blog</a>
-		</nav>
-		<main class="main-content">
-			<section class="section projects">
-				<h1>Projects</h1>
-				<ul class="project-list">
-					<li>
-						<project-elt name="Advent of Code 2022 Participation" duration="Dec. 2022">
-							<p slot="description">
-								A set of programming challenges completed for
-								<a href="https://adventofcode.com/2022" style="text-indent: 0"
-									>Advent of Code 2022</a
-								>. My primary goal was to teach myself Rust and C++, but I completed some challenges
-								in JavaScript and Go for fun, as well.
+<body>
+	{% include html/header.html %}
+	<nav class="tab-bar">
+		<a class="tab" href="/" title="About Me Page">About Me</a>
+		<span class="tab selected" title="Projects Page">Projects</span>
+		<a class="tab" href="/blog.html" title="Blog Page">Blog</a>
+	</nav>
+	<main class="main-content">
+		<section class="section projects">
+			<h1>Projects</h1>
+			<ul class="project-list">
+				<li>
+					<project-elt name="My Personal Website and Blog" duration="Nov. 2022 - Present">
+						<span slot="subtitle">You're looking at it right now!</span>
+						<div slot="description">
+							<p>
+								This website's primary goal is to be my portfolio. However, in its design, there
+								were several principles I put in place in order to challenge myself and learn more
+								about web development. These principles were:
 							</p>
-							<span slot="tech">
-								<span class="skill">Rust</span>
-								<span class="skill">C++</span>
-								<span class="skill">JavaScript</span>
-								<span class="skill">Go</span>
-							</span>
-							<span slot="links">
-								<project-link type="github" href="https://github.com/denk0403/AdventOfCode2022">
-								</project-link>
-							</span>
-						</project-elt>
-					</li>
-					<li>
-						<project-elt name="My Personal Website" duration="Nov. 2022">
-							<span slot="subtitle">You're looking at it right now!</span>
-							<div slot="description">
-								<p>
-									This website's primary goal is to be my portfolio. However, in its design, there
-									were several principles I put in place in order to challenge myself and learn more
-									about web development. These principles were:
-								</p>
-								<ul style="text-indent: 0">
-									<li>No web frameworks or libraries (i.e. React, Next.js, etc.).</li>
-									<li>Defer or lazily load nonessential assets.</li>
-									<li>Preload essential assets.</li>
-									<li>Prioritize accessibility, user experience, and other best practices.</li>
-									<li>Keep it simple 🙂.</li>
-								</ul>
-							</div>
-							<span slot="tech">
-								<span class="skill">HTML5</span>
-								<span class="skill">CSS3</span>
-								<span class="skill">JavaScript</span>
-								<span class="skill">Web Components</span>
-								<span class="skill">Jekyll</span>
-							</span>
-							<span slot="links">
-								<project-link type="website" href="/"></project-link>
-								<project-link type="github" href="https://github.com/denk0403/denk0403.github.io">
-								</project-link>
-							</span>
-						</project-elt>
-					</li>
-					<li>
-						<project-elt name="SpeakAAC" duration="Jun. 2022 - Present">
-							<span slot="subtitle">A Russian AAC app</span>
-							<p slot="description">
-								A basic Augmentative and Alternative Communication (AAC) web app for Parkinson's and
-								Dementia patients. At the moment, it is focused on supporting native Russian
-								speakers.
+							<ul class="no-indent">
+								<li>No frameworks or libraries. Just pure HTML, CSS, & JavaScript (and a little Jekyll).
+								</li>
+								<li>Prioritize accessibility, user experience, and other best practices.</li>
+								<li>Keep it simple 🙂.</li>
+							</ul>
+						</div>
+						<span slot="tech">
+							<span class="skill">HTML5</span>
+							<span class="skill">CSS3</span>
+							<span class="skill">JavaScript</span>
+							<span class="skill">Web Components</span>
+							<span class="skill">Jekyll</span>
+						</span>
+						<span slot="links">
+							<project-link type="website" href="/"></project-link>
+							<project-link type="github" href="https://github.com/denk0403/denk0403.github.io">
+							</project-link>
+						</span>
+					</project-elt>
+				</li>
+				<li>
+					<project-elt name="SpeakAAC" duration="Jun. 2022 - Present">
+						<span slot="subtitle">A Russian AAC app</span>
+						<p slot="description">
+							A basic Augmentative and Alternative Communication (AAC) web app for Parkinson's and
+							Dementia patients. At the moment, it is focused on supporting native Russian
+							speakers.
+						</p>
+						<span slot="tech">
+							<span class="skill">TypeScript</span>
+							<span class="skill">Vite</span>
+							<span class="skill">Web Speech API</span>
+						</span>
+						<span slot="links">
+							<project-link type="website" href="https://speakaac.vercel.app/"></project-link>
+						</span>
+						<img slot="media" loading="lazy" src="resources/imgs/speakaac.jpg" height="350"
+							alt="An image of a portion of the SpeakAAC website" />
+					</project-elt>
+				</li>
+				<li>
+					<project-elt name="VideoCrop" duration="Jan. 2022, May 2023">
+						<span slot="subtitle">An offline video cropping tool in your browser</span>
+						<p slot="description">
+							VideoCrop is an offline, browser-based video cropping tool built on top of
+							<code class="inline-code">ffmpeg.wasm</code>. The app never uploads or sends
+							anything to a server, therefore performing all video manipulation on the client.
+						</p>
+						<span slot="tech">
+							<span class="skill">Express.js</span>
+							<span class="skill">WebAssembly</span>
+							<span class="skill">Service Worker API</span>
+						</span>
+						<span slot="links">
+							<project-link type="website" href="https://videocrop.vercel.app/"></project-link>
+							<project-link type="github" href="https://github.com/denk0403/VideoCrop"></project-link>
+						</span>
+					</project-elt>
+				</li>
+				<li>
+					<project-elt name="Mocking SpongeBob Meme Generator" duration="Jan. 2020 - Apr. 2023">
+						<span slot="subtitle">An excessively versatile Mocking SpongeBob meme generator</span>
+						<div slot="description" class="no-indent">
+							<h2>Features</h2>
+							<ul>
+								<li>
+									Automatically and intelligently resizes and formats caption in the lower region
+									of the image.
+								</li>
+								<li>Supports uploading other images and TeX typesetting for the caption.</li>
+								<li>Includes options for copying mock text, link sharing, and saving images.</li>
+								<li>Installable as a Progressive Web App (PWA).</li>
+							</ul>
+						</div>
+						<span slot="tech">
+							<span class="skill">JavaScript</span>
+							<span class="skill">MathML</span>
+							<span class="skill">PWA</span>
+							<span class="skill">Canvas API</span>
+							<span class="skill">Media Streams API</span>
+						</span>
+						<span slot="links">
+							<project-link type="website" href="https://denniskats.dev/Mocking-Spongebob/">
+							</project-link>
+							<project-link type="github" href="https://github.com/denk0403/Mocking-Spongebob">
+							</project-link>
+						</span>
+						<img slot="media" loading="lazy" src="resources/imgs/mocking-spongebob.png" height="215"
+							alt="An example image generated with the project" />
+					</project-elt>
+				</li>
+				<li>
+					<project-elt name="Tint Generator" duration="Nov. 2020 - Mar. 2023">
+						<span slot="subtitle">Simulate automata in your browser!</span>
+						<p slot="description">
+							Tint Generator is an online GUI for writing, running, and debugging Tint programs
+							and other automata for CS 3800 Theory of Computation. Tint Generator works across
+							all devices and saves your work automatically, without the need of installing
+							anything.
+						</p>
+						<span slot="tech">
+							<span class="skill">Next.js</span>
+							<span class="skill">TypeScript</span>
+							<span class="skill">Redux</span>
+							<span class="skill">MongoDB</span>
+							<span class="skill">Go</span>
+							<span class="skill">PWA</span>
+						</span>
+						<span slot="links">
+							<project-link type="website" href="https://tintgenerator.vercel.app/"></project-link>
+							<project-link type="api" href="https://tint-api2.vercel.app/"></project-link>
+						</span>
+						<img slot="media" loading="lazy" src="resources/imgs/tint-gen.jpg" height="350"
+							alt="An image of the Tint Generator Website on the Turing Machine page" />
+					</project-elt>
+				</li>
+				<li>
+					<project-elt name="Advent of Code 2022 Participation" duration="Dec. 2022">
+						<p slot="description">
+							A set of programming challenges completed for
+							<a href="https://adventofcode.com/2022" class="no-indent">Advent of Code 2022</a>. My
+							primary goal was to teach myself Rust and C++, but I completed some challenges
+							in JavaScript and Go for fun, as well.
+						</p>
+						<span slot="tech">
+							<span class="skill">Rust</span>
+							<span class="skill">C++</span>
+							<span class="skill">JavaScript</span>
+							<span class="skill">Go</span>
+						</span>
+						<span slot="links">
+							<project-link type="github" href="https://github.com/denk0403/AdventOfCode2022">
+							</project-link>
+						</span>
+					</project-elt>
+				</li>
+				<li>
+					<project-elt name="Cat Compiler" duration="Jan. 2022 - May 2022">
+						<span slot="subtitle">A compiled language with a Python-like syntax</span>
+						<div slot="description">
+							<p>
+								Cat is a compiler built for CS 4410 at Northeastern University. It is implemented
+								in OCaml and C, and it targets x86 Assembly.
 							</p>
-							<span slot="tech">
-								<span class="skill">TypeScript</span>
-								<span class="skill">Vite</span>
-								<span class="skill">Web Speech API</span>
-							</span>
-							<span slot="links">
-								<project-link type="website" href="https://speakaac.vercel.app/"></project-link>
-							</span>
-							<img
-								slot="media"
-								loading="lazy"
-								src="resources/imgs/speakaac.jpg"
-								height="350"
-								alt="An image of a portion of the SpeakAAC website"
-							/>
-						</project-elt>
-					</li>
-					<li>
-						<project-elt name="Cat Compiler" duration="Jan. 2022 - May 2022">
-							<span slot="subtitle">A compiled language with a Python-like syntax</span>
-							<div slot="description">
-								<p>
-									Cat is a compiler built for CS 4410 at Northeastern University. It is implemented
-									in OCaml and C, and it targets x86 Assembly.
-								</p>
-								<p>
-									Cat was co-created and co-designed by
-									<a href="https://github.com/jrosen081" style="text-indent: 0">Jack Rosen</a>.
-								</p>
+							<p>
+								Cat was co-created and co-designed by
+								<a href="https://github.com/jrosen081" class="no-indent">Jack Rosen</a>.
+							</p>
 
-								<div style="text-indent: 0">
-									<h2>Features</h2>
-									<ul>
-										<li>Garbage collection via Cheney's algorithm</li>
-										<li>Register allocation and dead-code elimination via graph-coloring</li>
-										<li>First-class functions and mutually recursive definitions</li>
-										<li>JavaScript-like exception handling with try/catch/finally</li>
-										<li>Arbitrary length tuples, tuple destructuring, and mutation</li>
-										<li>Syntax highlighting via custom TextMate grammar</li>
-										<li>Tail-call optimization</li>
-										<li>Dynamically typed</li>
-										<li>Basic IO functionality</li>
-									</ul>
-								</div>
-							</div>
-							<span slot="tech">
-								<span class="skill">OCaml</span>
-								<span class="skill">C</span>
-								<span class="skill">x86 Assembly</span>
-								<span class="skill">Bash</span>
-							</span>
-							<a slot="links" href="mailto:denniskats43@gmail.com"> Available upon request </a>
-							<img
-								slot="media"
-								loading="lazy"
-								src="resources/imgs/cat_compiler.jpeg"
-								height="350"
-								alt="An image of code in the Cat programming language with syntactic highlighting"
-							/>
-						</project-elt>
-					</li>
-					<li>
-						<project-elt name="VideoCrop" duration="Jan. 2022">
-							<span slot="subtitle">An offline video cropping tool in your browser</span>
-							<p slot="description">
-								VideoCrop is an offline, browser-based video cropping tool built on top of
-								<code class="inline-code">ffmpeg.wasm</code>. The app never uploads or sends
-								anything to a server, therefore performing all video manipulation on the client.
-							</p>
-							<span slot="tech">
-								<span class="skill">Express.js</span>
-								<span class="skill">WebAssembly</span>
-								<span class="skill">Service Worker API</span>
-							</span>
-							<span slot="links">
-								<project-link type="website" href="https://videocrop.vercel.app/"></project-link>
-								<project-link
-									type="github"
-									href="https://github.com/denk0403/VideoCrop"
-								></project-link>
-							</span>
-						</project-elt>
-					</li>
-					<li>
-						<project-elt name="Glampsite" duration="HackBeanpot 2021">
-							<span slot="subtitle">Set up the perfect campsite with ease</span>
-							<div slot="description">
-								<p>
-									Glampsite is an iOS app that leverages Augmented Reality (AR) to help you layout
-									your campsite with ease, before needing to make the commitment of an arrangement.
-									The app allows users to place various campsite equipment such as campfires, logs,
-									tents, tables, chairs, and more, into the augmented world, to explore these
-									hypothetical sites.
-								</p>
-							</div>
-							<span slot="tech">
-								<span class="skill">Swift</span>
-								<span class="skill">RealityKit</span>
-							</span>
-							<span slot="links">
-								<project-link
-									type="devpost"
-									href="https://devpost.com/software/glampfire"
-								></project-link>
-								<project-link
-									type="github"
-									href="https://github.com/jrosen081/CampingAR"
-								></project-link>
-							</span>
-							<div slot="media">
-								<iframe
-									loading="lazy"
-									width="200"
-									height="300"
-									src="https://www.youtube.com/embed/WI7oCWqJz2A"
-									title="YouTube video player"
-									frameborder="0"
-									allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-									allowfullscreen
-									referrerpolicy="no-referrer"
-									onload="this.complete = true"
-								></iframe>
-								<iframe
-									loading="lazy"
-									width="200"
-									height="300"
-									src="https://www.youtube.com/embed/iP4-8CzEfeI"
-									title="YouTube video player"
-									frameborder="0"
-									allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-									allowfullscreen
-									referrerpolicy="no-referrer"
-									onload="this.complete = true"
-								></iframe>
-							</div>
-						</project-elt>
-					</li>
-					<li>
-						<project-elt name="Tint Generator" duration="Fall 2020 - Summer 2021">
-							<span slot="subtitle">Simulate automata in your browser!</span>
-							<p slot="description">
-								Tint Generator is an online GUI for writing, running, and debugging Tint programs
-								and other automata for CS 3800 Theory of Computation. Tint Generator works across
-								all devices and saves your work automatically, without the need of installing
-								anything.
-							</p>
-							<span slot="tech">
-								<span class="skill">Next.js</span>
-								<span class="skill">TypeScript</span>
-								<span class="skill">Redux</span>
-								<span class="skill">MongoDB</span>
-								<span class="skill">Go</span>
-								<span class="skill">PWA</span>
-							</span>
-							<span slot="links">
-								<project-link
-									type="website"
-									href="https://tintgenerator.vercel.app/"
-								></project-link>
-								<project-link type="api" href="https://tint-api2.vercel.app/"></project-link>
-							</span>
-							<img
-								slot="media"
-								loading="lazy"
-								src="resources/imgs/tint-gen.jpg"
-								height="350"
-								alt="An image of the Tint Generator Website on the Turing Machine page"
-							/>
-						</project-elt>
-					</li>
-					<li>
-						<project-elt name="Boston Teapot" duration="Fall 2020">
-							<span slot="subtitle">CS 4300 Computer Graphics Final Project</span>
-							<p slot="description">
-								An animated scene of a textured teapot and a mug. Built using ThreeJS (WebGL).
-							</p>
-							<span slot="tech">
-								<span class="skill">JavaScript</span>
-								<span class="skill">WebGL</span>
-								<span class="skill">Three.js</span>
-							</span>
-							<span slot="links">
-								<project-link
-									type="website"
-									href="https://denniskats.dev/BostonTeapot/"
-								></project-link>
-								<project-link
-									type="github"
-									href="https://github.com/denk0403/BostonTeapot"
-								></project-link>
-							</span>
-						</project-elt>
-					</li>
-					<li>
-						<project-elt name="Project Atlas" duration="Sept. 2020 - May 2021">
-							<span slot="subtitle">Visualize your code in a whole new way</span>
-							<img
-								slot="hero"
-								loading="lazy"
-								src="resources/imgs/atlas-logo.png"
-								height="150"
-								alt="The Project Atlas logo"
-							/>
-							<div slot="description">
-								<p>
-									Project Atlas is a static analysis and visualization extension for Java projects.
-								</p>
-								<p>
-									Software engineers and developers spend the majority of their time reading code,
-									and so it's important to have systems in place to understand how code behaves,
-									especially as projects grow in size, scope, and complexity. Thus, Project Atlas
-									creates a visual map of how the a project interacts with itself and directly
-									analyzes of its implementation.
-								</p>
-								<p>This was built as part of Northeastern's Oasis Accelerator program.</p>
-							</div>
-							<span slot="tech">
-								<span class="skill">React</span>
-								<span class="skill">TypeScript</span>
-								<span class="skill">Java</span>
-								<span class="skill">VSCode Extension API</span>
-							</span>
-							<span slot="links">
-								<project-link
-									type="github"
-									href="https://github.com/Solome6/Project-Atlas"
-								></project-link>
-								<project-link
-									type="info"
-									href="https://hub.oasisneu.com/45eafae75336447f985376ba5bbdfafe"
-								>
-								</project-link>
-							</span>
-						</project-elt>
-					</li>
-					<li>
-						<project-elt name="Mocking SpongeBob Meme Generator" duration="Jan. 2020 - Summer 2020">
-							<span slot="subtitle">An excessively versatile Mocking SpongeBob meme generator</span>
-							<div slot="description" style="text-indent: 0">
+							<div class="no-indent">
 								<h2>Features</h2>
 								<ul>
-									<li>
-										Automatically and intelligently resizes and formats caption in the lower region
-										of the image.
-									</li>
-									<li>Supports uploading other images and TeX typesetting for the caption.</li>
-									<li>Includes options for copying mock text, link sharing, and saving images.</li>
-									<li>Installable as a Progressive Web App (PWA).</li>
+									<li>Garbage collection via Cheney's algorithm</li>
+									<li>Register allocation and dead-code elimination via graph-coloring</li>
+									<li>First-class functions and mutually recursive definitions</li>
+									<li>JavaScript-like exception handling with try/catch/finally</li>
+									<li>Arbitrary length tuples, tuple destructuring, and mutation</li>
+									<li>Syntax highlighting via custom TextMate grammar</li>
+									<li>Tail-call optimization</li>
+									<li>Dynamically typed</li>
+									<li>Basic IO functionality</li>
 								</ul>
 							</div>
-							<span slot="tech">
-								<span class="skill">JavaScript</span>
-								<span class="skill">MathML</span>
-								<span class="skill">PWA</span>
-								<span class="skill">Canvas API</span>
-								<span class="skill">Media Streams API</span>
-							</span>
-							<span slot="links">
-								<project-link type="website" href="https://denniskats.dev/Mocking-Spongebob/">
-								</project-link>
-								<project-link type="github" href="https://github.com/denk0403/Mocking-Spongebob">
-								</project-link>
-							</span>
-							<img
-								slot="media"
-								loading="lazy"
-								src="resources/imgs/mocking-spongebob.png"
-								height="215"
-								alt="An example image generated with the project"
-							/>
-						</project-elt>
-					</li>
-					<li>
-						<project-elt name="AlgeDraw Calculator" duration="Summer 2019 - Dec. 2019">
-							<span slot="subtitle">Handwritten digit recognition calculator for Fitbit</span>
-							<p slot="description">
-								AlgeDraw is the first 12-function calculator on Fitbit with the ability to parse
-								handwritten digits using a custom memory-optimized AI!
+						</div>
+						<span slot="tech">
+							<span class="skill">OCaml</span>
+							<span class="skill">C</span>
+							<span class="skill">x86 Assembly</span>
+							<span class="skill">Bash</span>
+						</span>
+						<a slot="links" href="mailto:denniskats43@gmail.com"> Available upon request </a>
+						<img slot="media" loading="lazy" src="resources/imgs/cat_compiler.jpeg" height="350"
+							alt="An image of code in the Cat programming language with syntactic highlighting" />
+					</project-elt>
+				</li>
+				<li>
+					<project-elt name="Glampsite" duration="HackBeanpot 2021">
+						<span slot="subtitle">Set up the perfect campsite with ease</span>
+
+						<p slot="description">
+							Glampsite is an iOS app that leverages Augmented Reality (AR) to help you layout
+							your campsite with ease, before needing to make the commitment of an arrangement.
+							The app allows users to place various campsite equipment such as campfires, logs,
+							tents, tables, chairs, and more, into the augmented world, to explore these
+							hypothetical sites.
+						</p>
+
+						<span slot="tech">
+							<span class="skill">Swift</span>
+							<span class="skill">RealityKit</span>
+						</span>
+						<span slot="links">
+							<project-link type="devpost" href="https://devpost.com/software/glampfire"></project-link>
+							<project-link type="github" href="https://github.com/jrosen081/CampingAR"></project-link>
+						</span>
+						<div slot="media">
+							<iframe loading="lazy" width="200" height="300"
+								src="https://www.youtube.com/embed/WI7oCWqJz2A" title="YouTube video player"
+								frameborder="0"
+								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+								allowfullscreen referrerpolicy="no-referrer" onload="this.complete = true"></iframe>
+							<iframe loading="lazy" width="200" height="300"
+								src="https://www.youtube.com/embed/iP4-8CzEfeI" title="YouTube video player"
+								frameborder="0"
+								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+								allowfullscreen referrerpolicy="no-referrer" onload="this.complete = true"></iframe>
+						</div>
+					</project-elt>
+				</li>
+				<li>
+					<project-elt name="Boston Teapot" duration="Fall 2020">
+						<span slot="subtitle">CS 4300 Computer Graphics Final Project</span>
+						<p slot="description">
+							An animated scene of a textured teapot and a mug. Built using ThreeJS (WebGL).
+						</p>
+						<span slot="tech">
+							<span class="skill">JavaScript</span>
+							<span class="skill">WebGL</span>
+							<span class="skill">Three.js</span>
+						</span>
+						<span slot="links">
+							<project-link type="website" href="https://denniskats.dev/BostonTeapot/"></project-link>
+							<project-link type="github" href="https://github.com/denk0403/BostonTeapot"></project-link>
+						</span>
+					</project-elt>
+				</li>
+				<li>
+					<project-elt name="Project Atlas" duration="Sept. 2020 - May 2021">
+						<span slot="subtitle">Visualize your code in a whole new way</span>
+						<img slot="hero" loading="lazy" src="resources/imgs/atlas-logo.png" height="150"
+							alt="The Project Atlas logo" />
+						<div slot="description">
+							<p>
+								Project Atlas is a static analysis and visualization extension for Java projects.
 							</p>
-							<span slot="tech">
-								<span class="skill">JavaScript</span>
-								<span class="skill">Fitbit SDK</span>
-								<span class="skill">SVG</span>
-								<span class="skill">Bluetooth</span>
-							</span>
-							<span slot="links">
-								<project-link type="website" href="/algedraw calculator/home.html"></project-link>
-								<project-link type="github" href="https://github.com/denk0403/AlgeDraw-Calculator">
-								</project-link>
-								<project-link
-									type="store"
-									href="https://gallery.fitbit.com/details/49efc266-eebe-4bb5-91ab-6cce92baa2e2"
-								>
-								</project-link>
-							</span>
-							<div slot="media">
-								<img
-									width="200"
-									height="200"
-									src="algedraw calculator/gifs/phi.gif"
-									loading="lazy"
-									alt="An animation showing how to input the mathematical constant phi into the calculator"
-								/>
-								<img
-									width="200"
-									height="200"
-									src="algedraw calculator/gifs/degrees.gif"
-									loading="lazy"
-									alt="An animation showing how to switch the trigonometric mode to use degrees on the calculator"
-								/>
-								<img
-									width="200"
-									height="200"
-									src="algedraw calculator/gifs/four.gif"
-									loading="lazy"
-									alt="An animation showing how to input the number four into the calculator"
-								/>
-							</div>
-						</project-elt>
-					</li>
-					<li>
-						<project-elt name="Find Your Bus for Fitbit" duration="Summer 2019">
-							<span slot="subtitle">MTA Bus Tracker for Fitbit</span>
-							<p slot="description">
-								A Fitbit app for tracking MTA buses and getting their ETA to a specified bus stop.
+							<p>
+								Software engineers and developers spend the majority of their time reading code,
+								and so it's important to have systems in place to understand how code behaves,
+								especially as projects grow in size, scope, and complexity. Thus, Project Atlas
+								creates a visual map of how the a project interacts with itself and directly
+								analyzes of its implementation.
 							</p>
-							<span slot="tech">
-								<span class="skill">JavaScript</span>
-								<span class="skill">Fitbit SDK</span>
-								<span class="skill">MTA Bus Time API</span>
-							</span>
-							<span slot="links">
-								<project-link type="github" href="https://github.com/denk0403/Fitbit-Find-Your-Bus">
-								</project-link>
-							</span>
-							<img
-								slot="media"
-								loading="lazy"
-								src="resources/imgs/find-your-bus.gif"
-								width="250"
-								height="250"
-								alt="An animation showing how to search for the tracking information of the next bus from a particular MTA bus stop"
-							/>
-						</project-elt>
-					</li>
-					<li>
-						<project-elt
-							name="Mario Watchface for Fitbit"
-							duration="Summer 2019"
-							href="https://github.com/denk0403/Mario-Fitbit-Watchface"
-						>
-							<div slot="description">
-								<p>
-									A simple watchface to show your appreciation for Mario! Set your birthday in the
-									settings and when the day comes, Mario will celebrate with you!
-								</p>
-								<p>
-									Also, if you leave your phone somewhere without noticing, the watchface will
-									notify you with an alert and haptics that it has disconnected.
-								</p>
-								<p style="display: inline-block">
-									Inspired by:
-									<a
-										href="https://apps.rebble.io/en_US/application/55431083b7d4a71c0000003b"
-										style="text-indent: 0"
-										>Mario Time Watchface for Pebble.</a
-									>
-								</p>
-							</div>
-							<span slot="tech">
-								<span class="skill">JavaScript</span>
-								<span class="skill">Fitbit SDK</span>
-								<span class="skill">SVG</span>
-								<span class="skill">Bluetooth</span>
-							</span>
-							<span slot="links">
-								<project-link
-									type="github"
-									href="https://github.com/denk0403/Mario-Fitbit-Watchface"
-								>
-								</project-link>
-							</span>
-							<div slot="media">
-								<img
-									width="125"
-									height="125"
-									src="resources/imgs/mario1.png"
-									loading="lazy"
-									alt="An image of the watchface during the day"
-								/>
-								<img
-									width="125"
-									height="125"
-									src="resources/imgs/mario2.png"
-									loading="lazy"
-									alt="An image of the watchface with Mario jumping"
-								/>
-								<img
-									width="125"
-									height="125"
-									src="resources/imgs/mario3.png"
-									loading="lazy"
-									alt="An image of the watchface during the night"
-								/>
-								<img
-									width="125"
-									height="125"
-									src="resources/imgs/mario4.png"
-									loading="lazy"
-									alt="An image of the watchface's 'Have Your Phone?' feature"
-								/>
-							</div>
-						</project-elt>
-					</li>
-					<li>
-						<project-elt name="Image to ASCII Converter" duration="Summer 2019">
-							<span slot="subtitle">Image to ASCII converter</span>
-							<p slot="description">A program that converts a given image into ASCII text.</p>
-							<span slot="tech">
-								<span class="skill">Java</span>
-								<span class="skill">Swing</span>
-							</span>
-							<span slot="links">
-								<project-link
-									type="github"
-									href="https://github.com/denk0403/Image-To-ASCII-Converter"
-								>
-								</project-link>
-							</span>
-						</project-elt>
-					</li>
-					<!-- <li>
+							<p>This was built as part of Northeastern's Oasis Accelerator program.</p>
+						</div>
+						<span slot="tech">
+							<span class="skill">React</span>
+							<span class="skill">TypeScript</span>
+							<span class="skill">Java</span>
+							<span class="skill">VSCode Extension API</span>
+						</span>
+						<span slot="links">
+							<project-link type="github" href="https://github.com/Solome6/Project-Atlas"></project-link>
+							<project-link type="info" href="https://hub.oasisneu.com/45eafae75336447f985376ba5bbdfafe">
+							</project-link>
+						</span>
+					</project-elt>
+				</li>
+				<li>
+					<project-elt name="AlgeDraw Calculator" duration="Summer 2019 - Dec. 2019">
+						<span slot="subtitle">Handwritten digit recognition calculator for Fitbit</span>
+						<p slot="description">
+							AlgeDraw is the first 12-function calculator on Fitbit with the ability to parse
+							handwritten digits using a custom memory-optimized AI!
+						</p>
+						<span slot="tech">
+							<span class="skill">JavaScript</span>
+							<span class="skill">Fitbit SDK</span>
+							<span class="skill">SVG</span>
+							<span class="skill">Bluetooth</span>
+						</span>
+						<span slot="links">
+							<project-link type="website" href="/algedraw calculator/home.html"></project-link>
+							<project-link type="github" href="https://github.com/denk0403/AlgeDraw-Calculator">
+							</project-link>
+							<project-link type="store"
+								href="https://gallery.fitbit.com/details/49efc266-eebe-4bb5-91ab-6cce92baa2e2">
+							</project-link>
+						</span>
+						<div slot="media">
+							<img width="200" height="200" src="algedraw calculator/gifs/phi.gif" loading="lazy"
+								alt="An animation showing how to input the mathematical constant phi into the calculator" />
+							<img width="200" height="200" src="algedraw calculator/gifs/degrees.gif" loading="lazy"
+								alt="An animation showing how to switch the trigonometric mode to use degrees on the calculator" />
+							<img width="200" height="200" src="algedraw calculator/gifs/four.gif" loading="lazy"
+								alt="An animation showing how to input the number four into the calculator" />
+						</div>
+					</project-elt>
+				</li>
+				<li>
+					<project-elt name="Find Your Bus for Fitbit" duration="Summer 2019">
+						<span slot="subtitle">MTA Bus Tracker for Fitbit</span>
+						<p slot="description">
+							A Fitbit app for tracking MTA buses and getting their ETA to a specified bus stop.
+						</p>
+						<span slot="tech">
+							<span class="skill">JavaScript</span>
+							<span class="skill">Fitbit SDK</span>
+							<span class="skill">MTA Bus Time API</span>
+						</span>
+						<span slot="links">
+							<project-link type="github" href="https://github.com/denk0403/Fitbit-Find-Your-Bus">
+							</project-link>
+						</span>
+						<img slot="media" loading="lazy" src="resources/imgs/find-your-bus.gif" width="250" height="250"
+							alt="An animation showing how to search for the tracking information of the next bus from a particular MTA bus stop" />
+					</project-elt>
+				</li>
+				<li>
+					<project-elt name="Mario Watchface for Fitbit" duration="Summer 2019"
+						href="https://github.com/denk0403/Mario-Fitbit-Watchface">
+						<div slot="description">
+							<p>
+								A simple watchface to show your appreciation for Mario! Set your birthday in the
+								settings and when the day comes, Mario will celebrate with you!
+							</p>
+							<p>
+								Also, if you leave your phone somewhere without noticing, the watchface will
+								notify you with an alert and haptics that it has disconnected.
+							</p>
+							<p>
+								Inspired by:
+								<a href="https://apps.rebble.io/en_US/application/55431083b7d4a71c0000003b"
+									class="no-indent">Mario Time Watchface for Pebble.</a>
+							</p>
+						</div>
+						<span slot="tech">
+							<span class="skill">JavaScript</span>
+							<span class="skill">Fitbit SDK</span>
+							<span class="skill">SVG</span>
+							<span class="skill">Bluetooth</span>
+						</span>
+						<span slot="links">
+							<project-link type="github" href="https://github.com/denk0403/Mario-Fitbit-Watchface">
+							</project-link>
+						</span>
+						<div slot="media">
+							<img width="125" height="125" src="resources/imgs/mario1.png" loading="lazy"
+								alt="An image of the watchface during the day" />
+							<img width="125" height="125" src="resources/imgs/mario2.png" loading="lazy"
+								alt="An image of the watchface with Mario jumping" />
+							<img width="125" height="125" src="resources/imgs/mario3.png" loading="lazy"
+								alt="An image of the watchface during the night" />
+							<img width="125" height="125" src="resources/imgs/mario4.png" loading="lazy"
+								alt="An image of the watchface's 'Have Your Phone?' feature" />
+						</div>
+					</project-elt>
+				</li>
+				<li>
+					<project-elt name="Image to ASCII Converter" duration="Summer 2019">
+						<span slot="subtitle">Image to ASCII converter</span>
+						<p slot="description">A program that converts a given image into ASCII text.</p>
+						<span slot="tech">
+							<span class="skill">Java</span>
+							<span class="skill">Swing</span>
+						</span>
+						<span slot="links">
+							<project-link type="github" href="https://github.com/denk0403/Image-To-ASCII-Converter">
+							</project-link>
+						</span>
+					</project-elt>
+				</li>
+				<!-- <li>
 						<project-elt
 							name="Seam Carving"
 							duration="Spring 2019"
@@ -590,109 +471,91 @@
 						>
 						</project-elt>
 					</li> -->
-					<li>
-						<project-elt name="Connect Four" duration="Feb. 2019">
-							<span slot="subtitle">A game of Connect Four in Java</span>
-							<span slot="tech">
-								<span class="skill">Java</span>
-								<span class="skill">Swing</span>
-							</span>
-							<span slot="links">
-								<project-link
-									type="github"
-									href="https://github.com/denk0403/Connect-4"
-								></project-link>
-							</span>
-							<img
-								slot="media"
-								loading="lazy"
-								src="resources/imgs/connect4.png"
-								height="250"
-								alt="An image of a completed Connect4 game"
-							/>
-						</project-elt>
-					</li>
-					<li>
-						<project-elt name="Vortecs Desktop" duration="Fall 2018 - Spring 2019">
-							<p slot="description">
-								Vortecs <i>(an anagram of "Vectors")</i> is a free, offline, and simple educational
-								tool for displaying 2D vectors and visualizing 2D linear transformations. It is
-								designed to be used primarily by students who are being introduced to Linear Algebra
-								concepts for the first time.
-							</p>
-							<span slot="tech">
-								<span class="skill">Java</span>
-								<span class="skill">Swing</span>
-							</span>
-							<span slot="links">
-								<project-link type="github" href="https://github.com/denk0403/Vortecs-Desktop">
-								</project-link>
-								<project-link
-									replace
-									type="download"
-									href="https://drive.google.com/uc?export=download&id=1XN24E-9drJ4RyT7Lsf1913K7O97MKvXl"
-								>
-								</project-link>
-							</span>
-							<img
-								slot="media"
-								loading="lazy"
-								src="resources/imgs/vortecs.png"
-								height="375"
-								alt="An image of the Vortecs application"
-							/>
-						</project-elt>
-					</li>
-					<li>
-						<project-elt name="Dollar Game" duration="Fall 2018">
-							<p slot="description">
-								An implementation of the Dollar Game in Processing. Based on
-								<a href="https://www.youtube.com/watch?v=U33dsEcKgeQ">this Numberphile video.</a>
-							</p>
-							<span slot="tech">
-								<span class="skill">Java</span>
-								<span class="skill">Processing</span>
-							</span>
-							<span slot="links">
-								<project-link
-									type="github"
-									href="https://github.com/denk0403/DollarGame"
-								></project-link>
-							</span>
-						</project-elt>
-					</li>
-				</ul>
-			</section>
-			<section class="section misc">
-				<h1>Miscellaneous</h1>
-				<ul>
-					<li>
-						<a href="tilegame/index.html">Tile Game</a> (based on
-						<a href="https://en.wikipedia.org/wiki/Lights_Out_(game)">Lights Out</a>)
-					</li>
-					<li><a href="./aprilfools.html">April Fools 2022 Prank</a></li>
-				</ul>
-				<details ontoggle="body.scrollIntoView({behavior: 'smooth', block: 'end'})">
-					<summary>
-						<h1 style="display: inline-block">Study Guides</h1>
-					</summary>
-					<div style="margin-left: 20px">
-						<h2>Math Classes</h2>
-						<ul>
-							<li><a href="resources/pdfs/Calc 3 Midterm 1.pdf">Calculus 3 Midterm 1</a></li>
-							<li><a href="resources/pdfs/Calc 3 Midterm 2.pdf">Calculus 3 Midterm2</a></li>
-							<li><a href="resources/pdfs/Calc 3 Final.pdf">Calculus 3 Final</a></li>
-							<li><a href="resources/pdfs/LA Final.pdf">Linear Algebra Final</a></li>
-							<li><a href="resources/pdfs/Diff Eq Final.pdf">Differential Equations Final</a></li>
-						</ul>
-						<h2>CS Classes</h2>
-						<ul>
-							<li><a href="resources/pdfs/Fundies 2 Final.pdf">Fundamentals of CS 2 Final</a></li>
-							<li><a href="resources/pdfs/OOD Final.pdf">Object-Oriented Design Final</a></li>
-						</ul>
-					</div>
-				</details>
-			</section>
-		</main>
-	</body>
+				<li>
+					<project-elt name="Connect Four" duration="Feb. 2019">
+						<span slot="subtitle">A game of Connect Four in Java</span>
+						<span slot="tech">
+							<span class="skill">Java</span>
+							<span class="skill">Swing</span>
+						</span>
+						<span slot="links">
+							<project-link type="github" href="https://github.com/denk0403/Connect-4"></project-link>
+						</span>
+						<img slot="media" loading="lazy" src="resources/imgs/connect4.png" height="250"
+							alt="An image of a completed Connect4 game" />
+					</project-elt>
+				</li>
+				<li>
+					<project-elt name="Vortecs Desktop" duration="Fall 2018 - Spring 2019">
+						<p slot="description">
+							Vortecs <i>(an anagram of "Vectors")</i> is a free, offline, and simple educational
+							tool for displaying 2D vectors and visualizing 2D linear transformations. It is
+							designed to be used primarily by students who are being introduced to Linear Algebra
+							concepts for the first time.
+						</p>
+						<span slot="tech">
+							<span class="skill">Java</span>
+							<span class="skill">Swing</span>
+						</span>
+						<span slot="links">
+							<project-link type="github" href="https://github.com/denk0403/Vortecs-Desktop">
+							</project-link>
+							<project-link replace type="download"
+								href="https://drive.google.com/uc?export=download&id=1XN24E-9drJ4RyT7Lsf1913K7O97MKvXl">
+							</project-link>
+						</span>
+						<img slot="media" loading="lazy" src="resources/imgs/vortecs.png" height="375"
+							alt="An image of the Vortecs application" />
+					</project-elt>
+				</li>
+				<li>
+					<project-elt name="Dollar Game" duration="Fall 2018">
+						<p slot="description">
+							An implementation of the Dollar Game in Processing. Based on
+							<a href="https://www.youtube.com/watch?v=U33dsEcKgeQ">this Numberphile video.</a>
+						</p>
+						<span slot="tech">
+							<span class="skill">Java</span>
+							<span class="skill">Processing</span>
+						</span>
+						<span slot="links">
+							<project-link type="github" href="https://github.com/denk0403/DollarGame"></project-link>
+						</span>
+					</project-elt>
+				</li>
+			</ul>
+		</section>
+		<section class="section misc">
+			<h1>Miscellaneous</h1>
+			<ul>
+				<li>
+					<a href="tilegame/index.html">Tile Game</a> (based on
+					<a href="https://en.wikipedia.org/wiki/Lights_Out_(game)">Lights Out</a>)
+				</li>
+				<li><a href="./aprilfools.html">April Fools 2022 Prank</a></li>
+			</ul>
+			<details ontoggle="body.scrollIntoView({behavior: 'smooth', block: 'end'})">
+				<summary>
+					<h1 style="display: inline-block">Study Guides</h1>
+				</summary>
+				<div style="margin-left: 20px">
+					<h2>Math Classes</h2>
+					<ul>
+						<li><a href="resources/pdfs/Calc 3 Midterm 1.pdf">Calculus 3 Midterm 1</a></li>
+						<li><a href="resources/pdfs/Calc 3 Midterm 2.pdf">Calculus 3 Midterm2</a></li>
+						<li><a href="resources/pdfs/Calc 3 Final.pdf">Calculus 3 Final</a></li>
+						<li><a href="resources/pdfs/LA Final.pdf">Linear Algebra Final</a></li>
+						<li><a href="resources/pdfs/Diff Eq Final.pdf">Differential Equations Final</a></li>
+					</ul>
+					<h2>CS Classes</h2>
+					<ul>
+						<li><a href="resources/pdfs/Fundies 2 Final.pdf">Fundamentals of CS 2 Final</a></li>
+						<li><a href="resources/pdfs/OOD Final.pdf">Object-Oriented Design Final</a></li>
+					</ul>
+				</div>
+			</details>
+		</section>
+	</main>
+</body>
+
 </html>

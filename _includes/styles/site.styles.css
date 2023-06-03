@@ -369,6 +369,10 @@ main i,
     gap: 10px;
 }
 
+.no-indent {
+    text-indent: 0;
+}
+
 featured-project:not(:defined) {
     display: block;
     height: 250px;
