@@ -20,7 +20,7 @@ class FeaturedProject extends HTMLElement {
 					<img width="60" height="60" id="project-icon"/>
 				</div>
 				<slot name="description"></slot>
-				<div id="next-icon-wrapper">
+				<div id="next-icon-wrapper" aria-hidden="true">
 					<i id="next-icon" class="fa-inverse fa-xl fa-solid fa-arrow-right"></i>
 				</div>
 			</div>

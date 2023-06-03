@@ -68,7 +68,7 @@
   </head>
 
 	<body>
-		<nav class="tab-bar">
+		<nav class="tab-bar" aria-label="Website Navigation">
 			<a class="tab" href="/index.html" title="About Me Page">About Me</a>
 			<a class="tab" href="/projects.html" title="Projects Page">Projects</a>
 			<a class="tab selected" href="/blog.html" title="Blog Page">Blog</a>
@@ -76,7 +76,7 @@
 		<main class="page-body">
 			<div class="blog-heading">
 				<a id="back-btn" href="{{ page.back_link }}" title="Go back">
-					<i class="fa-inverse fa-2x fa-solid fa-arrow-left"></i>
+					<i class="fa-inverse fa-2x fa-solid fa-arrow-left" aria-hidden="true"></i>
 				</a>
 				<balance-text>
 					<h2 class="post-title">{{ page.title }}</h2>

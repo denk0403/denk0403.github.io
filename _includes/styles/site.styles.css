@@ -308,6 +308,7 @@ a:focus-within {
     display: inline-block;
     text-indent: 0;
     transform-origin: 50% 50%;
+    margin-left: 1ch;
 }
 
 .wave:hover {

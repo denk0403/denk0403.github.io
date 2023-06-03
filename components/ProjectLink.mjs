@@ -2,7 +2,7 @@
 ---
 
 // @ts-check
-	import { id, prop, template } from "./utils.mjs";
+import { id, prop, template } from "./utils.mjs";
 
 const ICON_TYPE_DATA_MAP = /** @type {const} */ ({
 	github: /** @type {const} */ ({ classes: ["fa-brands", "fa-github"], tooltip: "Github" }),
@@ -31,7 +31,7 @@ export class ProjectLink extends HTMLElement {
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/solid.min.css"
 			integrity="sha512-6mc0R607di/biCutMUtU9K7NtNewiGQzrvWX4bWTeqmljZdJrwYvKJtnhgR+Ryvj+NRJ8+NnnCM/biGqMe/iRA=="
 			crossorigin="anonymous" referrerpolicy="no-referrer" />
-		<a id="link" target="_blank"><i id="icon" class="fa-inverse fa-lg"></i></a>
+		<a id="link" target="_blank"><i id="icon" class="fa-inverse fa-lg" aria-hidden="true"></i></a>
 	`;
 
 	static get observedAttributes() {
@@ -94,7 +94,7 @@ export class ProjectLink extends HTMLElement {
 			this.#icon.classList.remove(...oldIconData.classes);
 		}
 
-		icon.title = "";
+		this.#link.title = "";
 
 		this.#type = value;
 		if (value && value in ICON_TYPE_DATA_MAP) {
@@ -102,9 +102,7 @@ export class ProjectLink extends HTMLElement {
 			const iconData = ICON_TYPE_DATA_MAP[this.#type];
 			icon.classList.add(...iconData.classes);
 
-			if (!this.#tooltip) {
-				icon.title = iconData.tooltip;
-			}
+			this.#link.title = this.#tooltip || iconData.tooltip;
 		}
 	}
 

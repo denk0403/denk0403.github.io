@@ -6,13 +6,13 @@ add_head:
   - <script src="/components/BalanceText.js"></script>
 ---
 
-
 <!-- Pinned -->
+
 {% assign pinned_permalink = "/blog/fab_format" %}
 {% for post in site.posts %}
-  <!-- Can't use find filter (Jekyll 4.1.0) because Github uses Jekyll 3.9.3 -->
-  {% if post.permalink == pinned_permalink %}
-# Pinned<i class="fa-solid fa-thumbtack fa-2xs" style="rotate: 45deg; margin-left: 10px;"></i>
+<!-- Can't use find filter (Jekyll 4.1.0) because Github uses Jekyll 3.9.3 -->
+{% if post.permalink == pinned_permalink %}
+# Pinned<i class="fa-solid fa-thumbtack fa-2xs" style="rotate: 45deg; margin-left: 10px;" aria-hidden="true"></i>
 
 <div markdown="0">
   {% include html/blog_item.html
@@ -22,15 +22,14 @@ add_head:
     excerpt=post.excerpt  %}
 </div>
 
-  {% endif %}
+{% endif %}
 {% endfor %}
-
 
 <div style="display: flex; justify-content: space-between; align-items: center;">
 # All Articles
 
 <a class="v-align" href="/blog.rss">
-  RSS<i class="fa-solid fa-square-rss fa-2x" style="color: #f69537; margin-left: 10px;"></i>
+  RSS<i class="fa-solid fa-square-rss fa-2x" style="color: #f69537; margin-left: 10px;" aria-hidden="true"></i>
 </a>
 
 </div>

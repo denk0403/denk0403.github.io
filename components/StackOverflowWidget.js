@@ -2,7 +2,7 @@
 ---
 
 // @ts-check
-	import { id, prop, template } from "./utils.mjs";
+import { id, prop, template } from "./utils.mjs";
 
 class StackOverflowWidget extends HTMLElement {
 	static #TEMPLATE = template`
