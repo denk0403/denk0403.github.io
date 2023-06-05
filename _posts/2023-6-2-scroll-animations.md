@@ -17,13 +17,14 @@ add_head:
     }
 </style>
 
-<p class="warning" id="compat-warning">The content in this blog post discusses an <a href="https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental browser technology</a>. At the time of publication, Scroll-driven Animations are only supported in Chrome 115+ with “Experimental Web Platform Features” enabled.</p>
+<p class="warning" id="compat-warning">The content in this blog post discusses an <a href="https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental browser technology</a>. At the time of publication, Scroll-driven Animations are only supported in Chrome 115+ with “Experimental Web Platform Features” enabled, and CSS motion paths have limited support.</p>
 
 <script>
     const scrollFunctionSupported = CSS.supports("animation-timeline", "scroll()");
-    window["compat-warning"].innerHTML += scrollFunctionSupported
-        ? " Your current browser <b>supports</b> Scroll-driven Animations."
-        : " Your current browser <b>does not</b> support Scroll-driven Animations. The demos below will not work."
+    const urlPathSupported = CSS.supports("offset-path", "url(#path)");
+    window["compat-warning"].innerHTML += scrollFunctionSupported && urlPathSupported
+        ? " Your current browser <b>supports</b> Scroll-driven Animations and CSS motion paths."
+        : " Your current browser <b>does not</b> fully support either Scroll-driven Animations or CSS motion paths. The demos below will not work."
 </script>
 
 {% include html/toc.html %}
