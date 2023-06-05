@@ -5,7 +5,7 @@ tags: ["css", "html", "animation", "scroll", "svg"]
 permalink: "/blog/path_scroll_animation"
 add_head:
   - <script type="module" src="/components/StackOverflowWidget.js"></script>
-  - <link rel='stylesheet' href='/highlight_js.css' />
+  - <link rel='stylesheet' href='/highlight.css' />
 # categories: ["engineering", "blog"]
 ---
 
@@ -65,23 +65,23 @@ Say I have the following code which defines an SVG path and an image element. I 
 
 {% include html/2-path_scroll_animation/demo1.html %}
 
-In general, the strategy is to use the `offset-path` style property with the `url()` CSS function to reference the path the element should follow. In this case specifically, you would set it to `url(#my_path)`. And then in your `@keyframes` (I called it `offsetDistance`), simply transition from `offset-distance: 0%;` to `offset-distance: 100%;`.
+In general, the strategy is to use the [`offset-path`](https://developer.mozilla.org/en-US/docs/Web/CSS/offset-path) style property with the [`url()`](https://developer.mozilla.org/en-US/docs/Web/CSS/url) CSS function to reference the SVG path to follow. In this case specifically, you would set it to `url(#my_path)`. And then in your `@keyframes` (I called it `offsetDistance`), simply transition from [`offset-distance: 0%;`](https://developer.mozilla.org/en-US/docs/Web/CSS/offset-distance) to `offset-distance: 100%;`.
 
 However, the method of attaching a scroll-driven timeline to your animation depends largely on the structure of your page and precisely where the path is located on the page. Namely, there are two cases.
 
 ## Case 1: The path spans the entire scroll container
 
-This is the simple case. We can associate a scroll timeline with the animation using `animation-timeline: scroll();`, which references the block axis of the nearest ancestor scroll container. And then we set the animation on the element using `animation: offsetDistance linear;`.
+This is the simple case. We can associate a scroll timeline with the animation using [`animation-timeline: scroll();`](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timeline/scroll), which references the block axis of the nearest ancestor scroll container. And then we set the animation on the image element using `animation: offsetDistance linear;`.
 
-Make sure to also set the initial position of the element to `(0,0)` of the offset parent via `position: absolute` and `inset: 0`. All together, the code should look something like this:
+Make sure to also set the initial position of the image to `(0,0)` of the offset parent via `position: absolute` and `inset: 0`. All together, the code should look something like this:
 
 {% include html/2-path_scroll_animation/demo2.html %}
 
-## Case 2: The path is a portion of the scroll container
+## Case 2: The path spans a portion of the scroll container
 
 In this case, we must use a [View Progress Timeline](https://www.w3.org/TR/scroll-animations-1/#view-timelines) which requires a little more effort to setup correctly, and so it's easier to explain step-by-step.
 
-1.  Define a named view timeline and deferred scope on the nearest common ancestor of the element and path. This defers the attachment of a view timeline to a descendent, which will be the path element.
+1.  Define a named view timeline and deferred scope on the nearest common ancestor of the image and SVG path. This defers the attachment of a view timeline to a descendent, which will ultimately enable the path element's visibility to control the animation timeline for the image.
 
     ```css
     #container {
@@ -103,11 +103,12 @@ In this case, we must use a [View Progress Timeline](https://www.w3.org/TR/scrol
 
     ```css
     #car {
-        animation-timeline: --container; /* ... */
+        animation-timeline: --container;
+        /* ... */
     }
     ```
 
-4.  Determine your animation's timeline range. This also depends greatly on your page's structure and likely requires some manual testing. However, [this tool](https://scroll-driven-animations.style/tools/view-timeline/ranges/https://scroll-driven-animations.style/tools/view-timeline/ranges/) is extremely helpful in understanding the behavior of various ranges. In my example, I choose the following:
+4.  Determine your animation's timeline range. This also depends greatly on your page's structure and likely requires some manual testing. However, [this tool](https://scroll-driven-animations.style/tools/view-timeline/ranges/) created by [Bramus](https://twitter.com/bramus) is extremely helpful in understanding the behavior of various ranges. In this example, I choose the following:
 
     ```css
     #car {
@@ -117,7 +118,7 @@ In this case, we must use a [View Progress Timeline](https://www.w3.org/TR/scrol
     }
     ```
 
-5.  Lastly, to prevent visual glitches at the end of the animation, change the `animation-fill-mode` to `forwards`.
+5.  Lastly, to prevent the visual glitches at the end of the animation caused by styles resetting, change the [`animation-fill-mode`](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-fill-mode) to `forwards`.
 
     ```css
     #car {
