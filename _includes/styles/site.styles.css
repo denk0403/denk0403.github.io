@@ -13,6 +13,7 @@
     height: 100%;
 
     scrollbar-gutter: stable both-edges;
+    -webkit-text-size-adjust: none;
 }
 
 :root :any-link:is(:hover, :focus-within) {
