@@ -73,9 +73,11 @@ However, the method of attaching a scroll-driven timeline to your animation depe
 
 This is the simple case. We can associate a scroll timeline with the animation using [`animation-timeline: scroll();`](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timeline/scroll), which references the block axis of the nearest ancestor scroll container. And then we set the animation on the image element using `animation: offsetDistance linear;`.
 
-Make sure to also set the initial position of the image to `(0,0)` of the offset parent via `position: absolute` and `inset: 0`. All together, the code should look something like this:
+Make sure to also set the initial position of the image to `(0,0)` of the [offset parent](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetParent) via `position: absolute` and `inset: 0`. All together, the code should look something like this:
 
 {% include html/2-path_scroll_animation/demo2.html %}
+
+<small>Note: In the event that you don't want the image to rotate in the direction of the path, set [`offset-rotate`](https://developer.mozilla.org/en-US/docs/Web/CSS/offset-rotate) to `0rad` in the CSS.</small>
 
 ## Case 2: The path spans a portion of the scroll container
 
