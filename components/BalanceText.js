@@ -50,6 +50,8 @@
 		}
 
 		#balance = () => {
+			this.style.removeProperty("max-width"); // reset max-width
+
 			// @ts-ignore
 			const parentWidth = this.parentElement.getBoundingClientRect().width;
 			this.style.maxWidth = `${parentWidth}px`;
