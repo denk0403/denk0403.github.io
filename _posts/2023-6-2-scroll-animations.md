@@ -66,13 +66,14 @@ Say I have the following code which defines an SVG path and an image element. I 
 
 {% include html/2-path_scroll_animation/demo1.html %}
 
-In general, the strategy is to use the [`offset-path`](https://developer.mozilla.org/en-US/docs/Web/CSS/offset-path) style property with the [`url()`](https://developer.mozilla.org/en-US/docs/Web/CSS/url) CSS function to reference the SVG path to follow. In this case specifically, you would set it to `url(#my_path)`. And then in your `@keyframes` (I called it `offsetDistance`), simply transition from [`offset-distance: 0%;`](https://developer.mozilla.org/en-US/docs/Web/CSS/offset-distance) to `offset-distance: 100%;`.
+In general, the modern strategy is to use [CSS motion paths](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_motion_path). Specifically, we can use the [`offset-path`](https://developer.mozilla.org/en-US/docs/Web/CSS/offset-path) style property with the [`url()`](https://developer.mozilla.org/en-US/docs/Web/CSS/url) CSS function to reference the SVG path for the image to follow. For example, in the code above, you would set `offset-path: url(#my_path)`. And then in your `@keyframes` (which I called `offsetDistance`), simply transition from [`offset-distance: 0%;`](https://developer.mozilla.org/en-US/docs/Web/CSS/offset-distance) to `offset-distance: 100%;`.
 
+To drive the animation, rather than designating a duration, we must specify the [`animation-timeline`](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timeline).
 However, the method of attaching a scroll-driven timeline to your animation depends largely on the structure of your page and precisely where the path is located on the page. Namely, there are two cases.
 
 ## Case 1: The path spans the entire scroll container
 
-This is the simple case. We can associate a scroll timeline with the animation using [`animation-timeline: scroll();`](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timeline/scroll), which references the block axis of the nearest ancestor scroll container. And then we set the animation on the image element using `animation: offsetDistance linear;`.
+This is the simple case. We associate a scroll timeline with the animation using the [`scroll()`](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timeline/scroll) CSS function, which references the block axis of the nearest ancestor scroll container. And then we set the animation on the image element using `animation: offsetDistance linear;`.
 
 Make sure to also set the initial position of the image to `(0,0)` of the [offset parent](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetParent) via `position: absolute` and `inset: 0`. All together, the code should look something like this:
 
