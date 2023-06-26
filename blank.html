@@ -1,38 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Blank</title>
-		<style>
-			:root::after {
-				content: "This page is intentionally left blank.";
-				opacity: 0.25;
-				position: absolute;
-				left: 50%;
-				translate: -50% 0;
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Blank</title>
+	<style>
+		body {
+			margin: 0;
+			color: black
+		}
+
+		@media (prefers-color-scheme: dark) {
+			:root {
+				background: #222;
 			}
-		</style>
-		<script>
-			{
-				const testText = `// performance test
+
+			body,
+			button {
+				color: #eee;
+			}
+		}
+
+		#menu {
+			--space: 10px;
+
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			gap: var(--space);
+
+			padding: var(--space);
+			margin: 0;
+			background: #333;
+		}
+
+		#menu button {
+			background: gray;
+			padding: 5px;
+			border: none;
+			max-height: 35px;
+		}
+
+		button:hover {
+			cursor: pointer;
+			filter: brightness(0.85);
+		}
+
+		button:active {
+			filter: brightness(0.7);
+		}
+
+		.box-i {
+			--bg: white;
+			background: var(--bg);
+			width: 20px;
+			height: 20px;
+		}
+
+		.box {
+			width: 350px;
+			height: 350px;
+			resize: both;
+		}
+
+		#playground *.hovered {
+			outline: 3px rgb(229, 222, 0) solid;
+		}
+
+		#playground *.selected.selected {
+			outline: 3px rgb(232, 120, 0) solid;
+		}
+	</style>
+</head>
+
+<body>
+	<menu id="menu">
+		<button title="Create Red Box" onclick="add(box('red'))">
+			<div class="box-i" style="--bg: red"></div>
+		</button>
+		<button title="Create Green Box" onclick="add(box('green'))">
+			<div class="box-i" style="--bg: green"></div>
+		</button>
+		<button title="Create Blue Box" onclick="add(box('blue'))">
+			<div class="box-i" style="--bg: blue"></div>
+		</button>
+		<button title="Create White Box" onclick="add(box())">
+			<div class="box-i"></div>
+		</button>
+		<button title="Create Input Field" onclick="add(element('input'))">
+			<input readonly inert style="font-size: xx-small;" placeholder="input...">
+		</button>
+		<button title="Create Input Field" onclick="add(element('input', {type: 'color'}))">
+			<input readonly inert style="font-size: xx-small;" type="color">
+		</button>
+		<button title="Create Input Field" onclick="add(element('input', {type: 'range'}))">
+			<input readonly inert type="range">
+		</button>
+		<button title="Create Input Field" onclick="add(element('p', {contentEditable: true}, 'Lorem Ipsum...'))">
+			<span style="font-family: Luminari;">p</span>
+		</button>
+		<button title="Create Input Field"
+			onclick="add(element('img', {src: '/resources/imgs/Dennis2021-200.webp', width: '200'}))">
+			<img src="about:blank">
+		</button>
+	</menu>
+	<div id="playground"></div>
+</body>
+
+<script>
+	{
+		const testText = `// performance test
 let iterations = 10000
 let start = performance.now();
 for (let i = 0; i < iterations; i++) {
-    "..."
+"..."
 }
 performance.now() - start`;
-				console.log(testText);
-			}
-		</script>
-	</head>
+		console.log(testText);
+	}
 
-	<body>
-		<div id="a"></div>
-		<div id="b"></div>
-		<div id="c"></div>
-		<div id="d"></div>
-		<div id="e"></div>
-	</body>
+	function isEditing(elt) {
+		return elt.nodeName === 'INPUT' || elt.nodeName === 'TEXTAREA' || elt.isContentEditable;
+	}
+
+	let $box = playground;
+	playground.onpointerover = (e) => e.target.classList.add("hovered");
+	playground.onpointerout = (e) => e.target.classList.remove("hovered");
+	document.onclick = (e) => {
+		if (menu.contains(e.target)) return;
+
+		$box?.classList.remove("selected");
+		if (e.target === $box || e.target === document.documentElement) {
+			$box = playground;
+		} else {
+			$box = e.target;
+			$box.classList.add("selected");
+		}
+	};
+	window.onkeydown = (e) => {
+		if (e.key === "Backspace") {
+			if ($box === playground) return;
+			if (isEditing($box) && !e.shiftKey) return;
+
+			const previous = $box.previousElementSibling ?? $box.parentElement;
+			$box?.remove();
+			$box = previous;
+			$box.classList.add("selected");
+		}
+	};
+
+	function add(elt) {
+		$box.appendChild(elt);
+	}
+
+	function element(tag, attributes, children) {
+		const elt = document.createElement(tag);
+		if (!!attributes) {
+			for (const [key, value] of Object.entries(attributes)) {
+				elt.setAttribute(key, value);
+			}
+		}
+		if (!!children) {
+			elt.append(...children);
+		}
+		return elt;
+	}
+
+	function template(innerHTML, ...rest) {
+		const templ = element("template");
+
+		let parsedHTML = "";
+		let i = 0;
+		while (i < rest.length) {
+			parsedHTML += innerHTML[i] + String(rest[i]);
+			i++;
+		}
+		parsedHTML += innerHTML[i];
+
+		templ.innerHTML = parsedHTML;
+		return templ;
+	}
+
+	function box(color = "white") {
+		return element('div', { class: "box", style: `background: ${color}` })
+	}
+
+	Object.defineProperties(window, {
+		clear: {
+			get() { playground.textContent = ''; }
+		}
+	})
+</script>
+
 </html>
