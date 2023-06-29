@@ -36,11 +36,17 @@
 			background: #333;
 		}
 
-		#menu button {
+		#menu span {
+			font-family: Luminari;
+		}
+
+		#menu> :is(button, .btn) {
 			background: gray;
 			padding: 5px;
 			border: none;
-			max-height: 35px;
+			display: inline-block;
+			min-height: 35px;
+			box-sizing: border-box;
 		}
 
 		button:hover {
@@ -77,34 +83,51 @@
 
 <body>
 	<menu id="menu">
-		<button title="Create Red Box" onclick="add(box('red'))">
+		<button title="Create Red Box" onclick="insert(box('red'))">
 			<div class="box-i" style="--bg: red"></div>
 		</button>
-		<button title="Create Green Box" onclick="add(box('green'))">
+		<button title="Create Green Box" onclick="insert(box('green'))">
 			<div class="box-i" style="--bg: green"></div>
 		</button>
-		<button title="Create Blue Box" onclick="add(box('blue'))">
+		<button title="Create Blue Box" onclick="insert(box('blue'))">
 			<div class="box-i" style="--bg: blue"></div>
 		</button>
-		<button title="Create White Box" onclick="add(box())">
+		<button title="Create White Box" onclick="insert(box())">
 			<div class="box-i"></div>
 		</button>
-		<button title="Create Input Field" onclick="add(element('input'))">
-			<input readonly inert style="font-size: xx-small;" placeholder="input...">
+		<label class="btn">
+			<span>input:</span>
+			<select oninput="insert(element('input', {type: event.target.value}))">
+				<option>text</option>
+				<option>password</option>
+				<option>color</option>
+				<option>range</option>
+				<option>date</option>
+				<option>number</option>
+				<option>file</option>
+			</select>
+		</label>
+		<button title="Create Paragraph Element"
+			onclick="insert(element('p', {contentEditable: true}, 'Lorem Ipsum...'))">
+			<span>p</span>
 		</button>
-		<button title="Create Input Field" onclick="add(element('input', {type: 'color'}))">
-			<input readonly inert style="font-size: xx-small;" type="color">
+		<button title="Create Image Element"
+			onclick="insert(element('img', {src: '/resources/imgs/Dennis2021-200.webp', width: '200'}))">
+			<span>img</span>
 		</button>
-		<button title="Create Input Field" onclick="add(element('input', {type: 'range'}))">
-			<input readonly inert type="range">
+		<button title="Create Shadow Root on current selected element"
+			onclick="!$box.shadowRoot && $box.attachShadow({mode: 'open'})">
+			<span>#shadow root</span>
 		</button>
-		<button title="Create Input Field" onclick="add(element('p', {contentEditable: true}, 'Lorem Ipsum...'))">
-			<span style="font-family: Luminari;">p</span>
-		</button>
-		<button title="Create Input Field"
-			onclick="add(element('img', {src: '/resources/imgs/Dennis2021-200.webp', width: '200'}))">
-			<span style="font-family: Luminari;">img</span>
-		</button>
+		<label class="btn">
+			<span>slot:</span>
+			<form style="display: inline-block;"
+				onsubmit="event.preventDefault(); $box.shadowRoot && shadowInsert(element('slot', {name: slotNameInput.value}))">
+				<input id="slotNameInput" placeholder="name" size="7">
+				<button style="color: black;">Add</button>
+			</form>
+
+		</label>
 		<div style="flex: 1; text-align: end;">
 			<a href="/">
 				<img src="/resources/imgs/dk logo.png" alt="Dennis Kats website logo" width="30">
@@ -156,8 +179,12 @@ performance.now() - start`;
 		}
 	};
 
-	function add(elt) {
+	function insert(elt) {
 		$box.appendChild(elt);
+	}
+
+	function shadowInsert(elt) {
+		$box.shadowRoot.appendChild(elt);
 	}
 
 	function element(tag, attributes, children) {
