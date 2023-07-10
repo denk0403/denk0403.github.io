@@ -11,7 +11,7 @@
     background-color: rgb(20, 20, 20);
     height: 100%;
 
-    scrollbar-gutter: stable both-edges;
+    /* scrollbar-gutter: stable both-edges; */
     -webkit-text-size-adjust: none;
 }
 
@@ -195,6 +195,11 @@ h1 {
         padding-top: var(--tab-bar-top-padding);
         padding-bottom: var(--tab-bar-bottom-padding);
 
+        /* Ensure it's fixed at the bottom of the screen */
+        /* position: sticky;
+        top: 0;
+        margin-top: calc(var(--tab-bar-height) * -1);
+        translate: 0 calc(100vh - var(--tab-bar-height)); */
         position: fixed;
         top: unset;
         bottom: 0;

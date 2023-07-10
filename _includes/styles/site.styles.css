@@ -12,7 +12,7 @@
     background-color: #141414;
     height: 100%;
 
-    scrollbar-gutter: stable both-edges;
+    /* scrollbar-gutter: stable both-edges; */
     -webkit-text-size-adjust: none;
 }
 
@@ -463,10 +463,6 @@ project-elt [slot="tech"] {
 }
 
 @media (max-width: 425px) {
-    body {
-        min-width: fit-content;
-    }
-
     .contact-info {
         width: min-content;
     }
@@ -492,6 +488,11 @@ project-elt [slot="tech"] {
         padding-top: var(--tab-bar-top-padding);
         padding-bottom: var(--tab-bar-bottom-padding);
 
+        /* Ensure it's fixed at the bottom of the screen */
+        /* position: sticky;
+        top: 0;
+        margin-top: calc(var(--tab-bar-height) * -1);
+        translate: 0 calc(100vh - var(--tab-bar-height)); */
         position: fixed;
         top: unset;
         bottom: 0;
@@ -528,11 +529,5 @@ project-elt [slot="tech"] {
 @media (min-width: 750px) {
     .mobile-only {
         display: none;
-    }
-}
-
-@media (max-width: 1000px) {
-    body {
-        min-width: 100vw;
     }
 }
