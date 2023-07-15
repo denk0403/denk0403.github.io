@@ -85,51 +85,54 @@ Make sure to also set the initial position of the image to `(0,0)` of the [offse
 
 In this case, we must use a [View Progress Timeline](https://www.w3.org/TR/scroll-animations-1/#view-timelines) which requires a little more effort to setup correctly, and so it's easier to explain step-by-step.
 
-1.  Define a named view timeline and deferred scope on the nearest common ancestor of the image and SVG path. This defers the attachment of a view timeline to a descendent, which will ultimately enable the path element's visibility to control the animation timeline for the image.
+1.  First, define a [`timeline-scope`](https://developer.mozilla.org/en-US/docs/Web/CSS/timeline-scope) on the nearest common ancestor of the image and SVG path. This property can be any dashed identifier such as `--container`, and its function is to scope the specified timeline name to the selected element’s subtree.
+
+    In other words, `timeline-scope` doesn't actually define a view timeline on the selected element. Instead, it defers the attachment of a view timeline to a descendent, and enables any other descendent in the selected element's subtree to reference the timeline as well. This is ultimately what will allow the path element's visibility to control the animation timeline for the sibling image element.
 
     ```css
     #container {
-        view-timeline-name: --container;
-        view-timeline-attachment: defer;
+    	timeline-scope: --container;
     }
     ```
 
-2.  Attach the path element to the same ancestral view timeline, like so:
+2.  Now, define a view timeline on the path element using [`view-timeline-name`](https://developer.mozilla.org/en-US/docs/Web/CSS/view-timeline-name), and attach it to the declared scope with the same name, like so:
 
     ```css
     #my_path {
-        view-timeline-name: --container;
-        view-timeline-attachment: ancestor;
+    	view-timeline-name: --container;
+    	/* or using the shorthand */
+    	view-timeline: --container;
     }
     ```
 
-3.  Associate the named timeline with the element's animation.
+3.  Next, bind the timeline's progress to the image's animation progress by using the `animation-timeline` property and referencing the timeline by name again.
 
     ```css
     #car {
-        animation-timeline: --container;
-        /* ... */
+    	animation-timeline: --container;
     }
     ```
 
-4.  Determine your animation's timeline range. This also depends greatly on your page's structure and likely requires some manual testing. However, [this tool](https://scroll-driven-animations.style/tools/view-timeline/ranges/) created by [Bramus](https://twitter.com/bramus) is extremely helpful in understanding the behavior of various ranges. In this example, I choose the following:
+4.  Afterward, determine your animation timeline's range with [`animation-range`](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-range). This property allows you to crop or expand the timeline interval for which the animation is active using offsets of predefined segments. Unfortunately, the value also depends greatly on your page's structure and likely requires some manual testing. However, [this tool](https://scroll-driven-animations.style/tools/view-timeline/ranges/) created by [Bramus](https://twitter.com/bramus) is extremely helpful in understanding the behavior of various ranges and choosing the one that works for you. In this example, I chose the following:
 
     ```css
     #car {
-        animation-timeline: --container;
-        animation-range: exit-crossing -5% entry-crossing 105%;
-        /* ... */
+    	animation-timeline: --container;
+    	animation-range:
+                exit-crossing -5% /* start animation just before beginning to exit */
+                entry-crossing 105%; /* end animation just after fully entering */
     }
     ```
 
-5.  Lastly, to prevent the visual glitches at the end of the animation caused by styles resetting, change the [`animation-fill-mode`](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-fill-mode) to `forwards`.
+5.  Lastly, to prevent the visual glitches at the end of the animation caused by resetting styles, change the [`animation-fill-mode`](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-fill-mode) to `forwards`. The [`animation-timing-function`](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function) can be anything that looks best to you, but for uniformity across displays, I chose `linear`.
 
     ```css
     #car {
-        animation: offsetDistance linear forwards;
-        animation-timeline: --container;
-        animation-range: exit-crossing -5% entry-crossing 105%;
-        /* ... */
+    	animation: offsetDistance linear forwards;
+    	animation-timeline: --container;
+    	animation-range:
+                exit-crossing -5% /* start animation just before beginning to exit */
+                entry-crossing 105%; /* end animation just after fully entering */
     }
     ```
 
