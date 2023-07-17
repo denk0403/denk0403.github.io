@@ -224,6 +224,53 @@ performance.now() - start`;
 			get() { playground.textContent = ''; }
 		}
 	})
+
+	const random = Object.freeze({
+		number(min = 0, max = 256) {
+			return Math.random() + min * (max - min);
+		},
+		integer(min = 0, max = 256) {
+			return Math.floor(Math.random() * (max - min) + min);
+		},
+		string(length = 10) {
+			let result = '';
+			const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+			let counter = 0;
+			while (counter < length) {
+				result += chars.charAt(Math.floor(Math.random() * chars.length));
+				counter += 1;
+			}
+			return result;
+		},
+		boolean() {
+			return Math.random() >= 0.5;
+		},
+		date(start = -8640000000000000, end = 8640000000000000) {
+			if (end == undefined) return new Date();
+			let startNum = start;
+			if (start instanceof Date) startNum = start.getTime();
+			let endNum = end;
+			if (end instanceof Date) endNum = end.getTime();
+			return new Date(random.integer(startNum, endNum));
+		},
+		recent(start = (Date.now() - 7 * 24 * 60 * 60 * 1000), end = Date.now()) {
+			if (end == undefined) return new Date();
+			let startNum = start;
+			if (start instanceof Date) startNum = start.getTime();
+			let endNum = end;
+			if (end instanceof Date) endNum = end.getTime();
+			return new Date(random.integer(startNum, endNum));
+		},
+		array(length = 10, generator = random.string) {
+			return Array.from({ length }, () => generator())
+		},
+		int8Array(length = 10) {
+			return random.array(length, () => random.integer(-1 << 7, 1 << 7))
+		},
+		uint8Array(length = 10) {
+			return random.array(length, random.integer)
+		}
+	})
 </script>
 
 </html>
