@@ -56,7 +56,7 @@ h1 {
     flex-direction: column;
 
     padding-top: 5px;
-    max-width: 100vw;
+    /* max-width: 100vw; */
 
     background-color: #212121;
 }
@@ -72,6 +72,7 @@ h1 {
 .title-image {
     padding-top: 25px;
     display: flex;
+    flex-flow: row wrap;
     justify-content: center;
     align-items: center;
     gap: 50px;
@@ -375,7 +376,7 @@ main i,
 
 .featured-projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(325px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 325px), 1fr));
     grid-auto-rows: 1fr;
     gap: 10px;
 }
@@ -439,7 +440,7 @@ project-elt [slot="tech"] {
     }
 
     .title-image {
-        gap: 0px;
+        gap: 10px;
         justify-content: space-evenly;
     }
 

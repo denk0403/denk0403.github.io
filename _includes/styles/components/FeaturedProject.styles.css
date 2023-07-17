@@ -11,7 +11,7 @@
 	height: 100%;
 	box-sizing: border-box;
 	display: flex;
-	flex-direction: column;
+	flex-flow: column nowrap;
 	transition: background-color 0.25s ease;
 }
 
@@ -22,6 +22,7 @@
 #header {
 	margin-bottom: 10px;
 	display: flex;
+	flex-flow: row wrap;
 	justify-content: space-between;
 	align-items: center;
 	gap: 10px;
@@ -61,4 +62,5 @@
 
 ::slotted([slot="description"]) {
 	margin: 10px 0;
+	hyphens: auto;
 }
