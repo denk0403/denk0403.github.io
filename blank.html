@@ -119,6 +119,14 @@
 			">
 			<span>img</span>
 		</button>
+		<button title="Create Canvas Element" onclick="insert(element('canvas', {
+			width: '500',
+			height: '250',
+			style: 'background: white'
+		}))
+	">
+			<span>canvas</span>
+		</button>
 		<button title="Create Shadow Root on current selected element"
 			onclick="!$box.shadowRoot && $box.attachShadow({mode: 'open'})">
 			<span>#shadow root</span>
@@ -130,7 +138,6 @@
 				<input id="slotNameInput" placeholder="name" size="7">
 				<button style="color: black;">Add</button>
 			</form>
-
 		</label>
 		<div style="flex: 1; text-align: end;">
 			<a href="/" style="text-decoration: none;" title="Go to home page">
@@ -157,6 +164,7 @@ for (let i = 0; i < iterations; i++) {
 }
 performance.now() - start`;
 		console.log(testText);
+		console.log("// or use `perf()`. See `perf.help` for more info.");
 	}
 
 	function isEditing(elt) {
@@ -286,6 +294,54 @@ performance.now() - start`;
 		color(minBrightness = 100, maxBrightness = 255) {
 			const gen = () => random.integer(minBrightness, maxBrightness).toString(16);
 			return `${gen()}${gen()}${gen()}`
+		}
+	})
+
+	function perf({ time, tests, scope = {} }) {
+		if (typeof scope !== 'object') throw new TypeError('scope arg must be an object.');
+
+		let jsonScope = JSON.stringify(scope);
+		const perfTests = tests.map((fn, index) => /* js */`
+			try {
+				with (Object.assign(Object.create(null), ${jsonScope})) {
+					const test = eval(${JSON.stringify(fn.toString())});
+					if (typeof test !== 'function') {
+						throw new Error("Test ${index} is invalid.");
+					}
+
+					let iterations = 0;
+					const start = performance.now();
+					while (performance.now() - start < ${time}) {
+						iterations++; test();
+					}
+					console.log("Test ${index + 1} iterations:", iterations);
+				}
+			} catch (err) {
+				console.error("Test ${index} threw an error.", {cause: err});
+			}
+
+		`);
+
+		const perfTestsUrl = URL.createObjectURL(new Blob(perfTests));
+		return new Worker(perfTestsUrl);
+	}
+
+	Object.defineProperty(perf, "help", {
+		get() {
+			console.log(`
+/**
+ * Utility function for performance testing functions off the main thread.
+ * @example
+ */
+perf({
+	time: 1500,
+	scope: { value: "hello world" },
+	tests: [
+		() => "hello world",
+		() => value,
+	]
+})
+	`)
 		}
 	})
 </script>
