@@ -111,8 +111,12 @@
 			onclick="insert(element('p', {contentEditable: true}, 'Lorem Ipsum...'))">
 			<span>p</span>
 		</button>
-		<button title="Create Image Element"
-			onclick="insert(element('img', {src: '/resources/imgs/Dennis2021-200.webp', width: '200'}))">
+		<button title="Create Image Element" onclick="insert(element('img', {
+					src: `https://dummyimage.com/200x200/${random.color()}/000.jpg?text=image`,
+					width: '200',
+					height: '200'
+				}))
+			">
 			<span>img</span>
 		</button>
 		<button title="Create Shadow Root on current selected element"
@@ -129,8 +133,14 @@
 
 		</label>
 		<div style="flex: 1; text-align: end;">
-			<a href="/">
-				<img src="/resources/imgs/dk logo.png" alt="Dennis Kats website logo" width="30">
+			<a href="/" style="text-decoration: none;" title="Go to home page">
+				<object data="/resources/imgs/dk logo.png" type="image/png" width="30" height="30">
+					<span style="
+							font-family: monospace;
+							font-size: 20px;
+							color: limegreen;
+						">dk</span>
+				</object>
 			</a>
 		</div>
 	</menu>
@@ -157,7 +167,7 @@ performance.now() - start`;
 	playground.onpointerover = (e) => e.target.classList.add("hovered");
 	playground.onpointerout = (e) => e.target.classList.remove("hovered");
 	document.onclick = (e) => {
-		if (menu.contains(e.target)) return;
+		if (e.target !== playground && !playground.contains(e.target)) return;
 
 		$box?.classList.remove("selected");
 		if (e.target === $box || e.target === document.documentElement) {
@@ -216,7 +226,10 @@ performance.now() - start`;
 	}
 
 	function box(color = "white") {
-		return element('div', { class: "box", style: `background: ${color}` })
+		return element('div', {
+			class: "box",
+			style: `background: ${color}; overflow: auto; resize: both;`
+		})
 	}
 
 	Object.defineProperties(window, {
@@ -227,7 +240,7 @@ performance.now() - start`;
 
 	const random = Object.freeze({
 		number(min = 0, max = 256) {
-			return Math.random() + min * (max - min);
+			return Math.random() * (max - min) + min;
 		},
 		integer(min = 0, max = 256) {
 			return Math.floor(Math.random() * (max - min) + min);
@@ -269,6 +282,10 @@ performance.now() - start`;
 		},
 		uint8Array(length = 10) {
 			return random.array(length, random.integer)
+		},
+		color(minBrightness = 100, maxBrightness = 255) {
+			const gen = () => random.integer(minBrightness, maxBrightness).toString(16);
+			return `${gen()}${gen()}${gen()}`
 		}
 	})
 </script>
