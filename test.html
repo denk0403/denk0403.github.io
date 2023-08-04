@@ -1,0 +1,169 @@
+<script>
+    {
+        const TEMPLATE = document.createElement("template");
+        TEMPLATE.innerHTML = /* html */ `
+            <style>:host{ display: flow-root; }</style>
+            <div id="wrapper" style="display: inline-block"><slot></slot></div>
+        `.trim();
+
+        class FormatText extends HTMLElement {
+            /** @type {ShadowRoot} */
+            #r;
+            /** @type {HTMLDivElement} */
+            #wrapper;
+            /** @type {HTMLSlotElement} */
+            #slot;
+            /** @type {MutationObserver} */
+            #mutObs;
+            /** @type {ResizeObserver} */
+            #resObs;
+
+            static get observedAttributes() {
+                return ["max-height", "max-size", "balance"];
+            }
+
+            constructor() {
+                super();
+
+                this.#r = this.attachShadow({ mode: "open" });
+                this.#r.appendChild(TEMPLATE.content.cloneNode(true));
+
+                // @ts-ignore
+                this.#slot = this.#r.querySelector("slot");
+                this.#wrapper = this.#r.querySelector("#wrapper");
+            }
+
+            connectedCallback() {
+                // this.style.display ||= "inline-block";
+                this.#slot.addEventListener("slotchange", this.#shrinkAndBalance);
+
+                this.#mutObs = new MutationObserver(this.#shrinkAndBalance);
+                this.#mutObs.observe(this, { childList: true, subtree: true });
+
+                this.#resObs = new ResizeObserver(this.#shrinkAndBalance);
+
+                this.#resObs.observe(this, { box: "border-box" });
+                if (this.parentElement) this.#resObs.observe(this, { box: "border-box" });
+            }
+
+            disconnectedCallback() {
+                this.#slot.removeEventListener("slotchange", this.#shrinkAndBalance);
+                this.#mutObs.disconnect();
+                this.#resObs.disconnect();
+            }
+
+            attributeChangedCallback() {
+                if (this.isConnected) this.#shrinkAndBalance();
+            }
+
+            #shrinkAndBalance = () => {
+                this.style.display = 'block';
+                this.#setFontSize(null);
+                this.#setMaxWidth(null);
+                const maxHeight = parseInt(this.getAttribute("max-height") ?? "0");
+                const maxFontSize = parseInt(this.getAttribute("max-size") ?? "0") || maxHeight;
+                if (maxHeight) this.#shrink(maxHeight, maxFontSize);
+
+                const balance = this.getAttribute("balance");
+                switch (balance) {
+                    case "": {
+                        if (CSS.supports("text-wrap", "balance")) {
+                            this.#wrapper.style.textWrap = "balance";
+                        } else {
+                            this.#balance();
+                        }
+                    }
+                    case "force": {
+                        this.#balance();
+                    }
+                }
+            }
+
+            stop() {
+                this.disconnectedCallback();
+            }
+
+            #balance = () => {
+                // @ts-ignore
+                const parentWidth = this.parentElement.getBoundingClientRect().width;
+                this.#setMaxWidth(`${parentWidth}px`);
+
+                const height = this.getBoundingClientRect().height;
+
+                // perform binary search
+                let lowerWidth = 0;
+                let upperWidth = parentWidth;
+
+                while (lowerWidth !== upperWidth) {
+                    const currentWidth = ~~((upperWidth + lowerWidth) / 2);
+
+                    this.#setMaxWidth(`${currentWidth}px`);
+
+                    if (this.getBoundingClientRect().height === height) {
+                        upperWidth = currentWidth;
+                    } else {
+                        lowerWidth = currentWidth + 1;
+                    }
+                }
+
+                this.#setMaxWidth(`${lowerWidth}px`);
+            };
+
+            #shrink = (maxHeight, maxFontSize) => {
+                const MIN_DIFF = 0.1;
+                this.#setFontSize(`${maxFontSize}px`);
+
+                // perform binary search
+                let lowerSize = 0;
+                let upperSize = maxFontSize;
+
+                while (upperSize - lowerSize > MIN_DIFF) {
+                    const currentSize = (upperSize + lowerSize) / 2;
+
+                    this.#setFontSize(`${currentSize}px`);
+
+                    if (this.getBoundingClientRect().height > maxHeight) {
+                        upperSize = currentSize - MIN_DIFF;
+                    } else {
+                        lowerSize = currentSize;
+                    }
+                }
+
+                this.#setFontSize(`${lowerSize}px`);
+            };
+
+            /**
+             * @param {string} fs
+             */
+            #setFontSize(fs) {
+                if (fs) {
+                    this.#wrapper.style.fontSize = fs;
+                } else {
+                    this.#wrapper.style.removeProperty('font-size');
+                }
+            }
+
+            /**
+             * @param {string} mw
+             */
+            #setMaxWidth(mw) {
+                if (mw) {
+                    this.#wrapper.style.maxWidth = mw;
+                } else {
+                    this.#wrapper.style.removeProperty('max-width');
+                }
+            }
+        }
+
+        customElements.define("format-text", FormatText);
+    }
+
+</script>
+
+<format-text max-height="100" max-size="100" balance>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras at
+    leo a metus dapibus auctor. Curabitur vitae dui finibus, cursus est quis, condimentum dui. Aliquam convallis felis
+    lorem, eu convallis lectus tempus id. Nulla facilisi. Cras iaculis condimentum aliquet. Phasellus egestas purus
+    vitae quam lobortis vulputate vel nec odio. Nam fringilla odio in lorem consectetur, vitae laoreet libero tincidunt.
+    Aliquam massa justo, ornare ut varius aliquam, commodo vel ligula. Aliquam ullamcorper at urna ac mattis. Praesent
+    sed tempor lectus. Etiam id scelerisque turpis. Quisque urna nisl, suscipit a erat at, egestas venenatis mi. Donec a
+    purus vitae ipsum hendrerit porta.</format-text>

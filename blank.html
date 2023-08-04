@@ -190,7 +190,7 @@ performance.now() - start`;
 			if ($box === playground) return;
 			if (isEditing($box) && !e.shiftKey) return;
 
-			const previous = $box.previousElementSibling ?? $box.parentElement;
+			const previous = $box.previousElementSibling ?? $box.parentElement ?? playground;
 			$box?.remove();
 			$box = previous;
 			$box.classList.add("selected");
@@ -344,6 +344,43 @@ perf({
 	`)
 		}
 	})
+
+	function perf2({ time, tests, scope = {} }) {
+		if (typeof scope !== 'object') throw new TypeError('scope arg must be an object.');
+
+		let jsonScope = JSON.stringify(scope);
+		/** @type {string[]} */
+		const perfTests = tests.map((fn, index) => `
+			try {
+				with (Object.assign(Object.create(null), ${jsonScope})) {
+					const test = eval(${JSON.stringify(fn.toString())});
+					if (typeof test !== 'function') {
+						throw new Error("Test ${index} is invalid.");
+					}
+
+					let iterations = 0;
+					const start = performance.now();
+					while (performance.now() - start < ${time}) {
+						iterations++; test();
+					}
+					let end = performance.now();
+					if (end - ${time} > ${time} * 0.25)
+						console.warn(\`Test ${index + 1} took \${end - start}ms to execute.\`)
+					console.log("Test ${index + 1} iterations:", iterations);
+				}
+			} catch (err) {
+				console.error("Test ${index} threw an error.", {cause: err});
+			}
+
+			self.postMessage(${index});
+		`);
+
+		perfTests.forEach(test => {
+			const perfTestsUrl = URL.createObjectURL(new Blob([test]));
+			const worker = new Worker(perfTestsUrl);
+			worker.onmessage = () => URL.revokeObjectURL(perfTestsUrl);
+		})
+	}
 </script>
 
 </html>

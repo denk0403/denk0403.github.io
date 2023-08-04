@@ -2,7 +2,7 @@
 ---
 
 // @ts-check
-import { id, prop, template } from "./utils.mjs";
+	import { id, prop, template } from "./utils.mjs";
 
 const ICON_TYPE_DATA_MAP = /** @type {const} */ ({
 	github: /** @type {const} */ ({ classes: ["fa-brands", "fa-github"], tooltip: "Github" }),
@@ -22,15 +22,12 @@ const ICON_TYPE_DATA_MAP = /** @type {const} */ ({
 export class ProjectLink extends HTMLElement {
 	static #TEMPLATE = template`
 		<style>{% include styles/components/ProjectLink.styles.css %}</style>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/fontawesome.min.css"
-			integrity="sha512-giQeaPns4lQTBMRpOOHsYnGw1tGVzbAIHUyHRgn7+6FmiEgGGjaG0T2LZJmAPMzRCl+Cug0ItQ2xDZpTmEc+CQ=="
-			crossorigin="anonymous" referrerpolicy="no-referrer" />
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/brands.min.css"
-			integrity="sha512-G/T7HQJXSeNV7mKMXeJKlYNJ0jrs8RsWzYG7rVACye+qrcUhEAYKYzaa+VFy6eFzM2+/JT1Q+eqBbZFSHmJQew=="
-			crossorigin="anonymous" referrerpolicy="no-referrer" />
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/solid.min.css"
-			integrity="sha512-6mc0R607di/biCutMUtU9K7NtNewiGQzrvWX4bWTeqmljZdJrwYvKJtnhgR+Ryvj+NRJ8+NnnCM/biGqMe/iRA=="
-			crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css"
+    		crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css"
+    		crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css"
+    		crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
 		<a id="link" target="_blank"><i id="icon" class="fa-inverse fa-lg" aria-hidden="true"></i></a>
 	`;
 
