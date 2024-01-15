@@ -97,15 +97,22 @@
 		</button>
 		<label class="btn">
 			<span>input:</span>
-			<select oninput="insert(element('input', {type: event.target.value}))">
-				<option>text</option>
-				<option>password</option>
-				<option>color</option>
-				<option>range</option>
-				<option>date</option>
-				<option>number</option>
-				<option>file</option>
-			</select>
+			<form style="display: inline-block;" onsubmit="event.preventDefault();
+					insert(element('input', {type: event.target.elements.inputType.value}))
+				">
+				<select name="inputType">
+					<option>text</option>
+					<option>password</option>
+					<option>color</option>
+					<option>range</option>
+					<option>date</option>
+					<option>number</option>
+					<option>file</option>
+					<option>checkbox</option>
+					<option>radio</option>
+				</select>
+				<button style="color: black;">Add</button>
+			</form>
 		</label>
 		<button title="Create Paragraph Element"
 			onclick="insert(element('p', {contentEditable: true}, 'Lorem Ipsum...'))">
@@ -245,6 +252,47 @@ performance.now() - start`;
 			get() { playground.textContent = ''; }
 		}
 	})
+
+	function shuffle(array) {
+		array = array.slice();
+		let currentIndex = array.length, randomIndex;
+
+		// While there remain elements to shuffle...
+		while (currentIndex != 0) {
+			// Pick a remaining element...
+			randomIndex = Math.floor(Math.random() * currentIndex);
+			currentIndex--;
+			// And swap it with the current element.
+			[array[currentIndex], array[randomIndex]] = [
+				array[randomIndex], array[currentIndex]];
+		}
+
+		return array;
+	}
+
+	function loop(count, func) {
+		let i = 0;
+		while (i < count) {
+			func(i++);
+		}
+	}
+
+	function arrayFrom(count, func) {
+		const arr = [];
+		let i = 0;
+		while (i < count) {
+			arr.push(func(i++));
+		}
+		return arr;
+	}
+
+	function fmtjson(obj) {
+		return JSON.stringify(obj, null, 2);
+	}
+
+	function minjson(obj) {
+		return JSON.stringify(obj);
+	}
 
 	const random = Object.freeze({
 		number(min = 0, max = 256) {

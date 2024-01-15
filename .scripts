@@ -2,6 +2,9 @@
 # or with alias `run <function_name>`
 
 start() {
+    if [ ! -d "_site" ]; then
+        jekyll build --trace
+    fi
     npx serve _site
 }
 

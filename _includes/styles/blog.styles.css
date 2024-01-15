@@ -41,6 +41,7 @@
     text-align-last: left;
     hyphens: auto;
     -webkit-hyphens: auto;
+    text-wrap: pretty;
 }
 
 .main-content iframe {
