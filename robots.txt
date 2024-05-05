@@ -10,4 +10,5 @@ Disallow: /*.png$
 Disallow: /*.gif$
 Disallow: /*.jpg$
 Disallow: /*.webp$
+Disallow: /*.avif$
 Disallow: /__blog/*
