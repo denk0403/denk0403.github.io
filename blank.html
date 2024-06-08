@@ -253,6 +253,10 @@ performance.now() - start`;
 		}
 	})
 
+	Object.prototype.pipe = function (...fns) {
+		return fns.reduce((acc, fn) => fn(acc), this);
+	}
+
 	function shuffle(array) {
 		array = array.slice();
 		let currentIndex = array.length, randomIndex;
@@ -342,8 +346,30 @@ performance.now() - start`;
 		color(minBrightness = 100, maxBrightness = 255) {
 			const gen = () => random.integer(minBrightness, maxBrightness).toString(16);
 			return `${gen()}${gen()}${gen()}`
+		},
+		choose(...args) {
+			if (args.length === 0) throw new Error('No arguments provided.');
+			return args[random.integer(0, args.length)];
+		},
+		chooseWithChances(...args) {
+			if (args.length === 0) throw new Error('No arguments provided.');
+			const total = args.reduce((acc, [_, prob]) => acc + prob, 0);
+			let rand = random.integer(0, total);
+			for (const [item, prob] of args) {
+				if (rand < prob) return item;
+				rand -= prob;
+			}
 		}
 	})
+
+	function count(iter) {
+		/** @type {Map<unknown, number>} */
+		const result = new Map();
+		for (const item of iter) {
+			result.set(item, (result.get(item) ?? 0) + 1)
+		}
+		return result;
+	}
 
 	function perf({ time, tests, scope = {} }) {
 		if (typeof scope !== 'object') throw new TypeError('scope arg must be an object.');

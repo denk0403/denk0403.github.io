@@ -3,6 +3,7 @@ node_modules/
 /config
 temp.*
 .cache/
+.DS_Store
 
 # jekyll
 .jekyll-cache/
