@@ -353,7 +353,15 @@ performance.now() - start`;
 		},
 		chooseWithChances(...args) {
 			if (args.length === 0) throw new Error('No arguments provided.');
-			const total = args.reduce((acc, [_, prob]) => acc + prob, 0);
+			const total = args.reduce((acc, chancesArr, index) => {
+				if (!Array.isArray(chancesArr) || chancesArr.length !== 2) throw new Error(`Argument ${index} must be a 2-tuple.`, { cause: chancesArr });
+
+				const [_, chances] = chancesArr;
+
+				if (!Number.isSafeInteger(chances)) throw new Error(`Second element of argument ${index} must be a safe integer.`, { cause: chances });
+
+				return acc + chances;
+			}, 0);
 			let rand = random.integer(0, total);
 			for (const [item, prob] of args) {
 				if (rand < prob) return item;
