@@ -8,9 +8,9 @@
 class FeaturedProject extends HTMLElement {
 	static #TEMPLATE = template`
 		<style>{% include styles/components/FeaturedProject.styles.css %}</style>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css"
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/fontawesome.min.css"
     		crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css"
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/solid.min.css"
     		crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
 		<a id="project-link-box" title="Learn more">
 			<div id="box">
