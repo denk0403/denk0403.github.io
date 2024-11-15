@@ -218,7 +218,6 @@ a:focus-within {
     background-color: #252525;
     cursor: pointer;
     transition: background-color 0.25s ease;
-    display: flex;
     justify-content: center;
     align-items: baseline;
     z-index: 1;
