@@ -379,6 +379,39 @@ performance.now() - start`;
 		return result;
 	}
 
+	const wait = (ms) => {
+		if (ms === Infinity)
+			return new Promise(() => { });
+		const MAX_TIMEOUT = 2 ** 31 - 1;
+		if (ms >= MAX_TIMEOUT) {
+			console.warn(`The maximum timeout is ${MAX_TIMEOUT} milliseconds.`);
+			ms = MAX_TIMEOUT;
+		}
+		return new Promise((resolve) => {
+			setTimeout(resolve, ms);
+		});
+	};
+
+	function transpose(arrays) {
+		const length = Math.max(...arrays.map((arr) => arr.length));
+		const zipped = [];
+		for (let index = 0; index < length; index++) {
+			zipped.push(arrays.map((arr) => arr[index]));
+		}
+		return zipped;
+	}
+
+	const difference = (arr1, arr2) => {
+		const set1 = new Set(arr1);
+		const set2 = new Set(arr2);
+		arr1 = Array.from(set1);
+		arr2 = Array.from(set2);
+		const diff1 = arr1.filter((item) => !set2.has(item));
+		const diff2 = arr2.filter((item) => !set1.has(item));
+		const common = arr1.filter((item) => set2.has(item));
+		return [diff1, diff2, common];
+	};
+
 	function perf({ time, tests, scope = {} }) {
 		if (typeof scope !== 'object') throw new TypeError('scope arg must be an object.');
 
